@@ -11,6 +11,7 @@ const ChangeNickPage = () => {
   return (
     <>
       <TopBar titleText="설정" />
+
       <Wrapper>
         <div>닉네임</div>
         <Input
