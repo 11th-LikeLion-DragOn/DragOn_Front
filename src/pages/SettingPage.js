@@ -139,6 +139,7 @@ const Profile = styled.div`
   hr {
     width: 339px;
     height: 1px;
+    background: rgba(199, 198, 198, 0.2);
   }
   img {
     width: 24px;
@@ -167,6 +168,7 @@ const Account = styled.div`
   hr {
     width: 339px;
     height: 1px;
+    background: rgba(199, 198, 198, 0.2);
   }
   img {
     width: 24px;
