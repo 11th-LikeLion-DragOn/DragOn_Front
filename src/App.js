@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import SettingPage from "./pages/SettingPage";
+import ExchargePage from "./pages/ExchargePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 
           {/* 설정페이지 */}
           <Route path={"/setting"} element={<SettingPage />}></Route>
+          <Route path={"/excharge"} element={<ExchargePage />}></Route>
         </Routes>
       </Router>
     </>
