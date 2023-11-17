@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import SettingPage from "./pages/SettingPage";
 import ExchargePage from "./pages/ExchargePage";
+import ChangeNickPage from "./pages/ChangeNickPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           {/* 설정페이지 */}
           <Route path={"/setting"} element={<SettingPage />}></Route>
           <Route path={"/excharge"} element={<ExchargePage />}></Route>
+          <Route path={"/changenick"} element={<ChangeNickPage />}></Route>
         </Routes>
       </Router>
     </>
