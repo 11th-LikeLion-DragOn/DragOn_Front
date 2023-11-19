@@ -9,6 +9,7 @@ import SettingPage from "./pages/SettingPage";
 import ExchargePage from "./pages/ExchargePage";
 import ChangeNickPage from "./pages/ChangeNickPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
+import StartTestPage from "./pages/StartTestPage";
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
             path={"/changepassword"}
             element={<ChangePasswordPage />}
           ></Route>
+
+          {/* 챌린지 성향 테스트 */}
+          <Route path={"/starttest"} element={<StartTestPage />}></Route>
         </Routes>
       </Router>
     </>
