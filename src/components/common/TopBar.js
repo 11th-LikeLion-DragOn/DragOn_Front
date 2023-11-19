@@ -33,6 +33,7 @@ const Wrapper = styled.div`
   hr {
     background: rgba(199, 198, 198, 0.2);
     height: 1.241px;
+    width: 393px;
   }
 `;
 const Title = styled.div`
