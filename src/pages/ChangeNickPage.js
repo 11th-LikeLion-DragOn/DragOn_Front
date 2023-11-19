@@ -14,12 +14,19 @@ const ChangeNickPage = () => {
 
       <Wrapper>
         <div>닉네임</div>
-        <Input
-          type="text"
-          value={nickname}
-          placeholder="닉네임 입력"
-          onChange={(e) => setNickname(e.target.value)}
-        ></Input>
+        <NickWrapper>
+          <Input
+            type="text"
+            value={nickname}
+            placeholder="닉네임 입력"
+            onChange={(e) => setNickname(e.target.value)}
+          ></Input>
+          <div className="xicon">
+            {" "}
+            <img src={quit} />
+          </div>
+        </NickWrapper>
+
         <div className="alert">사용자가 이미 존재합니다</div>
         <Btn>닉네임 변경하기</Btn>
       </Wrapper>
@@ -28,10 +35,12 @@ const ChangeNickPage = () => {
 };
 export default ChangeNickPage;
 const Wrapper = styled.div`
+  width: 393px;
+  height: 852px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 29px;
+  margin-left: 28px;
   div {
     margin-top: 23px;
     color: var(--gray_02, #b5b5b5);
@@ -47,8 +56,22 @@ const Wrapper = styled.div`
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
-    line-height: normal;
-    margin-right: 82%;
+    margin-top: 8px;
+    margin-right: 28px;
+  }
+`;
+const NickWrapper = styled.div`
+  img {
+    width: 16.667px;
+    height: 16.667px;
+    position: absolute;
+    top: 29%;
+    left: 16%;
+  }
+  .xicon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
