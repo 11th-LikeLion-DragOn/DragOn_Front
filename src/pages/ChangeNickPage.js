@@ -62,8 +62,8 @@ const Wrapper = styled.div`
 `;
 const NickWrapper = styled.div`
   img {
-    width: 16.667px;
-    height: 16.667px;
+    width: 20.667px;
+    height: 20.667px;
     position: absolute;
     top: 29%;
     left: 16%;
