@@ -30,6 +30,11 @@ const Wrapper = styled.div`
     margin-top: 58px;
     margin-left: 16px;
   }
+  hr {
+    background: rgba(199, 198, 198, 0.2);
+    height: 1.241px;
+    width: 393px;
+  }
 `;
 const Title = styled.div`
   color: var(--black, #303030);
