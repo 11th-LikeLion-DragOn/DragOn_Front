@@ -1,14 +1,21 @@
 import React from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import before from "../assets/icons/click-left.png";
 import SignupInput from "../components/SignupPage/SignupInput";
 import PasswordInput from "../components/SignupPage/PasswordInput";
 
 const SignupPage = () => {
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
     <Wrapper>
-      <img id="before" src={before} />
+      <img id="before" src={before} onClick={goBack} />
       <SignupBox>
         <SignupInput
           id="id"
@@ -49,6 +56,7 @@ const Wrapper = styled.div`
     height: 38px;
     margin-top: 64px;
     margin-right: 350px;
+    cursor: pointer;
   }
 `;
 
