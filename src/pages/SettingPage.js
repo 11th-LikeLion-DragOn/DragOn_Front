@@ -1,7 +1,8 @@
 import React from "react";
 import { styled } from "styled-components";
-
+//components
 import TopBar from "../components/common/TopBar";
+import LockModal from "../components/testchallenge/LockModal";
 //image
 import profile1 from "../assets/icons/profile1.png";
 import marblePurple from "../assets/icons/marble-purple.png";
