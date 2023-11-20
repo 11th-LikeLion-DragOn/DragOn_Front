@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //pages
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
+import MainPage from "./pages/MainPage";
 import SettingPage from "./pages/SettingPage";
 import ExchargePage from "./pages/ExchargePage";
 import ChangeNickPage from "./pages/ChangeNickPage";
@@ -20,6 +21,9 @@ function App() {
           {/*로그인/회원가입*/}
           <Route path={"/login"} element={<LoginPage />}></Route>
           <Route path={"/signup"} element={<SignupPage />}></Route>
+
+          {/*메인페이지*/}
+          <Route path={"/main"} element={<MainPage />}></Route>
 
           {/* 설정페이지 */}
           <Route path={"/setting"} element={<SettingPage />}></Route>

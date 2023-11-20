@@ -1,20 +1,26 @@
 import React from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import before from "../assets/icons/click-left.png";
 import SignupInput from "../components/SignupPage/SignupInput";
 import PasswordInput from "../components/SignupPage/PasswordInput";
 
 const SignupPage = () => {
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
     <Wrapper>
-      <img src={before} />
+      <img id="before" src={before} onClick={goBack} />
       <SignupBox>
         <SignupInput
           id="id"
           tag="아이디"
           placeholder="아이디 입력"
-          src="fail"
           feedback="이미 사용 중인 아이디입니다"
         />
         <PasswordInput id="pw" feedback="비밀번호를 다시 확인해주세요" />
@@ -45,11 +51,12 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  img {
+  #before {
     width: 24px;
     height: 38px;
     margin-top: 64px;
     margin-right: 350px;
+    cursor: pointer;
   }
 `;
 

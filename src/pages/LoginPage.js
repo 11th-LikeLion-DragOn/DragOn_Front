@@ -1,10 +1,17 @@
 import React from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import InputBox from "../components/common/InputBox";
 import kakao from "../assets/icons/kakao-login.png";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
+  const goSignup = () => {
+    navigate("/signup");
+  };
+
   return (
     <Wrapper>
       <LoginBox>
@@ -17,7 +24,7 @@ const LoginPage = () => {
         카카오 로그인
       </Kakao>
       <div id="line"></div>
-      <SignUp>회원가입하기</SignUp>
+      <SignUp onClick={goSignup}>회원가입하기</SignUp>
     </Wrapper>
   );
 };
