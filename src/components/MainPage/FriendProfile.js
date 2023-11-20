@@ -30,17 +30,14 @@ const Wrapper = styled.div`
     flex-shrink: 0;
   }
   span {
-    display: flex;
-    width: 45px;
-    flex-direction: column;
-    justify-content: center;
     flex-shrink: 0;
+    width: 45px;
     overflow: hidden;
-    color: var(--black, #303030);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--black);
     text-align: center;
     font-feature-settings: "clig" off, "liga" off;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     font-family: Pretendard;
     font-size: 11px;
     font-style: normal;
