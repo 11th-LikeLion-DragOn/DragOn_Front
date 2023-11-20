@@ -12,7 +12,7 @@ import ChangePasswordPage from "./pages/ChangePasswordPage";
 import StartTestPage from "./pages/StartTestPage";
 import TestingPage from "./pages/TestingPage";
 import TestResultPage from "./pages/TestResultPage";
-
+import MakeChallengePage from "./pages/MakeChallengePage";
 function App() {
   return (
     <>
@@ -35,6 +35,11 @@ function App() {
           <Route path={"/starttest"} element={<StartTestPage />}></Route>
           <Route path={"/testing"} element={<TestingPage />}></Route>
           <Route path={"/testresult"} element={<TestResultPage />}></Route>
+          {/* 챌린지 메꾸기 */}
+          <Route
+            path={"/makechallenge"}
+            element={<MakeChallengePage />}
+          ></Route>
         </Routes>
       </Router>
     </>
