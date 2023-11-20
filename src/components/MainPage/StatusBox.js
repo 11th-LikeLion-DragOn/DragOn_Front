@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 
 import info from "../../assets/icons/info.png";
+import MarbleModal from "./MarbleModal";
 
 const StatusBox = () => {
+  const [modal, setModal] = useState(false);
+
   return (
     <Wrapper>
       <Status>
         <MarbleCnt>
           <span id="marble">내가 모은 여의주</span>
           <span id="cnt">1개</span>
-          <img src={info} />
+          <img src={info} onClick={() => setModal(!modal)} />
         </MarbleCnt>
         <StatusRate>
           <span id="achieve">전체 달성률</span>
           <span id="rate">84%</span>
         </StatusRate>
       </Status>
+      {modal && <MarbleModal />}
       <RateBox>
         <Goal1>
           <Title1>
@@ -62,6 +66,7 @@ const StatusBox = () => {
 export default StatusBox;
 
 const Wrapper = styled.div`
+  position: relative;
   padding: 16px 20px;
   width: 311px;
   height: 86px;
@@ -311,7 +316,7 @@ const RateBar3 = styled.div`
   background: var(--gray_01, rgba(192, 192, 192, 0.1));
   #current {
     z-index: 100;
-    width: 114px;
+    width: 110px;
     height: 10px;
     flex-shrink: 0;
     border-radius: 30px;
