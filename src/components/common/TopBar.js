@@ -31,9 +31,10 @@ const Wrapper = styled.div`
     margin-left: 16px;
   }
   hr {
-    background: rgba(199, 198, 198, 0.2);
+    background: #d6d6d6;
     height: 1.241px;
     width: 393px;
+    border: none;
   }
 `;
 const Title = styled.div`
