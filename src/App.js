@@ -10,6 +10,7 @@ import ExchargePage from "./pages/ExchargePage";
 import ChangeNickPage from "./pages/ChangeNickPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import StartTestPage from "./pages/StartTestPage";
+import TestingPage from "./pages/TestingPage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
 
           {/* 챌린지 성향 테스트 */}
           <Route path={"/starttest"} element={<StartTestPage />}></Route>
+          <Route path={"/testing"} element={<TestingPage />}></Route>
         </Routes>
       </Router>
     </>

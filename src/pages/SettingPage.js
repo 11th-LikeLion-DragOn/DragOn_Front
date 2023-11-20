@@ -12,7 +12,6 @@ const SettingPage = () => {
   return (
     <>
       <TopBar titleText="설정" />
-      <LockModal />
       <Wrapper>
         <Info>
           <img src={profile1} />
