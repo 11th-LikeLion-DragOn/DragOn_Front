@@ -16,39 +16,68 @@ const TestingPage = () => {
           <div className="text">
             작심삼일, 나는 계획을 끝까지 지켜본 적이 잘 없다.
           </div>
-          <img src={grayCheck} />
-          <div className="yesBox">Yes</div>
+          <div className="yesBox">
+            <img src={grayCheck} />
+            Yes
+          </div>
           <hr></hr>
-          <div className="noBox">No</div>
+          <div className="noBox">
+            <img src={grayCheck} />
+            No
+          </div>
         </Q1>
         <Q2>
           <div className="number">Q2.</div>
           <div className="text">계획은 최대한 구체적으로, 자세하게 세운다</div>
-          <div className="yesBox">Yes</div>
+          <div className="yesBox">
+            <img src={grayCheck} />
+            Yes
+          </div>
           <hr></hr>
-          <div className="noBox">No</div>
+          <div className="noBox">
+            <img src={grayCheck} />
+            No
+          </div>
         </Q2>
         <Q3>
           <div className="number">Q3.</div>
 
           <div className="text">장기 목표보다 단기 목표에 강하다</div>
-          <div className="yesBox">Yes</div>
+          <div className="yesBox">
+            <img src={grayCheck} />
+            Yes
+          </div>
           <hr></hr>
-          <div className="noBox">No</div>
+          <div className="noBox">
+            <img src={grayCheck} />
+            No
+          </div>
         </Q3>
         <Q4>
           <div className="number">Q4.</div>
           <div className="text">챌린지의 시작을 지인들에게 널리 알린다</div>
-          <div className="yesBox">Yes</div>
+          <div className="yesBox">
+            <img src={grayCheck} />
+            Yes
+          </div>
           <hr></hr>
-          <div className="noBox">No</div>
+          <div className="noBox">
+            <img src={grayCheck} />
+            No
+          </div>
         </Q4>
         <Q5>
           <div className="number">Q5.</div>
           <div className="text">목표 달성보다는 과정에 의의를 둔다</div>
-          <div className="yesBox">Yes</div>
+          <div className="yesBox">
+            <img src={grayCheck} />
+            Yes
+          </div>
           <hr></hr>
-          <div className="noBox">No</div>
+          <div className="noBox">
+            <img src={grayCheck} />
+            No
+          </div>
         </Q5>
         <Btn>테스트 완료하기</Btn>
       </Wrapper>
@@ -100,6 +129,11 @@ const Wrapper = styled.div`
     border: 0;
     height: 1px;
     background: #d6d6d6;
+  }
+  img {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
   }
 `;
 const Q1 = styled.div`
