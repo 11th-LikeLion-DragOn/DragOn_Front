@@ -16,6 +16,10 @@ const MainTop = ({ list }) => {
     navigate("/setting");
   };
 
+  const searchFriend = () => {
+    navigate("/searchfriend");
+  };
+
   return (
     <Wrapper>
       <Buttons>
@@ -29,7 +33,7 @@ const MainTop = ({ list }) => {
         {list.map((friend) => {
           return <FriendProfile key={list.id} friend={friend} />;
         })}
-        <img id="addFriend" src={addFriend} />
+        <img id="addFriend" src={addFriend} onClick={searchFriend} />
       </FriendList>
     </Wrapper>
   );
