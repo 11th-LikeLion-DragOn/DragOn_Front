@@ -61,12 +61,13 @@ const Wrapper = styled.div`
   }
 `;
 const NickWrapper = styled.div`
+  position: relative;
   img {
     width: 20.667px;
     height: 20.667px;
     position: absolute;
-    top: 29%;
-    left: 16%;
+    top: 30%;
+    left: 81%;
   }
   .xicon {
     display: flex;
