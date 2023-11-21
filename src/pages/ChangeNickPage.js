@@ -88,6 +88,10 @@ const Input = styled.input`
   font-weight: 500;
   line-height: normal;
   padding-left: 22px;
+  input::placeholder {
+    color: red;
+    font-style: italic;
+  }
 `;
 const Btn = styled.button`
   margin-top: 557px;

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 
 import TopBar from "../components/common/TopBar";
+import { ReactComponent as RedOne } from "../assets/icons/red.svg";
+import { ReactComponent as GreenOne } from "../assets/icons/green.svg";
+import { ReactComponent as BlueOne } from "../assets/icons/blue.svg";
 
 const MakeChallengePage = () => {
   const [name, setName] = useState("");
@@ -19,24 +22,35 @@ const MakeChallengePage = () => {
           placeholder="챌린지명을 작성해주세요"
           onChange={(e) => setName(e.target.value)}
         ></Input>
-        <Input
-          type="text"
-          value={goal1}
-          placeholder="목표명을 작성해주세요"
-          onChange={(e) => setGoal1(e.target.value)}
-        ></Input>
-        <Input
-          type="text"
-          value={goal2}
-          placeholder="목표명을 작성해주세요"
-          onChange={(e) => setGoal2(e.target.value)}
-        ></Input>
-        <Input
-          type="text"
-          value={goal3}
-          placeholder="목표명을 작성해주세요"
-          onChange={(e) => setGoal3(e.target.value)}
-        ></Input>
+        <First>
+          {" "}
+          <RedOne />
+          <Input
+            type="text"
+            value={goal1}
+            placeholder="목표명을 작성해주세요"
+            onChange={(e) => setGoal1(e.target.value)}
+          ></Input>
+        </First>
+        <Second>
+          <GreenOne />
+          <Input
+            type="text"
+            value={goal2}
+            placeholder="목표명을 작성해주세요"
+            onChange={(e) => setGoal2(e.target.value)}
+          ></Input>
+        </Second>
+        <Third>
+          <BlueOne />{" "}
+          <Input
+            type="text"
+            value={goal3}
+            placeholder="목표명을 작성해주세요"
+            onChange={(e) => setGoal3(e.target.value)}
+          ></Input>
+        </Third>
+
         <Btn>다음으로 넘어가기 </Btn>
       </Wrapper>
     </>
@@ -44,6 +58,7 @@ const MakeChallengePage = () => {
 };
 export default MakeChallengePage;
 const Wrapper = styled.div`
+  margin-top: 50px;
   padding: 0 20px 0 20px;
   width: 393px;
   height: 852px;
@@ -77,4 +92,20 @@ const Btn = styled.div`
   border-radius: 6px;
   background: var(--purple_01, #8438ff);
   margin-top: 350px;
+`;
+const First = styled.div`
+  margin-top: 29px;
+  input {
+    margin-left: 10px;
+  }
+`;
+const Second = styled.div`
+  input {
+    margin-left: 10px;
+  }
+`;
+const Third = styled.div`
+  input {
+    margin-left: 10px;
+  }
 `;
