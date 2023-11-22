@@ -4,11 +4,16 @@ import { styled } from "styled-components";
 import { ReactComponent as RedOne } from "../../assets/icons/red.svg";
 import { ReactComponent as GreenOne } from "../../assets/icons/green.svg";
 import { ReactComponent as BlueOne } from "../../assets/icons/blue.svg";
+import quit from "../../assets/icons/quit.png";
+
 const CurrentChallenge = () => {
   return (
     <>
       <Wrapper>
-        <Title>담곰이의 갓생살기 ✨</Title>
+        <Title>
+          담곰이의 갓생살기 ✨
+          <img src={quit} />
+        </Title>
         <Period>
           <div>챌린지 진행기간</div>
           <div>2023.11.01 ~ 2023.12.13 (6주) </div>
@@ -48,6 +53,11 @@ const Title = styled.div`
   font-size: 20px;
   font-weight: 600;
   line-height: normal;
+  img {
+    margin-left: 160px;
+    width: 22.421px;
+    height: 22.421px;
+  }
 `;
 
 const Period = styled.div`

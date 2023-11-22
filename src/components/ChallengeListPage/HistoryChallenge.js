@@ -40,6 +40,7 @@ const HistoryChallenge = () => {
 
 export default HistoryChallenge;
 const Wrapper = styled.div`
+  margin-bottom: 14px;
   padding: 17px 22px 18px 16px;
   width: 353px;
   height: 185px;
