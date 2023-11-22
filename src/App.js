@@ -15,6 +15,7 @@ import TestingPage from "./pages/TestingPage";
 import TestResultPage from "./pages/TestResultPage";
 import MakeChallengePage from "./pages/MakeChallengePage";
 import SetPeriodPage from "./pages/SetPeriodPage";
+import ChallengeListPage from "./pages/ChallengeListPage";
 
 function App() {
   return (
@@ -47,6 +48,11 @@ function App() {
             element={<MakeChallengePage />}
           ></Route>
           <Route path={"/setperiod"} element={<SetPeriodPage />}></Route>
+          {/* 챌린지 관리하기 */}
+          <Route
+            path={"/challengelist"}
+            element={<ChallengeListPage />}
+          ></Route>
         </Routes>
       </Router>
     </>
