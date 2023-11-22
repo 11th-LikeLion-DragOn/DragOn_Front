@@ -61,12 +61,13 @@ const Wrapper = styled.div`
   }
 `;
 const NickWrapper = styled.div`
+  position: relative;
   img {
     width: 20.667px;
     height: 20.667px;
     position: absolute;
-    top: 29%;
-    left: 16%;
+    top: 30%;
+    left: 81%;
   }
   .xicon {
     display: flex;
@@ -87,6 +88,10 @@ const Input = styled.input`
   font-weight: 500;
   line-height: normal;
   padding-left: 22px;
+  input::placeholder {
+    color: red;
+    font-style: italic;
+  }
 `;
 const Btn = styled.button`
   margin-top: 557px;
