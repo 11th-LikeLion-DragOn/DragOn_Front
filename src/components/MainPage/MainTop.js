@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import clickLeft from "../../assets/icons/click-left.png";
 import setting from "../../assets/icons/setting.png";
@@ -9,12 +10,22 @@ import FriendProfile from "./FriendProfile";
 import addFriend from "../../assets/icons/friend-list.png";
 
 const MainTop = ({ list }) => {
+  const navigate = useNavigate();
+
+  const goSetting = () => {
+    navigate("/setting");
+  };
+
+  const searchFriend = () => {
+    navigate("/searchfriend");
+  };
+
   return (
     <Wrapper>
       <Buttons>
         <img id="clickLeft" src={clickLeft} />
         <Right>
-          <img id="setting" src={setting} />
+          <img id="setting" src={setting} onClick={goSetting} />
           <img id="alarm" src={alarmStar} />
         </Right>
       </Buttons>
@@ -22,7 +33,7 @@ const MainTop = ({ list }) => {
         {list.map((friend) => {
           return <FriendProfile key={list.id} friend={friend} />;
         })}
-        <img src={addFriend} />
+        <img id="addFriend" src={addFriend} onClick={searchFriend} />
       </FriendList>
     </Wrapper>
   );
@@ -51,16 +62,19 @@ const Buttons = styled.div`
     width: 24px;
     height: 38px;
     flex-shrink: 0;
+    cursor: pointer;
   }
   #setting {
     width: 34px;
     height: 34px;
     flex-shrink: 0;
+    cursor: pointer;
   }
   #alarm {
     width: 38px;
     height: 38px;
     flex-shrink: 0;
+    cursor: pointer;
   }
 `;
 
@@ -74,4 +88,7 @@ const FriendList = styled.div`
   gap: 12px;
   align-items: flex-start;
   padding-left: 21px;
+  #addFriend {
+    cursor: pointer;
+  }
 `;

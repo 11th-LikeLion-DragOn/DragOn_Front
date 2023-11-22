@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MainPage from "./pages/MainPage";
+import SearchFriendPage from "./pages/SearchFriendPage";
 import SettingPage from "./pages/SettingPage";
 import ExchargePage from "./pages/ExchargePage";
 import ChangeNickPage from "./pages/ChangeNickPage";
@@ -28,6 +29,7 @@ function App() {
 
           {/*메인페이지*/}
           <Route path={"/main"} element={<MainPage />}></Route>
+          <Route path={"/searchfriend"} element={<SearchFriendPage />}></Route>
 
           {/* 설정페이지 */}
           <Route path={"/setting"} element={<SettingPage />}></Route>

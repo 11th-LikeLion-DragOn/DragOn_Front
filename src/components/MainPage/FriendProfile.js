@@ -23,6 +23,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
   gap: 8px;
   flex-shrink: 0;
+  cursor: pointer;
 
   img {
     width: 43px;
