@@ -53,6 +53,10 @@ const Label = styled.label`
   font-size: 14px;
   margin-left: 4px;
   text-align: center;
+  color: var(--gray_03, #d6d6d6);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
 `;
 const SelectOptions = styled.ul`
   position: absolute;
