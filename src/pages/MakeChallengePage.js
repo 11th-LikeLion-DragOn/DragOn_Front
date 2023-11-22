@@ -91,21 +91,27 @@ const Btn = styled.div`
   line-height: normal;
   border-radius: 6px;
   background: var(--purple_01, #8438ff);
-  margin-top: 350px;
+  margin-top: 340px;
 `;
 const First = styled.div`
+  margin-left: 12px;
   margin-top: 29px;
   input {
     margin-left: 10px;
+    width: 302px;
   }
 `;
 const Second = styled.div`
+  margin-left: 12px;
   input {
     margin-left: 10px;
+    width: 302px;
   }
 `;
 const Third = styled.div`
+  margin-left: 12px;
   input {
     margin-left: 10px;
+    width: 302px;
   }
 `;
