@@ -1,16 +1,22 @@
 import React from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 import clickLeft from "../../assets/icons/click-left.png";
 
 const TopBar = ({ titleText }) => {
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
     <>
       <Wrapper>
-        <img src={clickLeft} style={{ cursor: "pointer" }} />
+        <img src={clickLeft} style={{ cursor: "pointer" }} onClick={goBack} />
         <Title>
           <span>{titleText}</span>
         </Title>
-        <hr></hr>
       </Wrapper>
     </>
   );
@@ -23,18 +29,13 @@ const Wrapper = styled.div`
   width: 393px;
   height: 181px;
   flex-shrink: 0;
+  border-bottom: 1.2px solid rgba(199, 198, 198, 0.2);
   img {
     width: 24px;
     height: 38px;
     flex-shrink: 0;
     margin-top: 58px;
     margin-left: 16px;
-  }
-  hr {
-    background: #d6d6d6;
-    height: 1.241px;
-    width: 393px;
-    border: none;
   }
 `;
 const Title = styled.div`
