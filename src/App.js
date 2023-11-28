@@ -17,6 +17,7 @@ import TestResultPage from "./pages/TestResultPage";
 import MakeChallengePage from "./pages/MakeChallengePage";
 import SetPeriodPage from "./pages/SetPeriodPage";
 import ChallengeListPage from "./pages/ChallengeListPage";
+import FillChallengePage from "./pages/FillChallengePage";
 
 function App() {
   return (
@@ -30,6 +31,12 @@ function App() {
           {/*메인페이지*/}
           <Route path={"/main"} element={<MainPage />}></Route>
           <Route path={"/searchfriend"} element={<SearchFriendPage />}></Route>
+
+          {/*챌린지 메꾸기 페이지*/}
+          <Route
+            path={"/fillchallenge"}
+            element={<FillChallengePage />}
+          ></Route>
 
           {/* 설정페이지 */}
           <Route path={"/setting"} element={<SettingPage />}></Route>
