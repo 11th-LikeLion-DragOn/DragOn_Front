@@ -51,7 +51,6 @@ const Wrapper = styled.div`
   height: 181px;
   flex-shrink: 0;
   border-bottom: 1.2px solid rgba(199, 198, 198, 0.2);
-  margin-bottom: 33px;
 `;
 
 const Buttons = styled.div`
