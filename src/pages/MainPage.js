@@ -6,6 +6,7 @@ import MainTop from "../components/MainPage/MainTop";
 import StatusBox from "../components/MainPage/StatusBox";
 import FillModal from "../components/MainPage/FillModal";
 import Challenge from "../components/MainPage/Challenge";
+import IconBox from "../components/MainPage/IconBox";
 
 import profile1 from "../assets/icons/profile1.png";
 import profile2 from "../assets/icons/profile2.png";
@@ -51,6 +52,7 @@ const MainPage = () => {
       </MyChallenge>
       <ChallengeBox>
         <Challenge />
+        <IconBox />
       </ChallengeBox>
       {modal && <FillModal closeModal={closeModal} balls={balls} />}
     </Wrapper>
