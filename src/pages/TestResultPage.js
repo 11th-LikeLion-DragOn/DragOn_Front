@@ -17,7 +17,7 @@ const TestResultPage = () => {
       <TopBar titleText="챌린지 성향 테스트" />
       <Wrapper>
         <Illu>
-          <img srt={illu1} />
+          <img src={illu1} />
         </Illu>
         <div className="text">
           목표로 돌격 💥 {"\n"}농담곰님은 <span>공격형 이무기</span>네요
@@ -67,11 +67,6 @@ const Illu = styled.div`
   img {
     width: 340px;
     height: 265px;
-    background: linear-gradient(
-      180deg,
-      rgba(217, 217, 217, 0) 29.17%,
-      rgba(255, 222, 224, 0.56) 100%
-    );
     margin-top: 54px;
     margin-left: 7px;
     border-radius: 15px 15px 0px 0px;
