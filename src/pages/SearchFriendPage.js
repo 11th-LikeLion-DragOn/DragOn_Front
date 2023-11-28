@@ -28,7 +28,6 @@ const SearchFriendPage = () => {
               type="text"
               placeholder="닉네임으로 친구를 추가해보세요."
               onchange={onChange}
-              value={text}
             />
             <SubmitButton>
               <img src={search} />

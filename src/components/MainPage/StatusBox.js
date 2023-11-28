@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import info from "../../assets/icons/info.png";
 import MarbleModal from "./MarbleModal";
 
-const StatusBox = () => {
+const StatusBox = ({ balls }) => {
   const [modal, setModal] = useState(false);
 
   return (
@@ -12,7 +12,7 @@ const StatusBox = () => {
       <Status>
         <MarbleCnt>
           <span id="marble">내가 모은 여의주</span>
-          <span id="cnt">1개</span>
+          <span id="cnt">{balls}개</span>
           <img src={info} onClick={() => setModal(!modal)} />
         </MarbleCnt>
         <StatusRate>

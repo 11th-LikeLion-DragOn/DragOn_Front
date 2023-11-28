@@ -20,13 +20,17 @@ const MainTop = ({ list }) => {
     navigate("/searchfriend");
   };
 
+  const goAlarm = () => {
+    navigate("/alarm");
+  };
+
   return (
     <Wrapper>
       <Buttons>
         <img id="clickLeft" src={clickLeft} />
         <Right>
           <img id="setting" src={setting} onClick={goSetting} />
-          <img id="alarm" src={alarmStar} />
+          <img id="alarm" src={alarmStar} onClick={goAlarm} />
         </Right>
       </Buttons>
       <FriendList>

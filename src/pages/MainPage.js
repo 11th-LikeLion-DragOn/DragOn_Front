@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 import MainTop from "../components/MainPage/MainTop";
 import StatusBox from "../components/MainPage/StatusBox";
+import FillModal from "../components/MainPage/FillModal";
 
 import profile1 from "../assets/icons/profile1.png";
 import profile2 from "../assets/icons/profile2.png";
@@ -12,6 +13,9 @@ import profile4 from "../assets/icons/profile4.png";
 import profile5 from "../assets/icons/profile5.png";
 
 const MainPage = () => {
+  const [balls, setBalls] = useState(0);
+  const [modal, setModal] = useState(false);
+
   const list = [
     { id: 1, username: "가나다라마", profile: profile1 },
     { id: 2, username: "바니바니", profile: profile2 },
@@ -19,6 +23,14 @@ const MainPage = () => {
     { id: 4, username: "당근당근", profile: profile4 },
     { id: 4, username: "감자감자", profile: profile4 },
   ];
+
+  const openModal = () => {
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModal(false);
+  };
 
   return (
     <Wrapper>
@@ -32,10 +44,11 @@ const MainPage = () => {
             <br />
             목표를 달성해보세요.
           </span>
-          <Management>챌린지 관리하기</Management>
+          <Management onClick={openModal}>챌린지 관리하기</Management>
         </Title>
-        <StatusBox />
+        <StatusBox balls={balls} />
       </MyChallenge>
+      {modal && <FillModal closeModal={closeModal} balls={balls} />}
     </Wrapper>
   );
 };
