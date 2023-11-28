@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import MainTop from "../components/MainPage/MainTop";
 import StatusBox from "../components/MainPage/StatusBox";
 import FillModal from "../components/MainPage/FillModal";
+import Challenge from "../components/MainPage/Challenge";
 
 import profile1 from "../assets/icons/profile1.png";
 import profile2 from "../assets/icons/profile2.png";
@@ -48,6 +49,9 @@ const MainPage = () => {
         </Title>
         <StatusBox balls={balls} />
       </MyChallenge>
+      <ChallengeBox>
+        <Challenge />
+      </ChallengeBox>
       {modal && <FillModal closeModal={closeModal} balls={balls} />}
     </Wrapper>
   );
@@ -61,6 +65,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 34px;
 `;
 
 const MyChallenge = styled.div`
@@ -104,4 +109,16 @@ const Management = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+`;
+
+const ChallengeBox = styled.div`
+  width: 315px;
+  display: flex;
+  padding: 18px 19px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  border-radius: 14px;
+  border: 1px solid rgba(199, 198, 198, 0.2);
 `;
