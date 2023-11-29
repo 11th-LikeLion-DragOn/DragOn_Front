@@ -27,7 +27,6 @@ export default Challenge;
 
 const Wrapper = styled.div`
   width: 315px;
-  border-bottom: 1.2px solid rgba(199, 198, 198, 0.2);
 `;
 
 const Date = styled.div`
@@ -43,7 +42,7 @@ const Date = styled.div`
 
 const ChallengeList = styled.div`
   padding-left: 9px;
-  margin-bottom: 34px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   gap: 19px;

@@ -4,30 +4,32 @@ import { styled } from "styled-components";
 const IconBox = () => {
   return (
     <Wrapper>
-      <Thumb>
-        <span id="icon">👍</span>
-        <span>0</span>
-      </Thumb>
-      <Hmm>
-        <span id="icon">🤔</span>
-        <span>0</span>
-      </Hmm>
-      <Nice>
-        <span id="icon">🙌</span>
-        <span>0</span>
-      </Nice>
-      <Fire>
-        <span id="icon">🔥</span>
-        <span>0</span>
-      </Fire>
-      <Huh>
-        <span id="icon">⁉️</span>
-        <span>0</span>
-      </Huh>
-      <Heart>
-        <span id="icon">❤️</span>
-        <span>0</span>
-      </Heart>
+      <Icons>
+        <Thumb>
+          <span id="icon">👍</span>
+          <span>0</span>
+        </Thumb>
+        <Hmm>
+          <span id="icon">🤔</span>
+          <span>0</span>
+        </Hmm>
+        <Nice>
+          <span id="icon">🙌</span>
+          <span>0</span>
+        </Nice>
+        <Fire>
+          <span id="icon">🔥</span>
+          <span>0</span>
+        </Fire>
+        <Huh>
+          <span id="icon">⁉️</span>
+          <span>0</span>
+        </Huh>
+        <Heart>
+          <span id="icon">❤️</span>
+          <span>0</span>
+        </Heart>
+      </Icons>
     </Wrapper>
   );
 };
@@ -35,6 +37,14 @@ const IconBox = () => {
 export default IconBox;
 
 const Wrapper = styled.div`
+  width: 315px;
+  display: flex;
+  justify-content: center;
+  padding: 24px 0px;
+  border-top: 1.2px solid rgba(199, 198, 198, 0.2);
+`;
+
+const Icons = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
