@@ -8,8 +8,8 @@
 | 로그인 & 회원가입 <br /> 홈 화면<br /> 챌린지 메꾸기 페이지 | 챌린지 관리 페이지 <br /> 챌린지 성향 테스트 <br /> 설정페이지 |
 
 
-### 기술 스택
-<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"/><img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"/><img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
+### 기술 스택 및 라이브러리
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"/> <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"/> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"/> <img src="https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>
 
 
 ### 파일구조
