@@ -6,3 +6,46 @@
 | :---------------------------------------------------------: | :------------------------------------------------------------: |
 |               <img width="100" height="100"/>               |                <img width="100" height="100"/>                 |
 | 로그인 & 회원가입 <br /> 홈 화면<br /> 챌린지 메꾸기 페이지 | 챌린지 관리 페이지 <br /> 챌린지 성향 테스트 <br /> 설정페이지 |
+
+### 파일구조
+📂 public
+⎪   └─  index.html
+📂 src
+⎪  📂 api
+├─ 📂 components
+⎪  ⎪   └─ 📂 _common                    ▶︎ 공통 컴포넌트 
+⎪  ⎪   ⎪   └─ TopBar.js 
+⎪  ⎪   ⎪   └─ InputBox.js 
+⎪  ⎪   └─ 📂 MainPage
+⎪  ⎪   └─ 📂 Signupge     
+⎪  ⎪   └─ 📂 ChallengeListPage
+⎪  ⎪   └─ 📂 SetPeriodPage
+⎪  ⎪   └─ 📂 SettingPage    
+⎪  ⎪   └─ 📂 testchallenge 
+⎪  ⎪   └─ 📂 SearchFriendPage  
+├─ 📂 pages
+⎪  ⎪   └─  MainPage.js
+⎪  ⎪   └─  LoginPage.js              
+⎪  ⎪   └─  SignupPage.js 
+⎪  ⎪   └─  AlarmPage.js
+⎪  ⎪   └─  ChallengeListPage.js
+⎪  ⎪   └─  ChangeNickPage.js
+⎪  ⎪   └─  ChangePasswordPage.js
+⎪  ⎪   └─  ExchargePage.js
+⎪  ⎪   └─  FillChallengePage.js
+⎪  ⎪   └─  MakeChallengePage.js
+⎪  ⎪   └─  SearchFriendPage.js
+⎪  ⎪   └─  SetPeriodPage.js
+⎪  ⎪   └─  SettingPage.js
+⎪  ⎪   └─  StartTestPage.js
+⎪  ⎪   └─  TestingPage.js
+⎪  ⎪   └─  TestResultPage.js
+⎪  📂 assets  
+⎪  ⎪   └─ 📂 images                     ▶︎ 페이지별 아이콘/이미지
+⎪  ⎪   ⎪   └─ 📂 Main
+⎪  ⎪   └─ 📂 icons                      ▶︎ 공통 사용 아이콘
+├─   App.js                    
+└─   index.js
+├─ .gitignore
+├─ package.json
+├─ README.md
