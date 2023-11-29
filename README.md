@@ -4,7 +4,7 @@
 
 |                           김가영                            |                             이다빈                             |
 | :---------------------------------------------------------: | :------------------------------------------------------------: |
-|               <img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/126054466/bc9651ce-f7d2-4866-9c26-22dc348b8158" width="100" height="100"/>               |                <img width="100" height="100"/>                 |
+|               <img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/126054466/bc9651ce-f7d2-4866-9c26-22dc348b8158" width="100" height="100"/>               |                <img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/100662232/46d5d753-0dbc-4846-9010-e694a350b0d0" width="100" height="100"/>                 |
 | 로그인 & 회원가입 <br /> 홈 화면<br /> 챌린지 메꾸기 페이지 | 챌린지 관리 페이지 <br /> 챌린지 성향 테스트 <br /> 설정페이지 |
 
 
