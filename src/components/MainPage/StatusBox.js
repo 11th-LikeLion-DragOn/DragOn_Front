@@ -67,7 +67,7 @@ export default StatusBox;
 
 const Wrapper = styled.div`
   position: relative;
-  padding: 16px 20px;
+  padding: 14px 20px 16px 20px;
   width: 311px;
   height: 86px;
   flex-shrink: 0;
