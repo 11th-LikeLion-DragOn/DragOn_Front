@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
-
+//진행 중인 챌린지가 없을 때 챌린지 생성하기 버튼을 누름 -> 성향 테스트 권유 모달을 보여줌
 const FirstTestModal = () => {
   return (
     <>
