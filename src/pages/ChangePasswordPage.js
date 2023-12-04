@@ -56,13 +56,14 @@ const Wrapper = styled.div`
   height: 852px;
 `;
 const PwWrapper = styled.div`
+  position: relative;
   img {
     width: 20.667px;
     height: 20.667px;
     flex-shrink: 0;
     position: absolute;
-    top: 23%;
-    left: 16%;
+    top: 37%;
+    left: 90%;
   }
 `;
 const Title = styled.div`
@@ -75,13 +76,14 @@ const Title = styled.div`
   line-height: normal;
 `;
 const RepwContainer = styled.div`
+  position: relative;
   img {
     width: 20.667px;
     height: 20.667px;
     flex-shrink: 0;
     position: absolute;
     top: 41.7%;
-    left: 16%;
+    left: 90%;
   }
 `;
 const Input = styled.input`
