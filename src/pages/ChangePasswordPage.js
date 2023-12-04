@@ -6,6 +6,28 @@ import quit from "../assets/icons/quit.png";
 
 const ChangePasswordPage = () => {
   const [password, setPassword] = useState("");
+  const [myPw, setMyPw] = useState("");
+  const [rePw, setRePw] = useState("");
+  const [showError, setShowError] = useState(false);
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setShowError(false);
+  };
+
+  const handleRePasswordChange = (e) => {
+    setRePw(e.target.value);
+    setShowError(false);
+  };
+
+  const handleButtonClick = () => {
+    if (password === rePw) {
+      setShowError(false);
+    } else {
+      setShowError(true);
+    }
+  };
+
   return (
     <>
       <TopBar titleText="설정" />
@@ -14,37 +36,40 @@ const ChangePasswordPage = () => {
         <PwWrapper>
           <Input
             type="text"
-            value={password}
+            value={myPw}
             placeholder="기존 비밀번호"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setMyPw(e.target.value)}
           ></Input>
           <div className="xicon">
             <img src={quit} />
           </div>
         </PwWrapper>
 
-        <Text>비밀번호를 다시 확인해주세요</Text>
-
-        <Input
-          type="text"
-          value={password}
-          placeholder="새로운 비밀번호"
-          onChange={(e) => setPassword(e.target.value)}
-        ></Input>
+        {showError && <Text>비밀번호를 다시 확인해주세요</Text>}
 
         <RepwContainer>
           <Input
             type="text"
             value={password}
-            placeholder="비밀번호 재확인"
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="새로운 비밀번호"
+            onChange={handlePasswordChange}
           ></Input>
-          <div className="xicon">
-            <img src={quit} />
-          </div>
+
+          <Input
+            type="text"
+            value={rePw}
+            placeholder="비밀번호 재확인"
+            onChange={handleRePasswordChange}
+          ></Input>
+
+          {!showError && password !== rePw && (
+            <div className="xicon">
+              <img src={quit} />
+            </div>
+          )}
         </RepwContainer>
-        <Text>비밀번호를 다시 확인해주세요</Text>
-        <Btn>비밀번호 변경하기</Btn>
+        {showError && <Text>비밀번호를 다시 확인해주세요</Text>}
+        <Btn onClick={handleButtonClick}>비밀번호 변경하기</Btn>
       </Wrapper>
     </>
   );
@@ -76,13 +101,14 @@ const Title = styled.div`
   line-height: normal;
 `;
 const RepwContainer = styled.div`
+  margin-top: 70px;
   position: relative;
   img {
     width: 20.667px;
     height: 20.667px;
     flex-shrink: 0;
     position: absolute;
-    top: 41.7%;
+    top: 69%;
     left: 90%;
   }
 `;
@@ -112,7 +138,6 @@ const Text = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-bottom: 63px;
   margin-top: 8px;
 `;
 const Btn = styled.button`
