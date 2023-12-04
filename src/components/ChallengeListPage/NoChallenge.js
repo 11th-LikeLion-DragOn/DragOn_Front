@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
-
+// 진행하고 있는 챌린지가 없을 경우 보여주는 컴포넌트
 const NoChallenge = () => {
   return (
     <>
