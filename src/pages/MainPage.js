@@ -8,7 +8,6 @@ import FillModal from "../components/MainPage/FillModal";
 import Challenge from "../components/MainPage/Challenge";
 import IconBox from "../components/MainPage/IconBox";
 import Comment from "../components/MainPage/Comment";
-import Recomment from "../components/MainPage/Recomment";
 
 import profile1 from "../assets/icons/profile1.png";
 import profile2 from "../assets/icons/profile2.png";
@@ -48,7 +47,7 @@ const MainPage = () => {
             <br />
             목표를 달성해보세요.
           </span>
-          <Management onClick={openModal}>챌린지 관리하기</Management>
+          <Management>챌린지 관리하기</Management>
         </Title>
         <StatusBox balls={balls} />
       </MyChallenge>
