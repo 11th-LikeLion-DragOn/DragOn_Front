@@ -7,6 +7,8 @@ import StatusBox from "../components/MainPage/StatusBox";
 import FillModal from "../components/MainPage/FillModal";
 import Challenge from "../components/MainPage/Challenge";
 import IconBox from "../components/MainPage/IconBox";
+import Comment from "../components/MainPage/Comment";
+import Recomment from "../components/MainPage/Recomment";
 
 import profile1 from "../assets/icons/profile1.png";
 import profile2 from "../assets/icons/profile2.png";
@@ -53,6 +55,12 @@ const MainPage = () => {
       <ChallengeBox>
         <Challenge />
         <IconBox />
+        <CommentBox>
+          <span id="title">댓글</span>
+          <Comment />
+          <Comment />
+          <CommentInput placeholder="댓글을 입력해주세요" />
+        </CommentBox>
       </ChallengeBox>
       {modal && <FillModal closeModal={closeModal} balls={balls} />}
     </Wrapper>
@@ -114,6 +122,7 @@ const Management = styled.div`
 `;
 
 const ChallengeBox = styled.div`
+  margin-bottom: 100px;
   width: 315px;
   display: flex;
   padding: 18px 19px;
@@ -123,4 +132,34 @@ const ChallengeBox = styled.div`
   gap: 24px;
   border-radius: 14px;
   border: 1px solid rgba(199, 198, 198, 0.2);
+`;
+
+const CommentBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  #title {
+    color: var(--black);
+    text-align: center;
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-right: 288px;
+  }
+`;
+
+const CommentInput = styled.input`
+  margin-top: 20px;
+  width: 315px;
+  min-height: 34px;
+  flex-shrink: 0;
+  padding-left: 14px;
+  outline: none;
+  border: none;
+  border-radius: 9px;
+  background: rgba(199, 198, 198, 0.2);
 `;
