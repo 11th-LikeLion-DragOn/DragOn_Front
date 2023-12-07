@@ -5,8 +5,13 @@ import { ReactComponent as RedOne } from "../../assets/icons/red.svg";
 import { ReactComponent as GreenOne } from "../../assets/icons/green.svg";
 import { ReactComponent as BlueOne } from "../../assets/icons/blue.svg";
 import quit from "../../assets/icons/quit.png";
+import QuitChallenge from "./QuitChallenge";
 
 const CurrentChallenge = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const showModal = () => {
+    setOpenModal(true);
+  };
   return (
     <>
       <Wrapper>
@@ -22,17 +27,24 @@ const CurrentChallenge = () => {
           <First>
             <RedOne />
             <span className="challenge-text">영어 공부</span>
-            <div className="delete">목표삭제</div>
+            <div className="delete" onClick={showModal}>
+              목표삭제
+            </div>
+            {openModal && <QuitChallenge setOpenModal={setOpenModal} />}
           </First>
           <Second>
             <GreenOne />
             <span className="challenge-text">스페인어 화상수업</span>
-            <div className="delete">목표삭제</div>
+            <div className="delete" onClick={showModal}>
+              목표삭제
+            </div>
           </Second>
           <Third>
             <BlueOne />
             <span className="challenge-text">매일 감사일기 작성하기</span>
-            <div className="delete">목표삭제</div>
+            <div className="delete" onClick={showModal}>
+              목표삭제
+            </div>
           </Third>
         </ListWrapper>
       </Wrapper>
