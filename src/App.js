@@ -19,6 +19,7 @@ import SetPeriodPage from "./pages/SetPeriodPage";
 import ChallengeListPage from "./pages/ChallengeListPage";
 import FillChallengePage from "./pages/FillChallengePage";
 import AlarmPage from "./pages/AlarmPage";
+import NoChallengeListPage from "./pages/NoChallengeListPage";
 
 function App() {
   return (
@@ -63,6 +64,10 @@ function App() {
           <Route
             path={"/challengelist"}
             element={<ChallengeListPage />}
+          ></Route>
+          <Route
+            path={"/nochallengelist"}
+            element={<NoChallengeListPage />}
           ></Route>
         </Routes>
       </Router>

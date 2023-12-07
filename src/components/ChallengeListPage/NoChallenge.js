@@ -6,7 +6,7 @@ const NoChallenge = () => {
     <>
       <Wrapper>
         <div className="text">
-          진행 중인 챌린지가 없습니다. 새로운 챌린지를 생성해주세요.
+          진행 중인 챌린지가 없습니다.{"\n"}새로운 챌린지를 생성해주세요.
         </div>
         <Btn>챌린지 생성하기</Btn>
       </Wrapper>
@@ -15,8 +15,8 @@ const NoChallenge = () => {
 };
 export default NoChallenge;
 const Wrapper = styled.div`
-  width: 393px;
-  height: 228px;
+  width: 353px;
+  height: 150px;
   .text {
     color: var(--gray_02, #b5b5b5);
     text-align: center;
@@ -24,11 +24,15 @@ const Wrapper = styled.div`
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    white-space: pre-line;
+    margin-top: 52px;
   }
 `;
 const Btn = styled.div`
+  margin-top: 30px;
+  margin-left: 20px;
   display: inline-flex;
-  padding: 15px 12px;
+  padding: 15px 112px;
   justify-content: center;
   align-items: center;
   gap: 10px;
