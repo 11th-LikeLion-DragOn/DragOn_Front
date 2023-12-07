@@ -1,12 +1,20 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-
+//components
 import TopBar from "../components/common/TopBar";
 // 사용자가 있을 때만 아이콘 표시
 import quit from "../assets/icons/quit.png";
 
 const ChangeNickPage = () => {
   const [nickname, setNickname] = useState("");
+  const navigate = useNavigate();
+
+  const handleNicknameChange = () => {
+    // 닉네임 변경 로직
+
+    navigate("/setting", { state: { nickname } });
+  };
 
   return (
     <>
@@ -28,7 +36,7 @@ const ChangeNickPage = () => {
         </NickWrapper>
 
         <div className="alert">사용자가 이미 존재합니다</div>
-        <Btn>닉네임 변경하기</Btn>
+        <Btn onClick={handleNicknameChange}>닉네임 변경하기</Btn>
       </Wrapper>
     </>
   );
@@ -94,7 +102,7 @@ const Input = styled.input`
   }
 `;
 const Btn = styled.button`
-  margin-top: 557px;
+  margin-top: 540px;
   border-radius: 6px;
   background: var(--purple_01, #8438ff);
   display: flex;
