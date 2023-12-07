@@ -6,18 +6,44 @@ import { ReactComponent as GreenOne } from "../../assets/icons/green.svg";
 import { ReactComponent as BlueOne } from "../../assets/icons/blue.svg";
 import quit from "../../assets/icons/quit.png";
 import QuitChallenge from "./QuitChallenge";
+import DeleteGoalModal from "./DeleteGoalModal";
 
 const CurrentChallenge = () => {
+  const [openQuitModal, setOpenQuitModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const showModal = () => {
+  const [selectedGoal, setSelectedGoal] = useState(null);
+  // const [goals, setGoals] = useState([
+  //   { id: 1, name: "영어 공부" },
+  //   { id: 2, name: "스페인어 화상수업" },
+  //   { id: 3, name: "매일 감사일기 작성하기" },
+  // ]);
+
+  const showModal = (goal) => {
+    setSelectedGoal(goal);
     setOpenModal(true);
   };
+
+  const showQuitModal = () => {
+    setOpenQuitModal(true);
+  };
+
+  const deleteGoal = () => {
+    //목표 삭제
+    console.log(`Delete goal: ${selectedGoal}`);
+    //삭제 후 목표리스트 업데이트
+
+    setOpenModal(false);
+  };
+
   return (
     <>
       <Wrapper>
         <Title>
           담곰이의 갓생살기 ✨
-          <img src={quit} />
+          <img onClick={showQuitModal} src={quit} />
+          {openQuitModal && (
+            <QuitChallenge setOpenQuitModal={setOpenQuitModal} />
+          )}
         </Title>
         <Period>
           <div>챌린지 진행기간</div>
@@ -27,22 +53,28 @@ const CurrentChallenge = () => {
           <First>
             <RedOne />
             <span className="challenge-text">영어 공부</span>
-            <div className="delete" onClick={showModal}>
+            <div className="delete" onClick={() => showModal("영어 공부")}>
               목표삭제
             </div>
-            {openModal && <QuitChallenge setOpenModal={setOpenModal} />}
+            {openModal && <DeleteGoalModal setOpenModal={setOpenModal} />}
           </First>
           <Second>
             <GreenOne />
             <span className="challenge-text">스페인어 화상수업</span>
-            <div className="delete" onClick={showModal}>
+            <div
+              className="delete"
+              onClick={() => showModal("스페인어 화상수업")}
+            >
               목표삭제
             </div>
           </Second>
           <Third>
             <BlueOne />
             <span className="challenge-text">매일 감사일기 작성하기</span>
-            <div className="delete" onClick={showModal}>
+            <div
+              className="delete"
+              onClick={() => showModal("매일 감사일기 작성")}
+            >
               목표삭제
             </div>
           </Third>

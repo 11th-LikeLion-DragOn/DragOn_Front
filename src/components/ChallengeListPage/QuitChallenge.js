@@ -1,9 +1,14 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const QuitChallenge = ({ setOpenModal }) => {
+const QuitChallenge = ({ setOpenQuitModal }) => {
+  const deleteGoal = () => {
+    console.log("Delete");
+    setOpenQuitModal(false);
+  };
+
   const closeModal = () => {
-    setOpenModal(false);
+    setOpenQuitModal(false);
   };
 
   return (
@@ -14,7 +19,7 @@ const QuitChallenge = ({ setOpenModal }) => {
             <span>“담곰이의 갓생살기 ✨” </span>
             챌린지를 {"\n"} 정말 그만두시겠습니까?
           </div>
-          <QuitBtn>챌린지 그만두기</QuitBtn>
+          <QuitBtn onClick={deleteGoal}>챌린지 그만두기 </QuitBtn>
           <CancelBtn onClick={closeModal}>취소하기</CancelBtn>
         </Wrapper>
       </Box>
