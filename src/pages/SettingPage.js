@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { styled } from "styled-components";
 //components
 import TopBar from "../components/common/TopBar";
@@ -9,6 +10,9 @@ import marblePurple from "../assets/icons/marble-purple.png";
 import clickRight from "../assets/icons/click-right.png";
 
 const SettingPage = () => {
+  const location = useLocation();
+  const nickname = location.state?.nickname;
+
   return (
     <>
       <TopBar titleText="설정" />
@@ -16,7 +20,7 @@ const SettingPage = () => {
         <Info>
           <img src={profile1} />
           <div className="info-text">
-            <div className="name">농담곰</div>
+            <div className="name">{nickname}</div>
             <div className="nickname">damgom333</div>
           </div>
         </Info>

@@ -1,25 +1,43 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const QuitChallenge = () => {
+const QuitChallenge = ({ setOpenQuitModal }) => {
+  const deleteGoal = () => {
+    console.log("Delete");
+    setOpenQuitModal(false);
+  };
+
+  const closeModal = () => {
+    setOpenQuitModal(false);
+  };
+
   return (
     <>
-      <Wrapper>
-        <div className="question">
-          <span>“담곰이의 갓생살기 ✨” </span>
-          챌린지를 정말 그만두시겠습니까?
-        </div>
-        <QuitBtn>챌린지 그만두기</QuitBtn>
-        <CancelBtn>취소하기</CancelBtn>
-      </Wrapper>
+      <Box>
+        <Wrapper>
+          <div className="question">
+            <span>“담곰이의 갓생살기 ✨” </span>
+            챌린지를 {"\n"} 정말 그만두시겠습니까?
+          </div>
+          <QuitBtn onClick={deleteGoal}>챌린지 그만두기 </QuitBtn>
+          <CancelBtn onClick={closeModal}>취소하기</CancelBtn>
+        </Wrapper>
+      </Box>
     </>
   );
 };
 
 export default QuitChallenge;
+const Box = styled.div``;
 const Wrapper = styled.div`
-  width: 351px;
-  height: 193px;
+  z-index: 999;
+  position: absolute;
+  top: 48%;
+  left: 1.5%;
+  margin: auto;
+
+  width: 371px;
+  height: 200px;
   border-radius: 11px;
   border: 1px solid var(--gray_03, #d6d6d6);
   background: var(--background_02, #fafafa);
@@ -28,9 +46,10 @@ const Wrapper = styled.div`
     text-align: center;
     font-size: 16px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 400;
     line-height: normal;
     margin-top: 30px;
+    white-space: pre-line;
   }
   span {
     font-weight: 700;
@@ -41,7 +60,7 @@ const QuitBtn = styled.button`
   background: var(--purple_01, #8438ff);
   display: flex;
   width: 312px;
-  padding: 15px 112px;
+  padding: 12px 5px;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -57,16 +76,16 @@ const QuitBtn = styled.button`
 const CancelBtn = styled.button`
   display: flex;
   width: 312px;
+  gap: 10px;
   background: white;
-  padding: 15px 112px;
+  padding: 12px 5px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   border: none;
   margin-left: 19.5px;
   color: var(--black, #303030);
   text-align: center;
-
+  margin-top: 2px;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
