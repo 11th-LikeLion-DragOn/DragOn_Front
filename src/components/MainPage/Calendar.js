@@ -1,44 +1,49 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
+import * as dateFns from "date-fns";
 import { styled } from "styled-components";
 
 import before from "../../assets/icons/click-left.png";
 import after from "../../assets/icons/click-right.png";
+import DayStatus from "./DayStatus";
 
 const Calendar = ({ openModal }) => {
-  const today = {
-    year: new Date().getFullYear(),
-    month: new Date().getMonth() + 1,
-    date: new Date().getDate(),
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const today = new Date();
+
+  const firstDay = dateFns.startOfMonth(currentDate);
+  const lastDay = dateFns.lastDayOfMonth(currentDate);
+  const startDate = dateFns.startOfWeek(firstDay);
+  const endDate = dateFns.lastDayOfWeek(lastDay);
+  const totalDate = dateFns.eachDayOfInterval({
+    start: startDate,
+    end: endDate,
+  });
+
+  console.log(totalDate);
+
+  const isToday = (day) => dateFns.isSameDay(day, today);
+  const isSelected = (day) => dateFns.isSameDay(day, selectedDate);
+
+  const formatOfYear = "yyyy";
+  const formatOfMonth = "M";
+  const formatOfDay = "dd";
+
+  const prevMonth = () => {
+    setCurrentDate(dateFns.subMonths(currentDate, 1));
   };
-  const [selectedYear, setSelectedYear] = useState(today.year);
-  const [selectedMonth, setSelectedMonth] = useState(today.month);
-  //선택된 달의 마지막 날짜
-  const dateTotalCount = new Date(selectedYear, selectedMonth, 0).getDate();
 
-  //이전 달로 이동
-  const prevMonth = useCallback(() => {
-    if (selectedMonth === 1) {
-      setSelectedMonth(12);
-      setSelectedYear(selectedYear - 1);
-    } else {
-      setSelectedMonth(selectedMonth - 1);
-    }
-  }, [selectedMonth]);
-
-  //다음 달로 이동
-  const nextMonth = useCallback(() => {
-    if (selectedMonth === 12) {
-      setSelectedMonth(1);
-      setSelectedYear(selectedYear + 1);
-    } else {
-      setSelectedMonth(selectedMonth + 1);
-    }
-  }, [selectedMonth]);
+  const nextMonth = () => {
+    setCurrentDate(dateFns.addMonths(currentDate, 1));
+  };
 
   return (
     <Wrapper>
       <TopBar>
-        <span id="current">2023년 11월</span>
+        <span id="current">
+          {dateFns.format(currentDate, formatOfYear)}년{" "}
+          {dateFns.format(currentDate, formatOfMonth)}월
+        </span>
         <div id="divider">
           <FillChallenge onClick={openModal}>챌린지 메꾸기</FillChallenge>
           <Nav>
@@ -48,7 +53,24 @@ const Calendar = ({ openModal }) => {
           </Nav>
         </div>
       </TopBar>
-      <CalendarBox></CalendarBox>
+      <CalendarBox>
+        {totalDate.map((date) => (
+          <DayBox onClick={() => setSelectedDate(date)}>
+            <DayStatus />
+            <span
+              style={{
+                color: isToday(date)
+                  ? "var(--purple1)"
+                  : !dateFns.isSameMonth(date, currentDate)
+                  ? "var(--gray3)"
+                  : "var(--black)",
+              }}
+            >
+              {dateFns.format(date, formatOfDay)}
+            </span>
+          </DayBox>
+        ))}
+      </CalendarBox>
     </Wrapper>
   );
 };
@@ -57,8 +79,6 @@ export default Calendar;
 
 const Wrapper = styled.div`
   width: 335px;
-  height: 375px;
-  flex-shrink: 0;
 `;
 
 const TopBar = styled.div`
@@ -123,7 +143,18 @@ const Nav = styled.div`
 `;
 
 const CalendarBox = styled.div`
-  color: var(--black);
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 15px;
+`;
+
+const DayBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
   text-align: center;
   font-feature-settings: "clig" off, "liga" off;
   font-family: Pretendard;
