@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import MainTop from "../components/MainPage/MainTop";
 import StatusBox from "../components/MainPage/StatusBox";
+import Calendar from "../components/MainPage/Calendar";
 import FillModal from "../components/MainPage/FillModal";
 import Challenge from "../components/MainPage/Challenge";
 import IconBox from "../components/MainPage/IconBox";
@@ -51,6 +52,7 @@ const MainPage = () => {
         </Title>
         <StatusBox balls={balls} />
       </MyChallenge>
+      <Calendar openModal={openModal} />
       <ChallengeBox>
         <Challenge />
         <IconBox />
