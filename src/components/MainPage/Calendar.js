@@ -23,6 +23,7 @@ const Calendar = ({ openModal }) => {
   console.log(totalDate);
 
   const isToday = (day) => dateFns.isSameDay(day, today);
+  const isThisMonth = (day) => dateFns.isSameMonth(day, currentDate);
   const isSelected = (day) => dateFns.isSameDay(day, selectedDate);
 
   const formatOfYear = "yyyy";
@@ -56,7 +57,7 @@ const Calendar = ({ openModal }) => {
       <CalendarBox>
         {totalDate.map((date) => (
           <DayBox onClick={() => setSelectedDate(date)}>
-            <DayStatus />
+            <DayStatus isToday={isToday(date)} />
             <span
               style={{
                 color: isToday(date)
