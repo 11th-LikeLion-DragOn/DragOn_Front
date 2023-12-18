@@ -25,6 +25,7 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.div`
+  width: 337px;
   color: var(--black);
   font-feature-settings: "clig" off, "liga" off;
   font-family: Pretendard;
