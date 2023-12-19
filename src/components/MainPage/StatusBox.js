@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+import { useLocation } from "react-router-dom";
 
 import info from "../../assets/icons/info.png";
 import MarbleModal from "./MarbleModal";
 
 const StatusBox = ({ balls }) => {
+  const location = useLocation();
   const [modal, setModal] = useState(false);
+
+  const isFriendHome = location.pathname === "/friendhome";
 
   return (
     <Wrapper>
       <Status>
         <MarbleCnt>
-          <span id="marble">내가 모은 여의주</span>
+          <span id="marble">
+            {isFriendHome ? "친구가 모은 여의주" : "내가 모은 여의주"}
+          </span>
           <span id="cnt">{balls}개</span>
           <img src={info} onClick={() => setModal(!modal)} />
         </MarbleCnt>

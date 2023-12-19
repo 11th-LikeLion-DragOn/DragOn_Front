@@ -3,8 +3,14 @@ import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 const FriendProfile = ({ friend }) => {
+  const navigate = useNavigate();
+
+  const goFriendHome = () => {
+    navigate("/friendhome");
+  };
+
   return (
-    <Wrapper>
+    <Wrapper onClick={goFriendHome}>
       <img src={friend.profile} />
       <span>{friend.username}</span>
     </Wrapper>

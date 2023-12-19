@@ -20,6 +20,7 @@ import ChallengeListPage from "./pages/ChallengeListPage";
 import FillChallengePage from "./pages/FillChallengePage";
 import AlarmPage from "./pages/AlarmPage";
 import NoChallengeListPage from "./pages/NoChallengeListPage";
+import FriendMainPage from "./pages/FriendMainPage";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path={"/main"} element={<MainPage />}></Route>
           <Route path={"/searchfriend"} element={<SearchFriendPage />}></Route>
           <Route path={"/alarm"} element={<AlarmPage />}></Route>
+          <Route path={"/friendhome"} element={<FriendMainPage />}></Route>
 
           {/*챌린지 메꾸기 페이지*/}
           <Route

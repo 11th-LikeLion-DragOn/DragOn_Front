@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import * as dateFns from "date-fns";
 import { styled } from "styled-components";
+import { useLocation } from "react-router-dom";
 
 import before from "../../assets/icons/click-left.png";
 import after from "../../assets/icons/click-right.png";
 import DayStatus from "./DayStatus";
 
 const Calendar = ({ openModal }) => {
+  const location = useLocation();
+  const isMain = location.pathname === "/main";
+
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const today = new Date();
@@ -23,6 +27,7 @@ const Calendar = ({ openModal }) => {
   console.log(totalDate);
 
   const isToday = (day) => dateFns.isSameDay(day, today);
+  const isThisMonth = (day) => dateFns.isSameMonth(day, currentDate);
   const isSelected = (day) => dateFns.isSameDay(day, selectedDate);
 
   const formatOfYear = "yyyy";
@@ -45,7 +50,9 @@ const Calendar = ({ openModal }) => {
           {dateFns.format(currentDate, formatOfMonth)}월
         </span>
         <div id="divider">
-          <FillChallenge onClick={openModal}>챌린지 메꾸기</FillChallenge>
+          {isMain && (
+            <FillChallenge onClick={openModal}>챌린지 메꾸기</FillChallenge>
+          )}
           <Nav>
             <img src={before} onClick={prevMonth} />
             <span>Month</span>
@@ -56,7 +63,7 @@ const Calendar = ({ openModal }) => {
       <CalendarBox>
         {totalDate.map((date) => (
           <DayBox onClick={() => setSelectedDate(date)}>
-            <DayStatus />
+            <DayStatus isToday={isToday(date)} />
             <span
               style={{
                 color: isToday(date)

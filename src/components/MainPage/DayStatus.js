@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const DayStatus = () => {
+const DayStatus = (isToday) => {
   return (
     <Wrapper>
       <Goal1></Goal1>
@@ -26,6 +26,7 @@ const Wrapper = styled.div`
   background-color: var(--white);
   border-radius: 50%;
   border: solid 1px rgba(192, 192, 192, 0.1);
+  cursor: pointer;
 `;
 
 const Goal1 = styled.div`

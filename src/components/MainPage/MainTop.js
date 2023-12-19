@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import clickLeft from "../../assets/icons/click-left.png";
 import setting from "../../assets/icons/setting.png";
@@ -8,9 +8,27 @@ import alarmStar from "../../assets/icons/alarm-star.png";
 import alarmEmpty from "../../assets/icons/alarm-empty.png";
 import FriendProfile from "./FriendProfile";
 import addFriend from "../../assets/icons/friend-list.png";
+import home from "../../assets/icons/home.png";
 
-const MainTop = ({ list }) => {
+import profile1 from "../../assets/icons/profile1.png";
+import profile2 from "../../assets/icons/profile2.png";
+import profile3 from "../../assets/icons/profile3.png";
+import profile4 from "../../assets/icons/profile4.png";
+import profile5 from "../../assets/icons/profile5.png";
+
+const MainTop = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isFriendHome = location.pathname === "/friendhome";
+
+  const list = [
+    { id: 1, username: "가나다라마", profile: profile1 },
+    { id: 2, username: "바니바니", profile: profile2 },
+    { id: 3, username: "홍삼홍삼", profile: profile3 },
+    { id: 4, username: "당근당근", profile: profile4 },
+    { id: 4, username: "감자감자", profile: profile4 },
+  ];
 
   const goSetting = () => {
     navigate("/setting");
@@ -24,13 +42,26 @@ const MainTop = ({ list }) => {
     navigate("/alarm");
   };
 
+  const goHome = () => {
+    navigate("/main");
+  };
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
     <Wrapper>
       <Buttons>
-        <img id="clickLeft" src={clickLeft} />
+        <img id="clickLeft" src={clickLeft} onClick={goBack} />
         <Right>
-          <img id="setting" src={setting} onClick={goSetting} />
-          <img id="alarm" src={alarmStar} onClick={goAlarm} />
+          {!isFriendHome && (
+            <>
+              <img id="setting" src={setting} onClick={goSetting} />
+              <img id="alarm" src={alarmStar} onClick={goAlarm} />
+            </>
+          )}
+          {isFriendHome && <img id="home" src={home} onClick={goHome} />}
         </Right>
       </Buttons>
       <FriendList>
@@ -74,6 +105,12 @@ const Buttons = styled.div`
     cursor: pointer;
   }
   #alarm {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  #home {
     width: 38px;
     height: 38px;
     flex-shrink: 0;
