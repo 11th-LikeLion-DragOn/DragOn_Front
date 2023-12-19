@@ -11,7 +11,7 @@ import IconBox from "../components/MainPage/IconBox";
 import Comment from "../components/MainPage/Comment";
 
 const MainPage = () => {
-  const [balls, setBalls] = useState(0);
+  const [balls, setBalls] = useState(1);
   const [modal, setModal] = useState(false);
 
   const openModal = () => {
