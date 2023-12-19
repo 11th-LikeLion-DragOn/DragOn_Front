@@ -10,35 +10,24 @@ import Challenge from "../components/MainPage/Challenge";
 import IconBox from "../components/MainPage/IconBox";
 import Comment from "../components/MainPage/Comment";
 
-const MainPage = () => {
-  const [balls, setBalls] = useState(0);
-  const [modal, setModal] = useState(false);
-
-  const openModal = () => {
-    setModal(true);
-  };
-
-  const closeModal = () => {
-    setModal(false);
-  };
+const FriendMainPage = () => {
+  const [balls, setBalls] = useState(1);
 
   return (
     <Wrapper>
       <MainTop />
-      <MyChallenge>
-        <Title>
-          <span>
-            농담곰님,
-            <br />
-            오늘의 챌린지에 참여해
-            <br />
-            목표를 달성해보세요.
-          </span>
-          <Management>챌린지 관리하기</Management>
-        </Title>
-        <StatusBox balls={balls} />
-      </MyChallenge>
-      <Calendar openModal={openModal} />
+      <Title>
+        <span>
+          가나다라마바사님의
+          <br />
+          챌린지에 오신 걸
+          <br />
+          환영해요
+        </span>
+        <Management>친구 삭제하기</Management>
+      </Title>
+      <StatusBox balls={balls} />
+      <Calendar />
       <ChallengeBox>
         <Challenge />
         <IconBox />
@@ -49,12 +38,11 @@ const MainPage = () => {
           <CommentInput placeholder="댓글을 입력해주세요" />
         </CommentBox>
       </ChallengeBox>
-      {modal && <FillModal closeModal={closeModal} balls={balls} />}
     </Wrapper>
   );
 };
 
-export default MainPage;
+export default FriendMainPage;
 
 const Wrapper = styled.div`
   margin: auto auto;
@@ -65,19 +53,11 @@ const Wrapper = styled.div`
   gap: 34px;
 `;
 
-const MyChallenge = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 34px;
-`;
-
 const Title = styled.div`
   display: flex;
-  padding: 0px 1px 1px 0px;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: flex-end;
-  gap: 27px;
+  gap: 60px;
   span {
     color: var(--black);
     font-feature-settings: "clig" off, "liga" off;
