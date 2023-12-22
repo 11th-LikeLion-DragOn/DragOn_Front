@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 const QuitChallenge = ({ setOpenQuitModal }) => {
   const deleteGoal = () => {
     console.log("Delete");
+    //삭제 추가하고 NochallengeList로
     setOpenQuitModal(false);
   };
 
