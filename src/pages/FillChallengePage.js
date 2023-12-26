@@ -2,12 +2,14 @@ import React from "react";
 import { styled } from "styled-components";
 
 import TopBar from "../components/common/TopBar";
+import Calendar from "../components/MainPage/Calendar";
 import Challenge from "../components/MainPage/Challenge";
 
 const FillChallengePage = () => {
   return (
     <Wrapper>
       <TopBar titleText={"챌린지 메꾸기"} />
+      <Calendar />
       <ChallengeList>
         <Challenge />
       </ChallengeList>
@@ -24,10 +26,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 34px;
 `;
 
 const ChallengeList = styled.div`
-  margin-top: 34px;
   display: flex;
   width: 315px;
   padding: 18px 19px;

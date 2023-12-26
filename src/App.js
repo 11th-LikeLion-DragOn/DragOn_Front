@@ -28,7 +28,7 @@ function App() {
       <Router>
         <Routes>
           {/*로그인/회원가입*/}
-          <Route path={"/login"} element={<LoginPage />}></Route>
+          <Route path={"/"} element={<LoginPage />}></Route>
           <Route path={"/signup"} element={<SignupPage />}></Route>
 
           {/*메인페이지*/}
