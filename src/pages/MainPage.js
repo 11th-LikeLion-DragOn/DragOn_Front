@@ -11,6 +11,7 @@ import IconBox from "../components/MainPage/IconBox";
 import Comment from "../components/MainPage/Comment";
 
 const MainPage = () => {
+  const navigate = useNavigate();
   const [balls, setBalls] = useState(1);
   const [modal, setModal] = useState(false);
 
@@ -20,6 +21,10 @@ const MainPage = () => {
 
   const closeModal = () => {
     setModal(false);
+  };
+
+  const goManage = () => {
+    navigate("/challengelist");
   };
 
   return (
@@ -34,7 +39,7 @@ const MainPage = () => {
             <br />
             목표를 달성해보세요.
           </span>
-          <Management>챌린지 관리하기</Management>
+          <Management onClick={goManage}>챌린지 관리하기</Management>
         </Title>
         <StatusBox balls={balls} />
       </MyChallenge>
