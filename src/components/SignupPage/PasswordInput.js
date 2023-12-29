@@ -1,21 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../App.css";
 import { styled } from "styled-components";
 
 import fail from "../../assets/icons/input-fail.png";
 import success from "../../assets/icons/input-success.png";
 
-const PasswordInput = ({ feedback }) => {
+const PasswordInput = () => {
+  const [password, setPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
+
   return (
     <Wrapper>
       <span>비밀번호</span>
-      <input placeholder="비밀번호 입력" />
+      <input
+        type="password"
+        placeholder="비밀번호 입력"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
       <Input>
-        <input placeholder="비밀번호 재확인" />
-        <img src={fail} />
+        <input
+          type="password"
+          placeholder="비밀번호 재확인"
+          value={checkPassword}
+          onChange={(e) => setCheckPassword(e.target.value)}
+        />
+        {password === checkPassword ? (
+          <img src={success} />
+        ) : (
+          <img src={fail} />
+        )}
       </Input>
-
-      <Feedback>{feedback}</Feedback>
+      {password === checkPassword ? (
+        <Feedback>비밀번호가 일치합니다</Feedback>
+      ) : (
+        <Feedback>비밀번호를 다시 확인해주세요</Feedback>
+      )}
     </Wrapper>
   );
 };
