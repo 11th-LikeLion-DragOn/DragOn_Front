@@ -31,8 +31,8 @@ const TestingPage = () => {
 
   return (
     <>
-      <TopBar titleText="챌린지 성향 테스트" />
       <Wrapper>
+        <TopBar titleText="챌린지 성향 테스트" />
         <Q1>
           <div className="number">Q1.</div>
           <div className="text">
@@ -182,6 +182,11 @@ const Wrapper = styled.div`
   width: 393px;
   height: 1394px;
   padding: 0 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  height: 100vh;
   .number {
     color: var(--purple_01, #8438ff);
     font-feature-settings: "clig" off, "liga" off;

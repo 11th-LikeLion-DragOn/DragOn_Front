@@ -8,8 +8,8 @@ import CurrentChallenge from "../components/ChallengeListPage/CurrentChallenge";
 const ChallengeListPage = () => {
   return (
     <>
-      <TopBar titleText="챌린지 관리하기" />
       <Wrapper>
+        <TopBar titleText="챌린지 관리하기" />
         <Current>
           <div className="ing">진행 중인 챌린지</div>
           <CurrentChallenge />
@@ -32,11 +32,22 @@ const Wrapper = styled.div`
   font-weight: 500;
   .ing {
     margin-bottom: 13px;
+    margin-top: 20px;
+    margin-left: 10px;
   }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  height: 100vh;
 `;
-const Current = styled.div``;
+const Current = styled.div`
+  margin-left: 35px;
+`;
 const History = styled.div`
+  margin-left: 35px;
   .history {
+    margin-left: 10px;
     margin-top: 50px;
     margin-bottom: 13px;
   }
