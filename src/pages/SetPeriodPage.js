@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 //components
 import TopBar from "../components/common/TopBar";
 import CustomSelect from "../components/SetPeriodPage/CustomSelect";
 const SetPeriodPage = () => {
+  const navigate = useNavigate();
+  const makeNew = () => {
+    navigate("/challengelist");
+  };
   return (
     <>
       <TopBar titleText="챌린지 생성하기" />
@@ -13,7 +18,7 @@ const SetPeriodPage = () => {
           <CustomSelect />
           <div className="bottomtext">동안 진행할거에요.</div>
         </Bottom>
-        <Btn>새로운 챌린지 생성하기</Btn>
+        <Btn onClick={makeNew}>새로운 챌린지 생성하기</Btn>
       </Wrapper>
     </>
   );
