@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 //components
 import TopBar from "../components/common/TopBar";
 import LockModal from "../components/testchallenge/LockModal";
@@ -10,8 +11,19 @@ import marblePurple from "../assets/icons/marble-purple.png";
 import clickRight from "../assets/icons/click-right.png";
 
 const SettingPage = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const nickname = location.state?.nickname;
+
+  const goChangeNick = () => {
+    navigate("/changenick");
+  };
+  const goTest = () => {
+    navigate("/starttest");
+  };
+  const goChangePw = () => {
+    navigate("/changepassword");
+  };
 
   return (
     <>
@@ -33,12 +45,12 @@ const SettingPage = () => {
         <Profile>
           <div className="text">프로필</div>
           <div className="profile-item">
-            <div>닉네임 변경</div>
+            <div onClick={goChangeNick}>닉네임 변경</div>
             <img src={clickRight} />
           </div>
           <hr></hr>
           <div className="profile-item">
-            <div>챌린지 성향 테스트</div>
+            <div onClick={goTest}>챌린지 성향 테스트</div>
             <img src={clickRight} />
           </div>
           <hr></hr>
@@ -46,7 +58,7 @@ const SettingPage = () => {
         <Account>
           <div className="text">계정</div>
           <div className="account-item">
-            <div>비밀번호 변경</div>
+            <div onClick={goChangePw}>비밀번호 변경</div>
             <img src={clickRight} />
           </div>
           <hr></hr>
@@ -68,6 +80,7 @@ const SettingPage = () => {
 
 export default SettingPage;
 const Wrapper = styled.div`
+  margin: auto auto;
   padding: 26px 25px 0px 28px;
 `;
 const Info = styled.div`

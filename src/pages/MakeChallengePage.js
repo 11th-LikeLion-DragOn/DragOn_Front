@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import TopBar from "../components/common/TopBar";
 import { ReactComponent as RedOne } from "../assets/icons/red.svg";
@@ -7,10 +8,15 @@ import { ReactComponent as GreenOne } from "../assets/icons/green.svg";
 import { ReactComponent as BlueOne } from "../assets/icons/blue.svg";
 
 const MakeChallengePage = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [goal1, setGoal1] = useState("");
   const [goal2, setGoal2] = useState("");
   const [goal3, setGoal3] = useState("");
+
+  const goNext = () => {
+    navigate("/setperiod");
+  };
 
   return (
     <>
@@ -51,7 +57,7 @@ const MakeChallengePage = () => {
           ></Input>
         </Third>
 
-        <Btn>다음으로 넘어가기 </Btn>
+        <Btn onClick={goNext}>다음으로 넘어가기 </Btn>
       </Wrapper>
     </>
   );

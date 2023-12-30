@@ -2,7 +2,14 @@ import React from "react";
 import { styled } from "styled-components";
 import TopBar from "../components/common/TopBar";
 import testStart from "../assets/icons/test-start.png";
+import { useNavigate } from "react-router-dom";
 const StartTestPage = () => {
+  const navigate = useNavigate();
+
+  const startTest = () => {
+    navigate("/testing");
+  };
+
   return (
     <>
       <TopBar titleText="챌린지 성향 테스트" />
@@ -13,7 +20,7 @@ const StartTestPage = () => {
           알아보세요
         </Text>
         <img src={testStart} />
-        <Btn>시작하기</Btn>
+        <Btn onClick={startTest}>시작하기</Btn>
       </Wrapper>
     </>
   );

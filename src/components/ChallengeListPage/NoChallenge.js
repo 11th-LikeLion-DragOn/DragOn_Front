@@ -1,14 +1,21 @@
 import React from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 // 진행하고 있는 챌린지가 없을 경우 보여주는 컴포넌트
 const NoChallenge = () => {
+  const navigate = useNavigate();
+
+  const goMakeCh = () => {
+    navigate("/makechallenge");
+  };
+
   return (
     <>
       <Wrapper>
         <div className="text">
           진행 중인 챌린지가 없습니다.{"\n"}새로운 챌린지를 생성해주세요.
         </div>
-        <Btn>챌린지 생성하기</Btn>
+        <Btn onClick={goMakeCh}>챌린지 생성하기</Btn>
       </Wrapper>
     </>
   );

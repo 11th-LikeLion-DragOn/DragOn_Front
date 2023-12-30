@@ -1,11 +1,14 @@
 import React from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const QuitChallenge = ({ setOpenQuitModal }) => {
+  const navigate = useNavigate();
   const deleteGoal = () => {
     console.log("Delete");
     //삭제 추가하고 NochallengeList로
     setOpenQuitModal(false);
+    navigate("/nochallengelist");
   };
 
   const closeModal = () => {
