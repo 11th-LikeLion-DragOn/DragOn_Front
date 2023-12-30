@@ -12,8 +12,8 @@ const StartTestPage = () => {
 
   return (
     <>
-      <TopBar titleText="챌린지 성향 테스트" />
       <Wrapper>
+        <TopBar titleText="챌린지 성향 테스트" />
         <Text>
           챌린지 성향을 분석하고{"\n"}
           나와 비슷한 성향의 친구들을{"\n"}
@@ -34,6 +34,11 @@ const Wrapper = styled.div`
   img {
     margin-top: 47px;
   }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  height: 100vh;
 `;
 const Text = styled.div`
   color: var(--purple_01, #8438ff);

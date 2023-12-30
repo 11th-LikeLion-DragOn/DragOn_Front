@@ -27,8 +27,8 @@ const SettingPage = () => {
 
   return (
     <>
-      <TopBar titleText="설정" />
       <Wrapper>
+        <TopBar titleText="설정" />
         <Info>
           <img src={profile1} />
           <div className="info-text">
@@ -44,12 +44,12 @@ const SettingPage = () => {
         </Excharge>
         <Profile>
           <div className="text">프로필</div>
-          <div className="profile-item">
-            <div onClick={goChangeNick}>닉네임 변경</div>
+          <div onClick={goChangeNick} className="profile-item">
+            <div>닉네임 변경</div>
             <img src={clickRight} />
           </div>
           <hr></hr>
-          <div className="profile-item">
+          <div src={clickRight} className="profile-item">
             <div onClick={goTest}>챌린지 성향 테스트</div>
             <img src={clickRight} />
           </div>
@@ -80,12 +80,18 @@ const SettingPage = () => {
 
 export default SettingPage;
 const Wrapper = styled.div`
-  margin: auto auto;
   padding: 26px 25px 0px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  height: 100vh;
 `;
 const Info = styled.div`
-  margin-top: 12px;
+  margin-top: 32px;
+  margin-right: 170px;
   display: flex;
+
   img {
     width: 57px;
     height: 57px;
