@@ -11,8 +11,8 @@ const SetPeriodPage = () => {
   };
   return (
     <>
-      <TopBar titleText="챌린지 생성하기" />
       <Wrapper>
+        <TopBar titleText="챌린지 생성하기" />
         <div className="toptext">저는 이 챌린지를 </div>
         <Bottom>
           <CustomSelect />
@@ -30,11 +30,16 @@ const Wrapper = styled.div`
   padding: 0 24px 0 24px;
   .toptext {
     margin-top: 50px;
-    margin-left: 10px;
+    margin-right: 225px;
     font-size: 16px;
     font-weight: 500;
     line-height: normal;
   }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  height: 100vh;
 `;
 const Bottom = styled.div`
   margin-top: 21px;

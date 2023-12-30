@@ -20,8 +20,8 @@ const MakeChallengePage = () => {
 
   return (
     <>
-      <TopBar titleText="챌린지 생성하기" />
       <Wrapper>
+        <TopBar titleText="챌린지 생성하기" />
         <Input
           type="text"
           value={name}
@@ -68,6 +68,11 @@ const Wrapper = styled.div`
   padding: 0 20px 0 20px;
   width: 393px;
   height: 852px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 수직 가운데 정렬 */
+  margin: auto; /* 수평 가운데 정렬 */
+  height: 100vh; /* 화면의 높이를 100%로 채워 전체 화면을 가리키도록 함 */
 `;
 const Input = styled.input`
   border: none;

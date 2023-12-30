@@ -8,8 +8,8 @@ import NoChallenge from "../components/ChallengeListPage/NoChallenge";
 const NoChallengeListPage = () => {
   return (
     <>
-      <TopBar titleText="챌린지 관리하기" />
       <Wrapper>
+        <TopBar titleText="챌린지 관리하기" />
         <Current>
           <div className="ing">진행 중인 챌린지</div>
           <NoChallenge />
@@ -33,6 +33,11 @@ const Wrapper = styled.div`
   .ing {
     margin-bottom: 13px;
   }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  height: 100vh;
 `;
 const Current = styled.div``;
 const History = styled.div`
