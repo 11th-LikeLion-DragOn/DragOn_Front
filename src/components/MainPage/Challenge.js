@@ -2,26 +2,15 @@ import React, { useState } from "react";
 import * as dateFns from "date-fns";
 import { styled } from "styled-components";
 
-const Challenge = ({ selectedDate }) => {
-  const [goal1, setGoal1] = useState(true);
-  const [goal2, setGoal2] = useState(false);
-  const [goal3, setGoal3] = useState(false);
-
-  const handleGoal1 = () => {
-    setGoal1(!goal1);
-    console.log(goal1);
-  };
-
-  const handleGoal2 = () => {
-    setGoal2(!goal2);
-    console.log(goal2);
-  };
-
-  const handleGoal3 = () => {
-    setGoal3(!goal3);
-    console.log(goal3);
-  };
-
+const Challenge = ({
+  selectedDate,
+  goal1,
+  goal2,
+  goal3,
+  func1,
+  func2,
+  func3,
+}) => {
   return (
     <Wrapper>
       <Date>
@@ -30,15 +19,15 @@ const Challenge = ({ selectedDate }) => {
       </Date>
       <ChallengeList>
         <Goal1>
-          <div id="circle" goal1={goal1} onClick={handleGoal1}></div>
+          <div id="circle" goal1={goal1} onClick={func1}></div>
           <span>영어 공부</span>
         </Goal1>
         <Goal2>
-          <div id="circle" goal2={goal2} onClick={handleGoal2}></div>
+          <div id="circle" goal2={goal2} onClick={func2}></div>
           <span>스페인어 화상수업</span>
         </Goal2>
         <Goal3>
-          <div id="circle" goal3={goal3} onClick={handleGoal3}></div>
+          <div id="circle" goal3={goal3} onClick={func3}></div>
           <span>매일 감사일기 작성하기</span>
         </Goal3>
       </ChallengeList>

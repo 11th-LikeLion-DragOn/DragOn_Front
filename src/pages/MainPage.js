@@ -34,6 +34,26 @@ const MainPage = () => {
     setSelectedDate(date);
   };
 
+  //챌린지 달성 관리
+  const [goal1, setGoal1] = useState(false);
+  const [goal2, setGoal2] = useState(false);
+  const [goal3, setGoal3] = useState(false);
+
+  const handleGoal1 = () => {
+    setGoal1(!goal1);
+    console.log(goal1);
+  };
+
+  const handleGoal2 = () => {
+    setGoal2(!goal2);
+    console.log(goal2);
+  };
+
+  const handleGoal3 = () => {
+    setGoal3(!goal3);
+    console.log(goal3);
+  };
+
   return (
     <Wrapper>
       <MainTop />
@@ -52,7 +72,15 @@ const MainPage = () => {
       </MyChallenge>
       <Calendar openModal={openModal} onDaySelect={handleDaySelect} />
       <ChallengeBox>
-        <Challenge selectedDate={selectedDate} />
+        <Challenge
+          selectedDate={selectedDate}
+          goal1={goal1}
+          goal2={goal2}
+          goal3={goal3}
+          func1={handleGoal1}
+          func2={handleGoal2}
+          func3={handleGoal3}
+        />
         <IconBox />
         <CommentBox>
           <span id="title">댓글</span>
@@ -65,7 +93,9 @@ const MainPage = () => {
         <FillModal
           closeModal={closeModal}
           balls={balls}
-          onDaySelect={selectedDate}
+          goal1={goal1}
+          goal2={goal2}
+          goal3={goal3}
         />
       )}
     </Wrapper>
