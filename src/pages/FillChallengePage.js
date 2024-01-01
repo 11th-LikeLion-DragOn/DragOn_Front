@@ -47,12 +47,6 @@ const FillChallengePage = () => {
     }, 0);
   };
 
-  useEffect(() => {
-    if (modal) {
-      openModal();
-    }
-  }, [modal]);
-
   return (
     <Wrapper>
       <TopBar titleText={"챌린지 메꾸기"} />
