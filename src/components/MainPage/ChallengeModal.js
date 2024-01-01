@@ -1,35 +1,26 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+import * as dateFns from "date-fns";
 import { useNavigate } from "react-router-dom";
 
-const FillModal = ({ closeModal, balls, goal1, goal2, goal3 }) => {
+const FillModal = ({ selectedDate, closeModal }) => {
   const navigate = useNavigate();
-  const [changeBtn, setChangeBtn] = useState(false);
-  const [content, setContent] = useState(
-    "기다리면 무료 챌린지 메꾸기까지 \n 남은 시간 7일"
-  );
 
-  const buyTicket = () =>
-    balls
-      ? navigate("/fillchallenge", {
-          state: { goal1: goal1, goal2: goal2, goal3: goal3 },
-        }) & closeModal
-      : setContent("이런, 여의주가 부족해요~! \n 여의주를 충전해주세요") &
-        setChangeBtn(true);
-
-  const buyBalls = () => {
-    navigate("/setting");
+  const fillChallenge = () => {
+    //연동 함수 추가
+    navigate("/main");
   };
 
   return (
     <Wrapper>
       <Modal>
-        <Content>{content}</Content>
+        <Content>
+          {dateFns.format(selectedDate, "M")}월{" "}
+          {dateFns.format(selectedDate, "d")}일 "영어 공부"
+          <span>챌린지를 메꾸시겠습니까?</span>
+        </Content>
         <div id="buttonBox">
-          <Button1 onClick={buyTicket}>여의주 1개로 구매하기</Button1>
-          {changeBtn && (
-            <Button2 onClick={buyBalls}>여의주 충전하러 가기</Button2>
-          )}
+          <Button1 onClick={fillChallenge}>챌린지 메꾸기</Button1>
           <Exit onClick={closeModal}>취소하기</Exit>
         </div>
       </Modal>
@@ -79,6 +70,9 @@ const Content = styled.div`
   flex-shrink: 0;
   margin-top: 30px;
   margin-bottom: 23px;
+  display: flex;
+  flex-direction: column;
+
   color: var(--black);
   text-align: center;
   font-feature-settings: "clig" off, "liga" off;
@@ -87,34 +81,10 @@ const Content = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  white-space: pre-wrap;
+  white-space: pre-line;
 `;
 
 const Button1 = styled.div`
-  display: flex;
-  width: 312px;
-  height: 47px;
-  margin-bottom: 11px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 6px;
-  background: var(--purple_01, #8438ff);
-  cursor: pointer;
-
-  color: var(--white);
-  text-align: center;
-  font-feature-settings: "clig" off, "liga" off;
-  font-family: Pretendard;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-`;
-
-const Button2 = styled.div`
-  position: absolute;
-  top: 0;
   display: flex;
   width: 312px;
   height: 47px;
