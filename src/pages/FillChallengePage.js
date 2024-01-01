@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 
 import TopBar from "../components/common/TopBar";
@@ -6,12 +6,19 @@ import Calendar from "../components/MainPage/Calendar";
 import Challenge from "../components/MainPage/Challenge";
 
 const FillChallengePage = () => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDaySelect = (date) => {
+    console.log("Selected Date:", date);
+    setSelectedDate(date);
+  };
+
   return (
     <Wrapper>
       <TopBar titleText={"챌린지 메꾸기"} />
-      <Calendar />
+      <Calendar onDaySelect={handleDaySelect} />
       <ChallengeList>
-        <Challenge />
+        <Challenge selectedDate={selectedDate} />
       </ChallengeList>
     </Wrapper>
   );

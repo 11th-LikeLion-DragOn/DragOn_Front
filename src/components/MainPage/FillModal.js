@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const FillModal = ({ closeModal, balls }) => {
+const FillModal = ({ closeModal, balls, onDaySelect }) => {
   const navigate = useNavigate();
   const [changeBtn, setChangeBtn] = useState(false);
   const [content, setContent] = useState(
@@ -28,7 +28,6 @@ const FillModal = ({ closeModal, balls }) => {
           {changeBtn && (
             <Button2 onClick={buyBalls}>여의주 충전하러 가기</Button2>
           )}
-
           <Exit onClick={closeModal}>취소하기</Exit>
         </div>
       </Modal>
