@@ -5,14 +5,13 @@ import { useLocation } from "react-router-dom";
 
 import before from "../../assets/icons/click-left.png";
 import after from "../../assets/icons/click-right.png";
-import DayStatus from "./DayStatus";
 
-const Calendar = ({ openModal }) => {
+const Calendar = ({ openModal, onDaySelect }) => {
   const location = useLocation();
   const isMain = location.pathname === "/main";
 
+  //달력
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(new Date());
   const today = new Date();
 
   const firstDay = dateFns.startOfMonth(currentDate);
@@ -24,11 +23,8 @@ const Calendar = ({ openModal }) => {
     end: endDate,
   });
 
-  console.log(totalDate);
-
   const isToday = (day) => dateFns.isSameDay(day, today);
   const isThisMonth = (day) => dateFns.isSameMonth(day, currentDate);
-  const isSelected = (day) => dateFns.isSameDay(day, selectedDate);
 
   const formatOfYear = "yyyy";
   const formatOfMonth = "M";
@@ -41,6 +37,11 @@ const Calendar = ({ openModal }) => {
   const nextMonth = () => {
     setCurrentDate(dateFns.addMonths(currentDate, 1));
   };
+
+  //챌린지 현황 관리
+  const [challenge1, setChallenge1] = useState(false);
+  const [challenge2, setChallenge2] = useState(false);
+  const [challenge3, setChallenge3] = useState(false);
 
   return (
     <Wrapper>
@@ -62,8 +63,12 @@ const Calendar = ({ openModal }) => {
       </TopBar>
       <CalendarBox>
         {totalDate.map((date) => (
-          <DayBox onClick={() => setSelectedDate(date)}>
-            <DayStatus isToday={isToday(date)} />
+          <DayBox onClick={() => onDaySelect(date)}>
+            <DayStatus>
+              <Goal1 goal1={!dateFns.isSameMonth(date, currentDate)}></Goal1>
+              <Goal2 goal2={!dateFns.isSameMonth(date, currentDate)}></Goal2>
+              <Goal3 goal3={!dateFns.isSameMonth(date, currentDate)}></Goal3>
+            </DayStatus>
             <span
               style={{
                 color: isToday(date)
@@ -169,4 +174,47 @@ const DayBox = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+`;
+
+const DayStatus = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  background-color: var(--white);
+  border-radius: 50%;
+  border: solid 1px rgba(192, 192, 192, 0.1);
+  cursor: pointer;
+`;
+
+const Goal1 = styled.div`
+  z-index: 10;
+  width: 5px;
+  height: 5px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: ${({ goal1 }) => (goal1 ? "var(--gray2)" : "var(--red)")};
+`;
+
+const Goal2 = styled.div`
+  z-index: 10;
+  width: 5px;
+  height: 5px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: ${({ goal2 }) => (goal2 ? "var(--gray2)" : "var(--green)")};
+`;
+
+const Goal3 = styled.div`
+  z-index: 10;
+  width: 5px;
+  height: 5px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: ${({ goal3 }) => (goal3 ? "var(--gray2)" : "var(--blue)")};
 `;
