@@ -61,7 +61,13 @@ const MainPage = () => {
           <CommentInput placeholder="댓글을 입력해주세요" />
         </CommentBox>
       </ChallengeBox>
-      {modal && <FillModal closeModal={closeModal} balls={balls} />}
+      {modal && (
+        <FillModal
+          closeModal={closeModal}
+          balls={balls}
+          onDaySelect={selectedDate}
+        />
+      )}
     </Wrapper>
   );
 };

@@ -24,7 +24,6 @@ const Calendar = ({ openModal, onDaySelect }) => {
   });
 
   const isToday = (day) => dateFns.isSameDay(day, today);
-  const isThisMonth = (day) => dateFns.isSameMonth(day, currentDate);
 
   const formatOfYear = "yyyy";
   const formatOfMonth = "M";
