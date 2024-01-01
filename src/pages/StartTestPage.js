@@ -2,18 +2,25 @@ import React from "react";
 import { styled } from "styled-components";
 import TopBar from "../components/common/TopBar";
 import testStart from "../assets/icons/test-start.png";
+import { useNavigate } from "react-router-dom";
 const StartTestPage = () => {
+  const navigate = useNavigate();
+
+  const startTest = () => {
+    navigate("/testing");
+  };
+
   return (
     <>
-      <TopBar titleText="챌린지 성향 테스트" />
       <Wrapper>
+        <TopBar titleText="챌린지 성향 테스트" />
         <Text>
           챌린지 성향을 분석하고{"\n"}
           나와 비슷한 성향의 친구들을{"\n"}
           알아보세요
         </Text>
         <img src={testStart} />
-        <Btn>시작하기</Btn>
+        <Btn onClick={startTest}>시작하기</Btn>
       </Wrapper>
     </>
   );
@@ -27,6 +34,11 @@ const Wrapper = styled.div`
   img {
     margin-top: 47px;
   }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  height: 100vh;
 `;
 const Text = styled.div`
   color: var(--purple_01, #8438ff);

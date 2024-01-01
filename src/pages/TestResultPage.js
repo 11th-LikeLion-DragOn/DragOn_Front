@@ -14,8 +14,8 @@ import kakao from "../assets/icons/kakao-circle.png";
 const TestResultPage = () => {
   return (
     <>
-      <TopBar titleText="챌린지 성향 테스트" />
       <Wrapper>
+        <TopBar titleText="챌린지 성향 테스트" />
         <Illu>
           <img src={illu1} />
         </Illu>
@@ -36,6 +36,11 @@ export default TestResultPage;
 const Wrapper = styled.div`
   width: 393px;
   height: 852px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  height: 100vh;
 
   .text {
     background: var(--purple_02, #f5f1ff);

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import TopBar from "../components/common/TopBar";
 import { ReactComponent as RedOne } from "../assets/icons/red.svg";
@@ -7,15 +8,20 @@ import { ReactComponent as GreenOne } from "../assets/icons/green.svg";
 import { ReactComponent as BlueOne } from "../assets/icons/blue.svg";
 
 const MakeChallengePage = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [goal1, setGoal1] = useState("");
   const [goal2, setGoal2] = useState("");
   const [goal3, setGoal3] = useState("");
 
+  const goNext = () => {
+    navigate("/setperiod");
+  };
+
   return (
     <>
-      <TopBar titleText="챌린지 생성하기" />
       <Wrapper>
+        <TopBar titleText="챌린지 생성하기" />
         <Input
           type="text"
           value={name}
@@ -51,7 +57,7 @@ const MakeChallengePage = () => {
           ></Input>
         </Third>
 
-        <Btn>다음으로 넘어가기 </Btn>
+        <Btn onClick={goNext}>다음으로 넘어가기 </Btn>
       </Wrapper>
     </>
   );
@@ -62,6 +68,11 @@ const Wrapper = styled.div`
   padding: 0 20px 0 20px;
   width: 393px;
   height: 852px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 수직 가운데 정렬 */
+  margin: auto; /* 수평 가운데 정렬 */
+  height: 100vh; /* 화면의 높이를 100%로 채워 전체 화면을 가리키도록 함 */
 `;
 const Input = styled.input`
   border: none;

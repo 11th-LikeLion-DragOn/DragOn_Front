@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 //components
 import TopBar from "../components/common/TopBar";
 import CustomSelect from "../components/SetPeriodPage/CustomSelect";
 const SetPeriodPage = () => {
+  const navigate = useNavigate();
+  const makeNew = () => {
+    navigate("/challengelist");
+  };
   return (
     <>
-      <TopBar titleText="챌린지 생성하기" />
       <Wrapper>
+        <TopBar titleText="챌린지 생성하기" />
         <div className="toptext">저는 이 챌린지를 </div>
         <Bottom>
           <CustomSelect />
           <div className="bottomtext">동안 진행할거에요.</div>
         </Bottom>
-        <Btn>새로운 챌린지 생성하기</Btn>
+        <Btn onClick={makeNew}>새로운 챌린지 생성하기</Btn>
       </Wrapper>
     </>
   );
@@ -25,11 +30,16 @@ const Wrapper = styled.div`
   padding: 0 24px 0 24px;
   .toptext {
     margin-top: 50px;
-    margin-left: 10px;
+    margin-right: 225px;
     font-size: 16px;
     font-weight: 500;
     line-height: normal;
   }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  height: 100vh;
 `;
 const Bottom = styled.div`
   margin-top: 21px;

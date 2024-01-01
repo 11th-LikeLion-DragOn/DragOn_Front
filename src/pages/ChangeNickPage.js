@@ -18,10 +18,9 @@ const ChangeNickPage = () => {
 
   return (
     <>
-      <TopBar titleText="설정" />
-
       <Wrapper>
-        <div>닉네임</div>
+        <TopBar titleText="설정" />
+        <div className="nickname">닉네임</div>
         <NickWrapper>
           <Input
             type="text"
@@ -30,7 +29,6 @@ const ChangeNickPage = () => {
             onChange={(e) => setNickname(e.target.value)}
           ></Input>
           <div className="xicon">
-            {" "}
             <img src={quit} />
           </div>
         </NickWrapper>
@@ -49,8 +47,14 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-left: 28px;
-  div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  height: 100vh;
+  .nickname {
     margin-top: 23px;
+    margin-right: 300px;
     color: var(--gray_02, #b5b5b5);
     font-size: 12px;
     font-style: normal;
@@ -64,8 +68,8 @@ const Wrapper = styled.div`
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
-    margin-top: 8px;
-    margin-right: 28px;
+    margin-top: 10px;
+    margin-left: 220px;
   }
 `;
 const NickWrapper = styled.div`
@@ -74,8 +78,8 @@ const NickWrapper = styled.div`
     width: 20.667px;
     height: 20.667px;
     position: absolute;
-    top: 30%;
-    left: 81%;
+    top: 39%;
+    left: 90%;
   }
   .xicon {
     display: flex;

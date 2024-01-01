@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 //components
 import TopBar from "../components/common/TopBar";
 //image
@@ -7,6 +8,11 @@ import grayCheck from "../assets/icons/test-check-gray.png";
 import pupleCheck from "../assets/icons/test-check-purple.png";
 
 const TestingPage = () => {
+  const navigate = useNavigate();
+
+  const goResult = () => {
+    navigate("/testresult");
+  };
   // 각 질문에 대해 사용자 선택(yes/no)을 저장
   const [selectedOptions, setSelectedOptions] = useState({
     q1: null,
@@ -25,8 +31,8 @@ const TestingPage = () => {
 
   return (
     <>
-      <TopBar titleText="챌린지 성향 테스트" />
       <Wrapper>
+        <TopBar titleText="챌린지 성향 테스트" />
         <Q1>
           <div className="number">Q1.</div>
           <div className="text">
@@ -165,7 +171,7 @@ const TestingPage = () => {
             No
           </div>
         </Q5>
-        <Btn>테스트 완료하기</Btn>
+        <Btn onClick={goResult}>테스트 완료하기</Btn>
       </Wrapper>
     </>
   );
@@ -176,6 +182,11 @@ const Wrapper = styled.div`
   width: 393px;
   height: 1394px;
   padding: 0 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  height: 100vh;
   .number {
     color: var(--purple_01, #8438ff);
     font-feature-settings: "clig" off, "liga" off;
