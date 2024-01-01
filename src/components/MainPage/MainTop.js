@@ -96,6 +96,7 @@ const Buttons = styled.div`
     width: 24px;
     height: 38px;
     flex-shrink: 0;
+    visibility: hidden;
     cursor: pointer;
   }
   #setting {
