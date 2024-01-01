@@ -1,21 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import * as dateFns from "date-fns";
 import { styled } from "styled-components";
 
-const Challenge = () => {
+const Challenge = ({ selectedDate }) => {
+  const [goal1, setGoal1] = useState(false);
+  const [goal2, setGoal2] = useState(false);
+  const [goal3, setGoal3] = useState(false);
+
   return (
     <Wrapper>
-      <Date>11월 16일</Date>
+      <Date>
+        {dateFns.format(selectedDate, "M")}월{" "}
+        {dateFns.format(selectedDate, "d")}일
+      </Date>
       <ChallengeList>
         <Goal1>
-          <div id="circle"></div>
+          <div id="circle" goal1={goal1}></div>
           <span>영어 공부</span>
         </Goal1>
         <Goal2>
-          <div id="circle"></div>
+          <div id="circle" goal2={goal2}></div>
           <span>스페인어 화상수업</span>
         </Goal2>
         <Goal3>
-          <div id="circle"></div>
+          <div id="circle" goal3={goal3}></div>
           <span>매일 감사일기 작성하기</span>
         </Goal3>
       </ChallengeList>

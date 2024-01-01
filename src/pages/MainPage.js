@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import * as dateFns from "date-fns";
 
 import MainTop from "../components/MainPage/MainTop";
 import StatusBox from "../components/MainPage/StatusBox";
@@ -14,6 +15,7 @@ const MainPage = () => {
   const navigate = useNavigate();
   const [balls, setBalls] = useState(1);
   const [modal, setModal] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const openModal = () => {
     setModal(true);
@@ -25,6 +27,11 @@ const MainPage = () => {
 
   const goManage = () => {
     navigate("/challengelist");
+  };
+
+  const handleDaySelect = (date) => {
+    console.log("Selected Date:", date);
+    setSelectedDate(date);
   };
 
   return (
@@ -43,9 +50,9 @@ const MainPage = () => {
         </Title>
         <StatusBox balls={balls} />
       </MyChallenge>
-      <Calendar openModal={openModal} />
+      <Calendar openModal={openModal} onDaySelect={handleDaySelect} />
       <ChallengeBox>
-        <Challenge />
+        <Challenge selectedDate={selectedDate} />
         <IconBox />
         <CommentBox>
           <span id="title">댓글</span>

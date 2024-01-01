@@ -58,7 +58,7 @@ const MainTop = () => {
           {!isFriendHome && (
             <>
               <img id="setting" src={setting} onClick={goSetting} />
-              <img id="alarm" src={alarmStar} onClick={goAlarm} />
+              <img id="alarm" src={alarmEmpty} onClick={goAlarm} />
             </>
           )}
           {isFriendHome && <img id="home" src={home} onClick={goHome} />}

@@ -25,15 +25,16 @@ const PasswordInput = () => {
           value={checkPassword}
           onChange={(e) => setCheckPassword(e.target.value)}
         />
-        {password === checkPassword ? (
+        {password === checkPassword && password !== "" ? (
           <img src={success} />
         ) : (
           <img src={fail} />
         )}
       </Input>
-      {password === checkPassword ? (
+      {password === checkPassword && password !== "" && (
         <Feedback>비밀번호가 일치합니다</Feedback>
-      ) : (
+      )}
+      {password !== checkPassword && password !== "" && (
         <Feedback>비밀번호를 다시 확인해주세요</Feedback>
       )}
     </Wrapper>

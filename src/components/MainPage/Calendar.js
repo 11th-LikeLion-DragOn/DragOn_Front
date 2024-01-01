@@ -7,7 +7,7 @@ import before from "../../assets/icons/click-left.png";
 import after from "../../assets/icons/click-right.png";
 import DayStatus from "./DayStatus";
 
-const Calendar = ({ openModal }) => {
+const Calendar = ({ openModal, onDaySelect }) => {
   const location = useLocation();
   const isMain = location.pathname === "/main";
 
@@ -23,8 +23,6 @@ const Calendar = ({ openModal }) => {
     start: startDate,
     end: endDate,
   });
-
-  console.log(totalDate);
 
   const isToday = (day) => dateFns.isSameDay(day, today);
   const isThisMonth = (day) => dateFns.isSameMonth(day, currentDate);
@@ -62,7 +60,7 @@ const Calendar = ({ openModal }) => {
       </TopBar>
       <CalendarBox>
         {totalDate.map((date) => (
-          <DayBox onClick={() => setSelectedDate(date)}>
+          <DayBox onClick={() => onDaySelect(date)}>
             <DayStatus isToday={isToday(date)} />
             <span
               style={{
