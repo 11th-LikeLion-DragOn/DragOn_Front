@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const DayStatus = (isToday) => {
+const DayStatus = () => {
   return (
     <Wrapper>
       <Goal1></Goal1>
