@@ -1,20 +1,64 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 import before from "../assets/icons/click-left.png";
 import PasswordInput from "../components/SignupPage/PasswordInput";
 import fail from "../assets/icons/input-fail.png";
+import success from "../assets/icons/input-success.png";
+
+import { GetIdDuplicate, GetNicknameDuplicate } from "../api/user";
 
 const SignupPage = () => {
   const navigate = useNavigate();
 
-  const [userID, setUserID] = useState("");
   const [username, setUsername] = useState("");
-  const [recommender, setRecommender] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [usernameChecked, setUsernameChecked] = useState(null);
+  const [nicknameChecked, setNicknameChecked] = useState(null);
 
   const goBack = () => {
     navigate(-1);
+  };
+
+  //아이디 중복 확인
+  const checkUsername = async (username) => {
+    if (username === "") {
+      alert("아이디를 입력해주세요.");
+      return;
+    } else {
+      try {
+        const response = await GetIdDuplicate(username);
+        console.log(response.duplicate);
+        if (response.duplicate) {
+          setUsernameChecked(false);
+        } else {
+          setUsernameChecked(true);
+        }
+      } catch (error) {
+        console.log("아이디 중복 확인 실패", error);
+      }
+    }
+  };
+
+  //닉네임 중복 확인
+  const checkNickname = async (nickname) => {
+    if (nickname === "") {
+      alert("닉네임을 입력해주세요.");
+      return;
+    } else {
+      try {
+        const response = await GetNicknameDuplicate(nickname);
+        console.log(response.duplicate);
+        if (response.duplicate) {
+          setNicknameChecked(false);
+        } else {
+          setNicknameChecked(true);
+        }
+      } catch (error) {
+        console.log("닉네임 중복 확인 실패", error);
+      }
+    }
   };
 
   return (
@@ -27,12 +71,17 @@ const SignupPage = () => {
             <input
               type="text"
               placeholder="아이디 입력"
-              value={userID}
-              onChange={(e) => setUserID(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
-            <img src={fail} />
+            {usernameChecked ? <img src={success} /> : <img src={fail} />}
+            <CheckBtn onClick={() => checkUsername(username)}>
+              중복 확인
+            </CheckBtn>
           </Input>
-          <Feedback>이미 사용 중인 아이디입니다</Feedback>
+          {usernameChecked === false && (
+            <Feedback>이미 사용 중인 아이디입니다</Feedback>
+          )}
         </Box>
         <PasswordInput />
         <Box>
@@ -41,24 +90,17 @@ const SignupPage = () => {
             <input
               type="text"
               placeholder="닉네임 입력"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
             />
-            <img src={fail} />
+            {nicknameChecked ? <img src={success} /> : <img src={fail} />}
+            <CheckBtn onClick={() => checkNickname(nickname)}>
+              중복 확인
+            </CheckBtn>
           </Input>
-          <Feedback>사용자가 이미 존재합니다</Feedback>
-        </Box>
-        <Box>
-          <span>추천인</span>
-          <Input>
-            <input
-              type="text"
-              placeholder="추천인 닉네임 입력"
-              value={recommender}
-              onChange={(e) => setRecommender(e.target.value)}
-            />
-            <img src={fail} />
-          </Input>
+          {nicknameChecked === false && (
+            <Feedback>사용자가 이미 존재합니다</Feedback>
+          )}
         </Box>
       </SignupBox>
       <SignUp>회원가입하기</SignUp>
@@ -90,7 +132,7 @@ const SignupBox = styled.div`
   margin-bottom: 21px;
   display: flex;
   flex-direction: column;
-  gap: 21px;
+  gap: 30px;
 `;
 
 const Box = styled.div`
@@ -107,10 +149,10 @@ const Box = styled.div`
     line-height: normal;
   }
   input {
-    width: 314px;
+    width: 251px;
     height: 47px;
-    padding-left: 22px;
     flex-shrink: 0;
+    padding-left: 22px;
     border-radius: 11px;
     border: 0.997px solid var(--background_01, rgba(199, 198, 198, 0.2));
     background: var(--white, #fff);
@@ -130,8 +172,31 @@ const Box = styled.div`
     width: 16px;
     height: 16px;
     position: absolute;
-    right: 20px;
+    right: 100px;
   }
+`;
+
+const CheckBtn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 79px;
+  height: 47px;
+  flex-shrink: 0;
+  margin-left: 6px;
+  border-radius: 11px;
+  border: 0.997px solid rgba(199, 198, 198, 0.2);
+  background: var(--gray2);
+  box-shadow: 0px 0px 6.978px 0.997px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+
+  color: var(--white);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 const Input = styled.div`
@@ -148,6 +213,7 @@ const Feedback = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  margin-right: 88px;
 `;
 
 const SignUp = styled.div`
