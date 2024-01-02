@@ -12,6 +12,7 @@ import Comment from "../components/MainPage/Comment";
 
 const FriendMainPage = () => {
   const [balls, setBalls] = useState(1);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   return (
     <Wrapper>
@@ -29,7 +30,7 @@ const FriendMainPage = () => {
       <StatusBox balls={balls} />
       <Calendar />
       <ChallengeBox>
-        <Challenge />
+        <Challenge selectedDate={selectedDate} />
         <IconBox />
         <CommentBox>
           <span id="title">댓글</span>

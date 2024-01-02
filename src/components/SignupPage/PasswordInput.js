@@ -57,7 +57,7 @@ const Wrapper = styled.div`
     line-height: normal;
   }
   input {
-    width: 314px;
+    width: 336px;
     height: 47px;
     padding-left: 22px;
     flex-shrink: 0;
