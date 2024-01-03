@@ -1,6 +1,6 @@
 # Drag_On
 ### 프로젝트 소개
-
+<img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/100662232/cdfdf55f-0c3c-41ab-b9c3-dead9a32848d" width="100%" /> 
 🐉 새해맞이 목표를 세우는 당신을 위한 챌린지 서비스 drag-on 🐉 <br />
 유연한 목표 달성 방식과 친구 간 달성률 공유를 통해 지치지 않는 챌린지 성공을 경험해요🔥
 
