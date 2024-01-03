@@ -106,7 +106,7 @@ const Input = styled.input`
   }
 `;
 const Btn = styled.button`
-  margin-top: 540px;
+  margin-top: 480px;
   border-radius: 6px;
   background: var(--purple_01, #8438ff);
   display: flex;
