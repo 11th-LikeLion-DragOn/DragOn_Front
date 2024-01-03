@@ -24,3 +24,17 @@ export const GetChallengeList = async () => {
     throw error;
   }
 };
+
+//Delete: 챌린지 삭제
+export const DeleteChallenge = async (challengeId) => {
+  try {
+    const response = await http.delete(`notices/${challengeId}/`);
+    return response;
+  } catch (error) {
+    console.error("챌린지 삭제 실패", error);
+    throw error;
+  }
+};
+
+//Post: 챌린지 성향 테스트
+export const PostTest = async () => {};
