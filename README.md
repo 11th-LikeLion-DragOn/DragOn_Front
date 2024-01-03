@@ -1,4 +1,28 @@
 # Drag_On
+### 프로젝트 소개
+
+🐉 새해맞이 목표를 세우는 당신을 위한 챌린지 서비스 drag-on 🐉 <br />
+유연한 목표 달성 방식과 친구 간 달성률 공유를 통해 지치지 않는 챌린지 성공을 경험해요🔥
+
+### 주요기능 소개
+
+ <details>
+<summary>챌린지 생성하기</summary>
+
+✔️ 챌린지 최대 3개까지 생성 가능
+✔️ 하나의 챌린지에 목표 최대 3개
+✔️ 일정기간 성공 시 드래곤볼 🔮
+
+</details>
+
+ <details>
+<summary>챌린지 성향 테스트</summary>
+
+✔️ 용의 해를 맞은 드래곤볼 컨셉 
+✔️ 도전 과제를 수행할 때 나의 성향 확인 🐲
+
+</details>
+
 
 ### 프론트엔드 개발자
 
@@ -20,6 +44,9 @@
 ⎪   └─  index.html
 📂 src
 ⎪  📂 api
+⎪   └─ challenge.js
+⎪   └─ https.js
+⎪   └─ user.js
 ├─ 📂 components
 ⎪  ⎪   └─ 📂 _common                    ▶︎ 공통 컴포넌트 
 ⎪  ⎪   ⎪   └─ TopBar.js 
@@ -41,8 +68,10 @@
 ⎪  ⎪   └─  ChangePasswordPage.js
 ⎪  ⎪   └─  ExchargePage.js
 ⎪  ⎪   └─  FillChallengePage.js
+⎪  ⎪   └─  FriendMainPage.js
 ⎪  ⎪   └─  MakeChallengePage.js
 ⎪  ⎪   └─  SearchFriendPage.js
+⎪  ⎪   └─  NoChallengeListPage.js
 ⎪  ⎪   └─  SetPeriodPage.js
 ⎪  ⎪   └─  SettingPage.js
 ⎪  ⎪   └─  StartTestPage.js
