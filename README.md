@@ -8,7 +8,8 @@
 
  <details>
 <summary>챌린지 관리하기</summary>
-
+<img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/100662232/1a71679c-6209-4a31-b91f-7e430b6c01b4" width="200" /> 
+  <br />
 ✅ 챌린지 최대 3개까지 생성 가능 <br />
 ✅ 하나의 챌린지에 목표 최대 3개 <br />
 ✅ 일정기간 성공 시 드래곤볼 🔮 <br />
