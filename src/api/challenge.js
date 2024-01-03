@@ -15,9 +15,9 @@ export const PostChallenge = async (userId) => {
 };
 
 //Get: 챌린지 목록 조회
-export const GetChallengeList = async (userId) => {
+export const GetChallengeList = async () => {
   try {
-    const response = await http.post(`/main/challengelist/${userId}/`, {});
+    const response = await http.post("/main/challengelist", {});
     return response.data;
   } catch (error) {
     console.error("챌린지 목록 조회 실패", error);
