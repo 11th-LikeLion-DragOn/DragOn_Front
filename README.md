@@ -19,7 +19,8 @@
 
  <details>
 <summary>챌린지 성향 테스트</summary>
-
+<img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/100662232/8ba5843c-a104-47bd-a1fd-fc43ef168b52" width="200" /> 
+    <br />
 ✅ 용의 해를 맞은 드래곤볼 컨셉 <br />
 ✅ 도전 과제를 수행할 때 나의 성향 확인 🐲
 
