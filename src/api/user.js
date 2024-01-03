@@ -28,6 +28,19 @@ export const GetNicknameDuplicate = async (nickname) => {
 };
 
 //회원가입
+export const PostSignup = async (username, password, nickname) => {
+  try {
+    const response = await http.post("/accounts/signup/", {
+      username: username,
+      password: password,
+      nickname: nickname,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("회원가입 실패", error);
+    throw error;
+  }
+};
 
 //로그인
 

@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../App.css";
 import { styled } from "styled-components";
 
-import fail from "../../assets/icons/input-fail.png";
 import success from "../../assets/icons/input-success.png";
 
-const PasswordInput = () => {
-  const [password, setPassword] = useState("");
-  const [checkPassword, setCheckPassword] = useState("");
-
+const PasswordInput = ({
+  password,
+  setPassword,
+  checkPassword,
+  setCheckPassword,
+}) => {
   return (
     <Wrapper>
       <span>비밀번호</span>
@@ -25,11 +26,7 @@ const PasswordInput = () => {
           value={checkPassword}
           onChange={(e) => setCheckPassword(e.target.value)}
         />
-        {password === checkPassword && password !== "" ? (
-          <img src={success} />
-        ) : (
-          <img src={fail} />
-        )}
+        {password === checkPassword && password !== "" && <img src={success} />}
       </Input>
       {password === checkPassword && password !== "" && (
         <Feedback>비밀번호가 일치합니다</Feedback>

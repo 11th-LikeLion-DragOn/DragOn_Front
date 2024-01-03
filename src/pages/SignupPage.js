@@ -4,17 +4,18 @@ import { useNavigate } from "react-router-dom";
 
 import before from "../assets/icons/click-left.png";
 import PasswordInput from "../components/SignupPage/PasswordInput";
-import fail from "../assets/icons/input-fail.png";
 import success from "../assets/icons/input-success.png";
 
-import { GetIdDuplicate, GetNicknameDuplicate } from "../api/user";
+import { GetIdDuplicate, GetNicknameDuplicate, PostSignup } from "../api/user";
 
 const SignupPage = () => {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
   const [usernameChecked, setUsernameChecked] = useState(null);
+  const [checkPassword, setCheckPassword] = useState("");
   const [nicknameChecked, setNicknameChecked] = useState(null);
 
   const goBack = () => {
@@ -61,6 +62,16 @@ const SignupPage = () => {
     }
   };
 
+  //회원가입
+  const signupComplete = () => {
+    try {
+      PostSignup(username, password, nickname);
+      navigate("/");
+    } catch (error) {
+      console.log("회원가입 실패", error);
+    }
+  };
+
   return (
     <Wrapper>
       <img id="before" src={before} onClick={goBack} />
@@ -74,7 +85,7 @@ const SignupPage = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-            {usernameChecked ? <img src={success} /> : <img src={fail} />}
+            {usernameChecked && <img src={success} />}
             <CheckBtn onClick={() => checkUsername(username)}>
               중복 확인
             </CheckBtn>
@@ -83,7 +94,12 @@ const SignupPage = () => {
             <Feedback>이미 사용 중인 아이디입니다</Feedback>
           )}
         </Box>
-        <PasswordInput />
+        <PasswordInput
+          password={password}
+          setPassword={setPassword}
+          checkPassword={checkPassword}
+          setCheckPassword={setCheckPassword}
+        />
         <Box>
           <span>닉네임</span>
           <Input>
@@ -93,7 +109,7 @@ const SignupPage = () => {
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
             />
-            {nicknameChecked ? <img src={success} /> : <img src={fail} />}
+            {nicknameChecked && <img src={success} />}
             <CheckBtn onClick={() => checkNickname(nickname)}>
               중복 확인
             </CheckBtn>
@@ -103,7 +119,7 @@ const SignupPage = () => {
           )}
         </Box>
       </SignupBox>
-      <SignUp>회원가입하기</SignUp>
+      <SignUp onClick={signupComplete}>회원가입하기</SignUp>
     </Wrapper>
   );
 };
