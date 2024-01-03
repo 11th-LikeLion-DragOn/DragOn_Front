@@ -27,6 +27,19 @@ export const GetNicknameDuplicate = async (nickname) => {
   }
 };
 
+//닉네임 변경
+export const ChangeNick = async (nickname) => {
+  try {
+    const response = await http.patch("/accounts/changenickname", {
+      nickname: nickname,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("닉네임 변경 실패", error);
+    throw error;
+  }
+};
+
 //회원가입
 
 //로그인
