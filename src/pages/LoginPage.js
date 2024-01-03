@@ -2,7 +2,6 @@ import React from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-import InputBox from "../components/common/InputBox";
 import kakao from "../assets/icons/kakao-login.png";
 
 const LoginPage = () => {
@@ -15,8 +14,19 @@ const LoginPage = () => {
   return (
     <Wrapper>
       <LoginBox>
-        <InputBox id="id" tag="아이디" placeholder="아이디 입력" />
-        <InputBox id="pw" tag="비밀번호" placeholder="비밀번호 입력" />
+        <Box>
+          <span>아이디</span>
+          <input id="id" tag="아이디" type="text" placeholder="아이디 입력" />
+        </Box>
+        <Box>
+          <span>비밀번호</span>
+          <input
+            type="password"
+            id="pw"
+            tag="비밀번호"
+            placeholder="비밀번호 입력"
+          />
+        </Box>
       </LoginBox>
       <Login>로그인</Login>
       <Kakao>
@@ -53,6 +63,41 @@ const LoginBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 21px;
+`;
+
+const Box = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  span {
+    color: var(--gray2);
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  input {
+    width: 314px;
+    height: 47px;
+    padding-left: 22px;
+    flex-shrink: 0;
+    border-radius: 11px;
+    border: 0.997px solid var(--background_01, rgba(199, 198, 198, 0.2));
+    background: var(--white, #fff);
+    box-shadow: 0px 0px 6.97764px 0.99681px rgba(0, 0, 0, 0.03);
+    outline: none;
+
+    color: var(--gray2);
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
 `;
 
 const Login = styled.div`
