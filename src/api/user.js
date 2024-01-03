@@ -32,3 +32,12 @@ export const GetNicknameDuplicate = async (nickname) => {
 //로그인
 
 //프로필 조회
+export const GetProfile = async () => {
+  try {
+    const response = await axios.get("/mypage/profile", {});
+    return response.data;
+  } catch (error) {
+    console.error("프로필 조회 실패 ", error);
+    throw error;
+  }
+};
