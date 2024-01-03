@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+//api
+import { GetProfile } from "../api/user";
 //components
 import TopBar from "../components/common/TopBar";
 import LockModal from "../components/testchallenge/LockModal";
@@ -14,6 +16,24 @@ const SettingPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const nickname = location.state?.nickname;
+  const [profile, setProfile] = useState();
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const profileData = await GetProfile();
+        if (profileData) {
+          setProfile(profileData.data);
+        } else {
+          console.error("프로필 데이터가 없습니다.");
+        }
+      } catch (error) {
+        console.error("프로필 조회 실패 ", error);
+      }
+    };
+
+    fetchProfileData();
+  }, []);
 
   const goChangeNick = () => {
     navigate("/changenick");

@@ -1,11 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
+//api
+import { GetChallengeList } from "../../api/challenge";
 
 import { ReactComponent as RedOne } from "../../assets/icons/red.svg";
 import { ReactComponent as GreenOne } from "../../assets/icons/green.svg";
 import { ReactComponent as BlueOne } from "../../assets/icons/blue.svg";
 
 const HistoryChallenge = () => {
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    GetChallengeList()
+      .then((response) => {
+        setList(response.data);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error("챌린지 목록 조회 실패", error);
+      });
+  }, []);
+
   return (
     <>
       <Wrapper>

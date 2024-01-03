@@ -27,6 +27,19 @@ export const GetNicknameDuplicate = async (nickname) => {
   }
 };
 
+//닉네임 변경
+export const ChangeNick = async (nickname) => {
+  try {
+    const response = await http.patch("/accounts/changenickname", {
+      nickname: nickname,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("닉네임 변경 실패", error);
+    throw error;
+  }
+};
+
 //회원가입
 export const PostSignup = async (username, password, nickname) => {
   try {
@@ -45,3 +58,12 @@ export const PostSignup = async (username, password, nickname) => {
 //로그인
 
 //프로필 조회
+export const GetProfile = async () => {
+  try {
+    const response = await axios.get("/mypage/profile", {});
+    return response.data;
+  } catch (error) {
+    console.error("프로필 조회 실패 ", error);
+    throw error;
+  }
+};

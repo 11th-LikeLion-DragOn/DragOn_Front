@@ -1,17 +1,27 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { styled } from "styled-components";
+import { ChangeNick } from "../api/user";
 //components
 import TopBar from "../components/common/TopBar";
 // 사용자가 있을 때만 아이콘 표시
 import quit from "../assets/icons/quit.png";
 
 const ChangeNickPage = () => {
-  const [nickname, setNickname] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const [nickname, setNickname] = useState("");
 
   const handleNicknameChange = () => {
     // 닉네임 변경 로직
+    ChangeNick(nickname)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("닉네임 변경 실패", error);
+      });
 
     navigate("/setting", { state: { nickname } });
   };
@@ -106,7 +116,7 @@ const Input = styled.input`
   }
 `;
 const Btn = styled.button`
-  margin-top: 540px;
+  margin-top: 480px;
   border-radius: 6px;
   background: var(--purple_01, #8438ff);
   display: flex;

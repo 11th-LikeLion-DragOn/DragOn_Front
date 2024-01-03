@@ -1,12 +1,23 @@
 import React from "react";
 import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { DeleteChallenge } from "../../api/challenge";
 
 const QuitChallenge = ({ setOpenQuitModal }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const challenge = location.state.challenge;
+
   const deleteGoal = () => {
-    console.log("Delete");
-    //삭제 추가하고 NochallengeList로
+    DeleteChallenge(challenge.id)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("챌린지 삭제 실패", error);
+      });
+
     setOpenQuitModal(false);
     navigate("/nochallengelist");
   };
