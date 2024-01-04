@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { PostTest } from "../api/challenge";
 //components
 import TopBar from "../components/common/TopBar";
 //image
@@ -10,9 +11,15 @@ import pupleCheck from "../assets/icons/test-check-purple.png";
 const TestingPage = () => {
   const navigate = useNavigate();
 
-  const goResult = () => {
-    navigate("/testresult");
+  const goResult = async () => {
+    try {
+      await PostTest(selectedOptions);
+      navigate("/testresult");
+    } catch (error) {
+      console.log("테스트 결과 전송 실패", error);
+    }
   };
+
   // 각 질문에 대해 사용자 선택(yes/no)을 저장
   const [selectedOptions, setSelectedOptions] = useState({
     q1: null,
