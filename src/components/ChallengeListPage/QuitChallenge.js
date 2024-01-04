@@ -7,17 +7,20 @@ const QuitChallenge = ({ setOpenQuitModal }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const challenge = location.state.challenge;
+  const challenge = location.state ? location.state.challenge : null;
 
   const deleteGoal = () => {
-    DeleteChallenge(challenge.id)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log("챌린지 삭제 실패", error);
-      });
-
+    if (challenge) {
+      DeleteChallenge(challenge.id)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log("챌린지 삭제 실패", error);
+        });
+    } else {
+      console.log("챌린지 정보를 찾을 수 없습니다.");
+    }
     setOpenQuitModal(false);
     navigate("/nochallengelist");
   };

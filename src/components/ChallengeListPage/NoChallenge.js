@@ -8,6 +8,9 @@ const NoChallenge = () => {
   const goMakeCh = () => {
     navigate("/makechallenge");
   };
+  const goNext=()=>{
+    navigate("/makechallenge");
+  };
 
   return (
     <>
