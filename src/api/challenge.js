@@ -37,6 +37,22 @@ export const DeleteChallenge = async (challengeId) => {
 };
 
 //Post: 챌린지 성향 테스트
-export const PostTest = async () => {};
+export const PostTest = async (selectedOptions) => {
+  try {
+    const requestBody = {
+      question1: selectedOptions.q1 === "yes",
+      question2: selectedOptions.q2 === "yes",
+      question3: selectedOptions.q3 === "yes",
+      question4: selectedOptions.q4 === "yes",
+      question5: selectedOptions.q5 === "yes",
+    };
+
+    const response = await http.post("/mypage/test", requestBody);
+    return response.data;
+  } catch (error) {
+    console.log("테스트 오류", error);
+    throw error;
+  }
+};
 
 //Post: 목표 생성하기
