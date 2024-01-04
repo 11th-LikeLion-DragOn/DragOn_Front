@@ -7,6 +7,7 @@ import { GetProfile } from "../api/user";
 //components
 import TopBar from "../components/common/TopBar";
 import LockModal from "../components/testchallenge/LockModal";
+import QuitModal from "../components/SettingPage/QuitModal";
 //image
 import profile1 from "../assets/icons/profile1.png";
 import marblePurple from "../assets/icons/marble-purple.png";
@@ -17,6 +18,12 @@ const SettingPage = () => {
   const location = useLocation();
   const nickname = location.state?.nickname;
   const [profile, setProfile] = useState();
+  const [showQuitModal, setShowQuitModal] = useState(false);
+
+  // 탈퇴 클릭 시 모달
+  const showQuitModalHandler = () => {
+    setShowQuitModal(true);
+  };
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -87,12 +94,13 @@ const SettingPage = () => {
             <img src={clickRight} />
           </div>
           <hr></hr>
-          <div className="account-item">
+          <div className="account-item" onClick={showQuitModalHandler}>
             <div>계정 탈퇴</div>
             <img src={clickRight} />
           </div>
           <hr></hr>
         </Account>
+        {showQuitModal && <QuitModal setShowQuitModal={setShowQuitModal} />}
       </Wrapper>
     </>
   );

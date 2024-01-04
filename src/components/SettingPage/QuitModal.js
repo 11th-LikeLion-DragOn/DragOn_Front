@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-const QuitModal = () => {
+const QuitModal = ({ setShowQuitModal }) => {
+  const navigate = useNavigate();
+
+  const deleteAccount = () => {
+    setShowQuitModal(false);
+    navigate("/");
+  };
+
+  const closeModal = () => {
+    setShowQuitModal(false);
+  };
   return (
     <>
       <Wrapper>
         <div className="question">정말 서비스를 탈퇴하시겠습니까?</div>
-        <QuitBtn>계정 탈퇴하기</QuitBtn>
-        <CancelBtn>취소하기</CancelBtn>
+        <QuitBtn onClick={deleteAccount}>계정 탈퇴하기</QuitBtn>
+        <CancelBtn onClick={closeModal}>취소하기</CancelBtn>
       </Wrapper>
     </>
   );
@@ -15,6 +26,12 @@ const QuitModal = () => {
 
 export default QuitModal;
 const Wrapper = styled.div`
+  z-index: 999;
+  position: absolute;
+  top: 48%;
+  left: 40.5%;
+  margin: auto;
+
   width: 351px;
   height: 193px;
   border-radius: 11px;
