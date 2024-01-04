@@ -63,7 +63,7 @@ const SignupPage = () => {
   };
 
   //회원가입
-  const signupComplete = () => {
+  const handleSignup = () => {
     try {
       PostSignup(username, password, nickname);
       navigate("/");
@@ -119,7 +119,7 @@ const SignupPage = () => {
           )}
         </Box>
       </SignupBox>
-      <SignUp onClick={signupComplete}>회원가입하기</SignUp>
+      <SignUp onClick={handleSignup}>회원가입하기</SignUp>
     </Wrapper>
   );
 };
