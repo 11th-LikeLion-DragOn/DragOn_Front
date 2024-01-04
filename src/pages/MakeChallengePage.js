@@ -70,9 +70,9 @@ const Wrapper = styled.div`
   height: 852px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* 수직 가운데 정렬 */
-  margin: auto; /* 수평 가운데 정렬 */
-  height: 100vh; /* 화면의 높이를 100%로 채워 전체 화면을 가리키도록 함 */
+  align-items: center; 
+  margin: auto; 
+  height: 100vh; 
 `;
 const Input = styled.input`
   border: none;

@@ -38,7 +38,6 @@ const SettingPage = () => {
         console.error("프로필 조회 실패 ", error);
       }
     };
-
     fetchProfileData();
   }, []);
 
