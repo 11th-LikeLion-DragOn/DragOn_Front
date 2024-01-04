@@ -30,8 +30,8 @@ const ChangePasswordPage = () => {
 
   return (
     <>
-      <TopBar titleText="설정" />
       <Wrapper>
+        <TopBar titleText="설정" />
         <Title>비밀번호</Title>
         <PwWrapper>
           <Input
@@ -79,6 +79,15 @@ export default ChangePasswordPage;
 const Wrapper = styled.div`
   width: 393px;
   height: 852px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  height: 100vh;
 `;
 const PwWrapper = styled.div`
   position: relative;
