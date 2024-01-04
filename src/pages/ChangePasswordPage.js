@@ -1,14 +1,33 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
+import { ChangePW } from "../api/user";
 
 import TopBar from "../components/common/TopBar";
 import quit from "../assets/icons/quit.png";
 
 const ChangePasswordPage = () => {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [myPw, setMyPw] = useState("");
   const [rePw, setRePw] = useState("");
   const [showError, setShowError] = useState(false);
+
+  const goSetting = () => {
+    if (password === rePw) {
+      setShowError(false);
+    } else {
+      setShowError(true);
+    }
+    ChangePW(password, myPw, rePw)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("비밀번호 변경 실패", error);
+      });
+    navigate("/setting");
+  };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -20,13 +39,7 @@ const ChangePasswordPage = () => {
     setShowError(false);
   };
 
-  const handleButtonClick = () => {
-    if (password === rePw) {
-      setShowError(false);
-    } else {
-      setShowError(true);
-    }
-  };
+  const handleButtonClick = () => {};
 
   return (
     <>
@@ -69,7 +82,7 @@ const ChangePasswordPage = () => {
           )}
         </RepwContainer>
         {showError && <Text>비밀번호를 다시 확인해주세요</Text>}
-        <Btn onClick={handleButtonClick}>비밀번호 변경하기</Btn>
+        <Btn onClick={goSetting}>비밀번호 변경하기</Btn>
       </Wrapper>
     </>
   );
@@ -102,7 +115,7 @@ const PwWrapper = styled.div`
 `;
 const Title = styled.div`
   color: var(--gray_02, #b5b5b5);
-  margin-left: 34px;
+  margin-right: 254px;
   margin-top: 23px;
   font-size: 12px;
   font-style: normal;

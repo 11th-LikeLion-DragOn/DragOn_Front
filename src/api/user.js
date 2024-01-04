@@ -54,3 +54,18 @@ export const GetProfile = async () => {
     throw error;
   }
 };
+
+//비밀번호 변경
+export const ChangePW = async (curPw, newPw, confirmNewPw) => {
+  try {
+    const response = await http.put("/accounts/password_reset", {
+      curPw: curPw,
+      newPw: newPw,
+      confirmNewPw: confirmNewPw,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("비밀번호 변경 실패", error);
+    throw error;
+  }
+};
