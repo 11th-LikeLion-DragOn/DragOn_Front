@@ -28,8 +28,8 @@ export const GetChallengeList = async () => {
 //Delete: 챌린지 삭제
 export const DeleteChallenge = async (challengeId) => {
   try {
-    const response = await http.delete(`notices/${challengeId}/`);
-    return response;
+    const response = await http.delete(`/main/challenge/${challengeId}/`);
+    return response.data;
   } catch (error) {
     console.error("챌린지 삭제 실패", error);
     throw error;
@@ -38,3 +38,5 @@ export const DeleteChallenge = async (challengeId) => {
 
 //Post: 챌린지 성향 테스트
 export const PostTest = async () => {};
+
+//Post: 목표 생성하기

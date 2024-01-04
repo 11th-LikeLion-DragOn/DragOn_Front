@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-//api
-import { GetChallengeList } from "../api/challenge";
+
 //components
 import TopBar from "../components/common/TopBar";
 import HistoryChallenge from "../components/ChallengeListPage/HistoryChallenge";
