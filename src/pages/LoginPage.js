@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { tokenState } from "../recoil/user";
 
 import kakao from "../assets/icons/kakao-login.png";
+import { PostLogin } from "../api/user";
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [token, setToken] = useRecoilState(tokenState);
+
   const goSignup = () => {
     navigate("/signup");
+  };
+
+  const handleLogin = () => {
+    PostLogin(username, password)
+      .then((data) => {
+        setToken(data.access_token);
+        window.localStorage.setItem("token", JSON.stringify(token));
+        console.log(data);
+        console.log(token);
+        navigate("/main");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -16,19 +37,26 @@ const LoginPage = () => {
       <LoginBox>
         <Box>
           <span>아이디</span>
-          <input id="id" tag="아이디" type="text" placeholder="아이디 입력" />
+          <input
+            id="id"
+            type="text"
+            placeholder="아이디 입력"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </Box>
         <Box>
           <span>비밀번호</span>
           <input
-            type="password"
             id="pw"
-            tag="비밀번호"
+            type="password"
             placeholder="비밀번호 입력"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </Box>
       </LoginBox>
-      <Login>로그인</Login>
+      <Login onClick={handleLogin}>로그인</Login>
       <Kakao>
         <img src={kakao} />
         카카오 로그인

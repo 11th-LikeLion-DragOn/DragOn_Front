@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 //api
-import { GetProfile } from "../api/user";
+import { GetProfile, Logout } from "../api/user";
 //components
 import TopBar from "../components/common/TopBar";
 import LockModal from "../components/testchallenge/LockModal";
@@ -44,11 +44,18 @@ const SettingPage = () => {
   const goChangeNick = () => {
     navigate("/changenick");
   };
+
   const goTest = () => {
     navigate("/starttest");
   };
+
   const goChangePw = () => {
     navigate("/changepassword");
+  };
+
+  const logout = () => {
+    Logout();
+    navigate("/");
   };
 
   return (
@@ -74,30 +81,31 @@ const SettingPage = () => {
             <div>닉네임 변경</div>
             <img src={clickRight} />
           </div>
-          <hr></hr>
-          <div src={clickRight} className="profile-item">
-            <div onClick={goTest}>챌린지 성향 테스트</div>
+          <div id="border"></div>
+          <div id="border"></div>
+          <div src={clickRight} onClick={goTest} className="profile-item">
+            <div>챌린지 성향 테스트</div>
             <img src={clickRight} />
           </div>
-          <hr></hr>
+          <div id="border"></div>
         </Profile>
         <Account>
           <div className="text">계정</div>
-          <div className="account-item">
-            <div onClick={goChangePw}>비밀번호 변경</div>
+          <div className="account-item" onClick={goChangePw}>
+            <div>비밀번호 변경</div>
             <img src={clickRight} />
           </div>
-          <hr></hr>
-          <div className="account-item">
+          <div id="border"></div>
+          <div className="account-item" onClick={logout}>
             <div>로그아웃</div>
             <img src={clickRight} />
           </div>
-          <hr></hr>
+          <div id="border"></div>
           <div className="account-item" onClick={showQuitModalHandler}>
             <div>계정 탈퇴</div>
             <img src={clickRight} />
           </div>
-          <hr></hr>
+          <div id="border"></div>
         </Account>
         {showQuitModal && <QuitModal setShowQuitModal={setShowQuitModal} />}
       </Wrapper>
@@ -162,14 +170,14 @@ const Excharge = styled.div`
   width: 340px;
   height: 47px;
   border-radius: 6px;
-  background: var(--purple_02, #f5f1ff);
+  background: var(--purple2);
   img {
     margin-left: 164px;
   }
   .chargebtn {
     margin-left: 3px;
     margin-top: 4px;
-    color: var(--purple_01, #8438ff);
+    color: var(--purple1);
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -181,16 +189,16 @@ const Profile = styled.div`
   margin-top: 25px;
   .text {
     margin-bottom: 12px;
-    color: var(--gray_02, #b5b5b5);
+    color: var(--gray2);
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
   }
-  hr {
+  #border {
     width: 339px;
     height: 1px;
-    background: rgba(199, 198, 198, 0.2);
+    background-color: rgba(199, 198, 198, 0.2);
   }
   img {
     width: 24px;
@@ -203,6 +211,7 @@ const Profile = styled.div`
     width: 340px;
     height: 40px;
     align-items: center;
+    cursor: pointer;
   }
 `;
 const Account = styled.div`
@@ -216,10 +225,10 @@ const Account = styled.div`
     font-weight: 600;
     line-height: normal;
   }
-  hr {
+  #border {
     width: 339px;
     height: 1px;
-    background: rgba(199, 198, 198, 0.2);
+    background-color: rgba(199, 198, 198, 0.2);
   }
   img {
     width: 24px;
@@ -232,5 +241,6 @@ const Account = styled.div`
     width: 340px;
     height: 40px;
     align-items: center;
+    cursor: pointer;
   }
 `;

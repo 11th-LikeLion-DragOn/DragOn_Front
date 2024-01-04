@@ -56,6 +56,24 @@ export const PostSignup = async (username, password, nickname) => {
 };
 
 //로그인
+export const PostLogin = async (username, password) => {
+  try {
+    const response = await http.post("/accounts/login/", {
+      username: username,
+      password: password,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("로그인 실패", error);
+    throw error;
+  }
+};
+
+//로그아웃
+export const Logout = async () => {
+  window.localStorage.removeItem("token");
+  console.log(window.localStorage.getItem("token"));
+};
 
 //프로필 조회
 export const GetProfile = async () => {
