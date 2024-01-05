@@ -16,7 +16,6 @@ import clickRight from "../assets/icons/click-right.png";
 const SettingPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const nickname = location.state.nickname;
   const [showQuitModal, setShowQuitModal] = useState(false);
   const [user, setUser] = useState({
     username: "농담곰",
