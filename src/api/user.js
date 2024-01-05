@@ -76,9 +76,14 @@ export const Logout = async () => {
 };
 
 //프로필 조회
-export const GetProfile = async () => {
+export const GetProfile = async (token) => {
   try {
-    const response = await axios.get("/mypage/profile", {});
+    const response = await axios.get("/mypage/profile", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response);
     return response.data;
   } catch (error) {
     console.error("프로필 조회 실패 ", error);
@@ -89,7 +94,7 @@ export const GetProfile = async () => {
 //비밀번호 변경
 export const ChangePW = async (curPw, newPw, confirmNewPw) => {
   try {
-    const response = await http.put("/accounts/password_reset", {
+    const response = await http.put("/accounts/password_reset/", {
       curPw: curPw,
       newPw: newPw,
       confirmNewPw: confirmNewPw,

@@ -28,7 +28,10 @@ const SettingPage = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const profileData = await GetProfile();
+        const token = localStorage.getItem("token");
+        const profileData = await GetProfile(token);
+        console.log("Profile Data:", profileData);
+
         if (profileData) {
           setProfile(profileData.data);
         } else {

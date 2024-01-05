@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { styled } from "styled-components";
-import { ChangeNick } from "../api/user";
+import { ChangeNick, GetNicknameDuplicate } from "../api/user";
 //components
 import TopBar from "../components/common/TopBar";
 // 사용자가 있을 때만 아이콘 표시
@@ -12,6 +12,7 @@ const ChangeNickPage = () => {
   const location = useLocation();
 
   const [nickname, setNickname] = useState("");
+  const [nicknameChecked, setNicknameChecked] = useState(null);
 
   const handleNicknameChange = () => {
     // 닉네임 변경 로직
@@ -24,6 +25,19 @@ const ChangeNickPage = () => {
       });
 
     navigate("/setting", { state: { nickname } });
+  };
+  const checkNickname = async (nickname) => {
+    try {
+      const response = await GetNicknameDuplicate(nickname);
+      console.log(response.duplicate);
+      if (response.duplicate) {
+        setNicknameChecked(false);
+      } else {
+        setNicknameChecked(true);
+      }
+    } catch (error) {
+      console.log("닉네임 중복 확인 실패", error);
+    }
   };
 
   return (
@@ -43,7 +57,9 @@ const ChangeNickPage = () => {
           </div>
         </NickWrapper>
 
-        <div className="alert">사용자가 이미 존재합니다</div>
+        {nicknameChecked && (
+          <div className="alert">사용자가 이미 존재합니다</div>
+        )}
         <Btn onClick={handleNicknameChange}>닉네임 변경하기</Btn>
       </Wrapper>
     </>

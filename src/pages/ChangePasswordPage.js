@@ -13,19 +13,17 @@ const ChangePasswordPage = () => {
   const [rePw, setRePw] = useState("");
   const [showError, setShowError] = useState(false);
 
-  const goSetting = () => {
+  const goSetting = async () => {
     if (password === rePw) {
       setShowError(false);
+      try {
+        await ChangePW(myPw, password, rePw);
+      } catch (error) {
+        console.error("비밀번호 변경 실패", error);
+      }
     } else {
       setShowError(true);
     }
-    ChangePW(password, myPw, rePw)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log("비밀번호 변경 실패", error);
-      });
     navigate("/setting");
   };
 
