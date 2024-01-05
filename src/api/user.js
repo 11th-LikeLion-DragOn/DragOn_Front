@@ -1,5 +1,6 @@
 import axios from "axios";
 import { http } from "../api/http";
+import { persistor } from "../index";
 
 //아이디 중복 확인
 export const GetIdDuplicate = async (username) => {
@@ -71,6 +72,7 @@ export const PostLogin = async (username, password) => {
 
 //로그아웃
 export const Logout = async () => {
+  persistor.purge();
   window.localStorage.removeItem("token");
   console.log(window.localStorage.getItem("token"));
 };

@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { tokenState } from "../recoil/user";
 
 import kakao from "../assets/icons/kakao-login.png";
 import { PostLogin } from "../api/user";
+import { useAppDispatch } from "../redux/store";
+import { setUser } from "../redux/userSlice";
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
+  // 유저 리덕스
+  const dispatch = useAppDispatch();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useRecoilState(tokenState);
 
   const goSignup = () => {
     navigate("/signup");
@@ -21,10 +23,16 @@ const LoginPage = () => {
   const handleLogin = () => {
     PostLogin(username, password)
       .then((data) => {
-        setToken(data.access_token);
+        const token = data.access_token;
         window.localStorage.setItem("token", JSON.stringify(token));
         console.log(data);
-        console.log(token);
+        dispatch(
+          setUser({
+            id: data.id,
+            nickname: data.nickname,
+            username: data.username,
+          })
+        );
         navigate("/main");
       })
       .catch((error) => {
