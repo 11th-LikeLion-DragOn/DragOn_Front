@@ -17,8 +17,11 @@ const SettingPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const nickname = location.state?.nickname;
-  const [profile, setProfile] = useState();
   const [showQuitModal, setShowQuitModal] = useState(false);
+  const [user, setUser] = useState({
+    username: "농담곰",
+    nickname: "damgom333",
+  });
 
   // 탈퇴 클릭 시 모달
   const showQuitModalHandler = () => {
@@ -28,9 +31,17 @@ const SettingPage = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const profileData = await GetProfile();
+        const storedToken = JSON.parse(localStorage.getItem("token"));
+        console.log("토큰:", storedToken); //토근 받아와졌나 확인
+
+        const profileData = await GetProfile(storedToken);
+        console.log("Profile Data:", profileData);
+
         if (profileData) {
-          setProfile(profileData.data);
+          setUser({
+            username: profileData.username,
+            nickname: profileData.nickname,
+          });
         } else {
           console.error("프로필 데이터가 없습니다.");
         }
@@ -65,8 +76,8 @@ const SettingPage = () => {
         <Info>
           <img src={profile1} />
           <div className="info-text">
-            <div className="name">{nickname}</div>
-            <div className="nickname">damgom333</div>
+            <div className="name">{user.username}</div>
+            <div className="nickname">{user.nickname}</div>
           </div>
         </Info>
 
@@ -101,7 +112,7 @@ const SettingPage = () => {
             <img src={clickRight} />
           </div>
           <div id="border"></div>
-          <div className="account-item">
+          <div className="account-item" onClick={showQuitModalHandler}>
             <div>계정 탈퇴</div>
             <img src={clickRight} />
           </div>
