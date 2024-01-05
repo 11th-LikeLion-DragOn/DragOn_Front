@@ -9,6 +9,7 @@
  <details>
 <summary>챌린지 관리하기</summary>
 <img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/100662232/1a71679c-6209-4a31-b91f-7e430b6c01b4" width="200" /> 
+  
   <br />
 ✅ 챌린지 최대 3개까지 생성 가능 <br />
 ✅ 하나의 챌린지에 목표 최대 3개 <br />
@@ -19,8 +20,10 @@
 
  <details>
 <summary>챌린지 성향 테스트</summary>
-<img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/100662232/8ba5843c-a104-47bd-a1fd-fc43ef168b52" width="200" /> 
-    <br />
+<img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/100662232/8ba5843c-a104-47bd-a1fd-fc43ef168b52" width="200" />  
+  <img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/100662232/a3245da5-dca2-46e7-bfa4-f93f228a6d85" width="220"  />  
+  
+<br />
 ✅ 용의 해를 맞은 드래곤볼 컨셉 <br />
 ✅ 도전 과제를 수행할 때 나의 성향 확인 🐲
 
