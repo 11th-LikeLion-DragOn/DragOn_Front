@@ -85,7 +85,7 @@ export const GetProfile = async (token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("프로필 조회 실패 ", error);
@@ -93,10 +93,26 @@ export const GetProfile = async (token) => {
   }
 };
 
+//계정 탈퇴
+export const DeleteAccount = async (token) => {
+  try {
+    console.log("토큰:", token);
+    const response = await http.delete("/accounts/delete", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("계정 탈퇴 실패", error);
+    throw error;
+  }
+};
+
 //비밀번호 변경
 export const ChangePW = async (curPw, newPw, confirmNewPw) => {
   try {
-    const response = await http.put("/accounts/password_reset/", {
+    const response = await http.put("/accounts/password_reset", {
       curPw: curPw,
       newPw: newPw,
       confirmNewPw: confirmNewPw,
