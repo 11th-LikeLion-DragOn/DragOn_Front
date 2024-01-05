@@ -31,8 +31,10 @@ const SettingPage = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const profileData = await GetProfile(token);
+        const storedToken = JSON.parse(localStorage.getItem("token"));
+        console.log("토큰:", storedToken); //토근 받아와졌나 확인
+
+        const profileData = await GetProfile(storedToken);
         console.log("Profile Data:", profileData);
 
         if (profileData) {

@@ -80,7 +80,7 @@ export const GetProfile = async (token) => {
   try {
     const response = await axios.get("/mypage/profile", {
       headers: {
-        Authorization: `${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log(response);
