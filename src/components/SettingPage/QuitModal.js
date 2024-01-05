@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { DeleteAccount } from "../../api/user";
 
-const QuitModal = ({ setShowQuitModal }) => {
+const QuitModal = ({ setShowQuitModal, token }) => {
   const navigate = useNavigate();
 
-  const deleteAccount = () => {
-    setShowQuitModal(false);
+  const deleteAccount = async () => {
+    try {
+      await DeleteAccount(token);
+      setShowQuitModal(false);
+      navigate("/");
+    } catch (error) {
+      console.error("계정 탈퇴 실패", error);
+    }
     navigate("/");
   };
 
