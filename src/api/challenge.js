@@ -47,7 +47,7 @@ export const PostTest = async (selectedOptions) => {
       question5: selectedOptions.q5 === "yes",
     };
 
-    const response = await http.post("/mypage/test", requestBody);
+    const response = await http.post("/mypage/test/", requestBody);
     return response.data;
   } catch (error) {
     console.log("테스트 오류", error);
