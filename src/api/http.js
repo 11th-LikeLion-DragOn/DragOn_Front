@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const http = axios.create({
-  baseURL: "http://drag-on.shop/",
+  baseURL: "http://drag-on.shop",
 });
 
 http.defaults.withCredentials = true;
