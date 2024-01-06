@@ -23,7 +23,7 @@ const LoginPage = () => {
   const handleLogin = () => {
     PostLogin(username, password)
       .then((data) => {
-        const token = data.access_token;
+        const token = data.data.access_token;
         window.localStorage.setItem("token", JSON.stringify(token));
         console.log(data);
         dispatch(
@@ -33,6 +33,7 @@ const LoginPage = () => {
             username: data.username,
           })
         );
+        console.log(token);
         navigate("/main");
       })
       .catch((error) => {
