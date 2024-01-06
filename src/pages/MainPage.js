@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import * as dateFns from "date-fns";
 
 import MainTop from "../components/MainPage/MainTop";
@@ -16,6 +17,7 @@ const MainPage = () => {
   const [balls, setBalls] = useState(1);
   const [modal, setModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const nickname = useSelector((state) => state.nickname);
 
   const openModal = () => {
     setModal(true);
@@ -60,7 +62,7 @@ const MainPage = () => {
       <MyChallenge>
         <Title>
           <span>
-            농담곰님,
+            {nickname}님,
             <br />
             오늘의 챌린지에 참여해
             <br />

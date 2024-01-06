@@ -12,7 +12,7 @@ const FriendProfile = ({ friend }) => {
   return (
     <Wrapper onClick={goFriendHome}>
       <img src={friend.profile} />
-      <span>{friend.username}</span>
+      <span>{friend.nickname}</span>
     </Wrapper>
   );
 };

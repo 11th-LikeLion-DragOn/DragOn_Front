@@ -23,11 +23,11 @@ const MainTop = () => {
   const isFriendHome = location.pathname === "/friendhome";
 
   const list = [
-    { id: 1, username: "가나다라마", profile: profile1 },
-    { id: 2, username: "바니바니", profile: profile2 },
-    { id: 3, username: "홍삼홍삼", profile: profile3 },
-    { id: 4, username: "당근당근", profile: profile4 },
-    { id: 4, username: "감자감자", profile: profile4 },
+    { id: 1, nickname: "가나다라마", profile: profile1 },
+    { id: 2, nickname: "바니바니", profile: profile2 },
+    { id: 3, nickname: "홍삼홍삼", profile: profile3 },
+    { id: 4, nickname: "당근당근", profile: profile4 },
+    { id: 4, nickname: "감자감자", profile: profile4 },
   ];
 
   const goSetting = () => {

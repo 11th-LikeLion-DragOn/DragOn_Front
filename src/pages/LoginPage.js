@@ -23,14 +23,14 @@ const LoginPage = () => {
   const handleLogin = () => {
     PostLogin(username, password)
       .then((data) => {
-        const token = data.access_token;
+        const token = data.data.access_token;
         window.localStorage.setItem("token", JSON.stringify(token));
         console.log(data);
         dispatch(
           setUser({
-            id: data.id,
-            nickname: data.nickname,
-            username: data.username,
+            id: data.data.id,
+            nickname: data.data.nickname,
+            username: data.data.username,
           })
         );
         navigate("/main");
