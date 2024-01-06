@@ -28,12 +28,11 @@ const LoginPage = () => {
         console.log(data);
         dispatch(
           setUser({
-            id: data.id,
-            nickname: data.nickname,
-            username: data.username,
+            id: data.data.id,
+            nickname: data.data.nickname,
+            username: data.data.username,
           })
         );
-        console.log(token);
         navigate("/main");
       })
       .catch((error) => {
