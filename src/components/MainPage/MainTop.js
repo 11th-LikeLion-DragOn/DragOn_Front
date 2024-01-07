@@ -10,6 +10,7 @@ import FriendProfile from "./FriendProfile";
 import addFriend from "../../assets/icons/friend-list.png";
 import home from "../../assets/icons/home.png";
 
+import profile0 from "../../assets/icons/profile0.png";
 import profile1 from "../../assets/icons/profile1.png";
 import profile2 from "../../assets/icons/profile2.png";
 import profile3 from "../../assets/icons/profile3.png";
