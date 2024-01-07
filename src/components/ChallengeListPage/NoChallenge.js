@@ -6,9 +6,9 @@ const NoChallenge = () => {
   const navigate = useNavigate();
 
   const goMakeCh = () => {
-    navigate("/makechallenge");
+    navigate("/writechallenge");
   };
-  const goNext=()=>{
+  const goNext = () => {
     navigate("/makechallenge");
   };
 

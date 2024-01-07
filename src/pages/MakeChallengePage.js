@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import TopBar from "../components/common/TopBar";
 import { ReactComponent as RedOne } from "../assets/icons/red.svg";
@@ -8,6 +8,7 @@ import { ReactComponent as GreenOne } from "../assets/icons/green.svg";
 import { ReactComponent as BlueOne } from "../assets/icons/blue.svg";
 
 const MakeChallengePage = () => {
+  const { challengeName } = useParams();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [goal1, setGoal1] = useState("");
@@ -22,12 +23,8 @@ const MakeChallengePage = () => {
     <>
       <Wrapper>
         <TopBar titleText="챌린지 생성하기" />
-        <Input
-          type="text"
-          value={name}
-          placeholder="챌린지명을 작성해주세요"
-          onChange={(e) => setName(e.target.value)}
-        ></Input>
+        <Q3>03 세부 목표는 무엇인가요?</Q3>
+        <ChallengeName>{challengeName}</ChallengeName>
         <First>
           {" "}
           <RedOne />
@@ -70,9 +67,27 @@ const Wrapper = styled.div`
   height: 852px;
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  margin: auto; 
-  height: 100vh; 
+  align-items: center;
+  margin: auto;
+  height: 100vh;
+`;
+const Q3 = styled.div`
+  color: var(--purple_01, #8438ff);
+  margin-top: 30px;
+  margin-right: 150px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`;
+const ChallengeName = styled.div`
+  color: var(--gray_02, #b5b5b5);
+  margin-top: 21px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-right: 120px;
 `;
 const Input = styled.input`
   border: none;
