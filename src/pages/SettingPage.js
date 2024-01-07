@@ -184,7 +184,6 @@ const Excharge = styled.div`
   }
   .chargebtn {
     margin-left: 3px;
-    margin-top: 4px;
     color: var(--purple1);
     font-size: 12px;
     font-style: normal;
