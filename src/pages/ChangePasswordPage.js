@@ -177,4 +177,6 @@ const Btn = styled.button`
   line-height: normal;
   margin-left: 21px;
   margin-top: 213px;
+  border: none;
+  cursor: pointer;
 `;
