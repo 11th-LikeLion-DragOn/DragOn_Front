@@ -8,6 +8,7 @@ const QuitModal = ({ setShowQuitModal, token }) => {
 
   const deleteAccount = async () => {
     try {
+      console.log("토큰:", token);
       await DeleteAccount(token);
       setShowQuitModal(false);
       navigate("/");

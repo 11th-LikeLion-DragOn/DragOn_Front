@@ -12,8 +12,8 @@
 
 ### ⭐️ 챌린지 관리하기
 <img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/100662232/1a71679c-6209-4a31-b91f-7e430b6c01b4" width="200" /> 
-  <img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/100662232/393a8c3f-7bd2-4d6e-ba4e-888ac4bb5363" width="200" /> 
-  <img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/100662232/989dce06-ee44-4b5b-bed1-d0637f05433a" width="200" /> 
+  <img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/100662232/393a8c3f-7bd2-4d6e-ba4e-888ac4bb5363" width="250" /> 
+  <img src="https://github.com/11th-LikeLion-DragOn/DragOn_Front/assets/100662232/989dce06-ee44-4b5b-bed1-d0637f05433a" width="250" /> 
   <br />   <br />
 <summary>챌린지 최대 3개까지 생성 가능 <br /> </summary>
 <summary> 하나의 챌린지에 목표 최대 3개 <br /> </summary>

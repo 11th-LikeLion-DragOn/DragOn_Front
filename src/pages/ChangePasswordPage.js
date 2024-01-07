@@ -18,13 +18,13 @@ const ChangePasswordPage = () => {
       setShowError(false);
       try {
         await ChangePW(myPw, password, rePw);
+        navigate("/setting");
       } catch (error) {
         console.error("비밀번호 변경 실패", error);
       }
     } else {
       setShowError(true);
     }
-    navigate("/setting");
   };
 
   const handlePasswordChange = (e) => {

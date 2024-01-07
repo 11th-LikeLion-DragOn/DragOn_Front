@@ -14,6 +14,7 @@ import clickRight from "../assets/icons/click-right.png";
 
 const SettingPage = () => {
   const navigate = useNavigate();
+  const storedToken = localStorage.getItem("token");
   const [showQuitModal, setShowQuitModal] = useState(false);
   const [user, setUser] = useState({
     username: "농담곰",
@@ -28,7 +29,7 @@ const SettingPage = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const storedToken = JSON.parse(localStorage.getItem("token"));
+        const storedToken = localStorage.getItem("token");
         console.log("토큰:", storedToken); //토근 받아와졌나 확인
 
         const profileData = await GetProfile(storedToken);
@@ -115,7 +116,9 @@ const SettingPage = () => {
           </div>
           <div id="border"></div>
         </Account>
-        {showQuitModal && <QuitModal setShowQuitModal={setShowQuitModal} />}
+        {showQuitModal && (
+          <QuitModal setShowQuitModal={setShowQuitModal} token={storedToken} />
+        )}
       </Wrapper>
     </>
   );

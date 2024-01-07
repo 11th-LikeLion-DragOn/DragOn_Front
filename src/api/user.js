@@ -31,7 +31,7 @@ export const GetNicknameDuplicate = async (nickname) => {
 //닉네임 변경
 export const ChangeNick = async (nickname) => {
   try {
-    const response = await http.patch("/accounts/changenickname", {
+    const response = await http.patch("/accounts/changenickname/", {
       nickname: nickname,
     });
     return response.data;
@@ -80,6 +80,7 @@ export const Logout = async () => {
 //프로필 조회
 export const GetProfile = async (token) => {
   try {
+    console.log("토큰:", token);
     const response = await axios.get("/mypage/profile", {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -110,12 +111,16 @@ export const DeleteAccount = async (token) => {
 };
 
 //비밀번호 변경
-export const ChangePW = async (curPw, newPw, confirmNewPw) => {
+export const ChangePW = async (
+  current_password,
+  new_password,
+  confirm_new_password
+) => {
   try {
     const response = await http.put("/accounts/password_reset", {
-      curPw: curPw,
-      newPw: newPw,
-      confirmNewPw: confirmNewPw,
+      current_password: current_password,
+      new_password: new_password,
+      confirm_new_password: confirm_new_password,
     });
     return response.data;
   } catch (error) {
