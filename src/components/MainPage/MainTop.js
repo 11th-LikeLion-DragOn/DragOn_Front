@@ -5,7 +5,6 @@ import { GetFriendList } from "../../api/friend";
 
 import clickLeft from "../../assets/icons/click-left.png";
 import setting from "../../assets/icons/setting.png";
-import alarmEmpty from "../../assets/icons/alarm-empty.png";
 import FriendProfile from "./FriendProfile";
 import addFriend from "../../assets/icons/friend-list.png";
 import home from "../../assets/icons/home.png";
@@ -43,10 +42,6 @@ const MainTop = () => {
     navigate("/searchfriend");
   };
 
-  const goAlarm = () => {
-    navigate("/alarm");
-  };
-
   const goHome = () => {
     navigate("/main");
   };
@@ -63,7 +58,6 @@ const MainTop = () => {
           {!isFriendHome && (
             <>
               <img id="setting" src={setting} onClick={goSetting} />
-              <img id="alarm" src={alarmEmpty} onClick={goAlarm} />
             </>
           )}
           {isFriendHome && <img id="home" src={home} onClick={goHome} />}

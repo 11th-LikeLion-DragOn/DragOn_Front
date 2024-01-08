@@ -54,7 +54,6 @@ export const GetTestResult = async () => {
   }
 };
 
-
 //챌린지 댓글 모아보기
 export const getComments = async (challengeId) => {
   try {
@@ -121,7 +120,7 @@ export const DeleteComment = async (challengeId, commentId) => {
     console.error("댓글 삭제 실패", error);
   }
 };
-    
+
 // Patch: 목표 삭제하기
 export const DeleteGoal = async (goalId) => {
   try {
@@ -147,3 +146,12 @@ export const WriteRecomment = async (commentId, text) => {
   }
 };
 
+//챌린지 달성 현황 조회
+export const GetChallengeStatus = async () => {
+  try {
+    const response = await http.get("/main/achieverate/");
+    return response;
+  } catch (error) {
+    console.error("챌린지 달성 현황 조회 실패", error);
+  }
+};

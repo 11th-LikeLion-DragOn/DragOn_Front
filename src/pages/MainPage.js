@@ -22,6 +22,7 @@ const MainPage = () => {
   const navigate = useNavigate();
   const [balls, setBalls] = useState(1);
   const [modal, setModal] = useState(false);
+  const [goalStatus, setGoalStatus] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const nickname = useSelector((state) => state.nickname);
 
