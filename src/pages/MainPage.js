@@ -3,7 +3,11 @@ import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { format } from "date-fns";
-import { ClickedChallenge } from "../api/challenge";
+import {
+  GetChallengeStatus,
+  ClickedChallenge,
+  getComments,
+} from "../api/challenge";
 
 import MainTop from "../components/MainPage/MainTop";
 import StatusBox from "../components/MainPage/StatusBox";
@@ -23,21 +27,36 @@ const MainPage = () => {
   const navigate = useNavigate();
   const [balls, setBalls] = useState(1);
   const [modal, setModal] = useState(false);
-  const [dayStatus, setDayStatus] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const formattedDate = format(selectedDate, "yyyy-MM-dd");
   const nickname = useSelector((state) => state.nickname);
 
-  const formattedDate = format(selectedDate, "yyyy-MM-dd");
+  const [currentStatus, setCurrentStatus] = useState([]); //달성률 현황
+  const [dayStatus, setDayStatus] = useState([]); //날짜별 챌린지 달성 여부
+  const [response, setResponse] = useState([]); //아이콘 반응
+  const [comments, setComments] = useState([]); //댓글
 
   useEffect(() => {
+    //달성률 현황 가져오기
+    GetChallengeStatus()
+      .then((response) => {
+        setCurrentStatus(response.data.data.AchievementRate);
+        console.log(currentStatus);
+      })
+      .catch((error) => {
+        console.error("달성률 현황 조회 실패", error);
+      });
+    //날짜별 챌린지 달성 상태 가져오기
     ClickedChallenge(formattedDate)
       .then((response) => {
         setDayStatus(response.data.data);
         console.log(dayStatus);
       })
       .catch((error) => {
-        console.error("날짜별 챌린지 상태 조회 실패", error);
+        console.error("날짜별 챌린지 달성 여부 조회 실패", error);
       });
+    //아이콘 반응 가져오기
+    //댓글 가져오기
   }, [formattedDate]);
 
   const openModal = () => {
