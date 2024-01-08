@@ -1,9 +1,10 @@
 import React from "react";
 import { styled } from "styled-components";
+import { DeleteGoal } from "../../api/challenge";
 
-const DeleteGoalModal = ({ setOpenModal }) => {
+const DeleteGoalModal = ({ setOpenModal, selectedGoal }) => {
   const deleteGoal = () => {
-    console.log("Delete");
+    console.log(`Delete goal: ${selectedGoal}`);
     setOpenModal(false);
   };
 
@@ -15,10 +16,10 @@ const DeleteGoalModal = ({ setOpenModal }) => {
     <>
       <Wrapper>
         <div className="question">
-          <span>“매일 감사일기 작성하기” </span>
+          <span>{selectedGoal} </span>
           목표를 정말 삭제하시겠습니까?
         </div>
-        <QuitBtn onClick={deleteGoal}>챌린지 그만두기</QuitBtn>
+        <QuitBtn onClick={deleteGoal}>목표 삭제하기</QuitBtn>
         <CancelBtn onClick={closeModal}>취소하기</CancelBtn>
       </Wrapper>
     </>

@@ -12,11 +12,6 @@ const CurrentChallenge = () => {
   const [openQuitModal, setOpenQuitModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState(null);
-  // const [goals, setGoals] = useState([
-  //   { id: 1, name: "영어 공부" },
-  //   { id: 2, name: "스페인어 화상수업" },
-  //   { id: 3, name: "매일 감사일기 작성하기" },
-  // ]);
 
   const showModal = (goal) => {
     setSelectedGoal(goal);
@@ -56,7 +51,12 @@ const CurrentChallenge = () => {
             <div className="delete" onClick={() => showModal("영어 공부")}>
               목표삭제
             </div>
-            {openModal && <DeleteGoalModal setOpenModal={setOpenModal} />}
+            {openModal && (
+              <DeleteGoalModal
+                setOpenModal={setOpenModal}
+                selectedGoal={selectedGoal}
+              />
+            )}
           </First>
           <Second>
             <GreenOne />
