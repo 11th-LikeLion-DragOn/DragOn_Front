@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useLocation } from "react-router-dom";
+import { GetChallengeStatus } from "../../api/challenge";
 
 import info from "../../assets/icons/info.png";
 import MarbleModal from "./MarbleModal";
@@ -8,8 +9,20 @@ import MarbleModal from "./MarbleModal";
 const StatusBox = ({ balls }) => {
   const location = useLocation();
   const [modal, setModal] = useState(false);
+  const [goalStatus, setGoalStatus] = useState([]);
 
   const isFriendHome = location.pathname === "/friendhome";
+
+  useEffect(() => {
+    GetChallengeStatus()
+      .then((response) => {
+        setGoalStatus(response.data.data.AchievementRate);
+        console.log(goalStatus);
+      })
+      .catch((error) => {
+        console.error("챌린지 달성 현황 조회 실패", error);
+      });
+  }, []);
 
   return (
     <Wrapper>
@@ -23,47 +36,53 @@ const StatusBox = ({ balls }) => {
         </MarbleCnt>
         <StatusRate>
           <span id="achieve">전체 달성률</span>
-          <span id="rate">84%</span>
+          <span id="rate">{goalStatus[4].challenge_rate}%</span>
         </StatusRate>
       </Status>
       {modal && <MarbleModal />}
       <RateBox>
-        <Goal1>
-          <Title1>
-            <div id="circle"></div>
-            <span>영어 공부</span>
-          </Title1>
-          <Rate1>
-            <span>86%</span>
-            <RateBar1>
-              <div id="current"></div>
-            </RateBar1>
-          </Rate1>
-        </Goal1>
-        <Goal2>
-          <Title2>
-            <div id="circle"></div>
-            <span>스페인어 화상수업</span>
-          </Title2>
-          <Rate2>
-            <span>86%</span>
-            <RateBar2>
-              <div id="current"></div>
-            </RateBar2>
-          </Rate2>
-        </Goal2>
-        <Goal3>
-          <Title3>
-            <div id="circle"></div>
-            <span>매일 감사일기 작성하기</span>
-          </Title3>
-          <Rate3>
-            <span>84%</span>
-            <RateBar3>
-              <div id="current"></div>
-            </RateBar3>
-          </Rate3>
-        </Goal3>
+        {goalStatus[1] && (
+          <Goal1>
+            <Title1>
+              <div id="circle"></div>
+              <span>{goalStatus[1].goal.content}</span>
+            </Title1>
+            <Rate1>
+              <span>{goalStatus[1].goal_rate}%</span>
+              <RateBar1 num={goalStatus[1].goal_rate}>
+                <div id="current"></div>
+              </RateBar1>
+            </Rate1>
+          </Goal1>
+        )}
+        {goalStatus[2] && (
+          <Goal2>
+            <Title2>
+              <div id="circle"></div>
+              <span>{goalStatus[2].goal.content}</span>
+            </Title2>
+            <Rate2>
+              <span>{goalStatus[2].goal_rate}%</span>
+              <RateBar2>
+                <div id="current"></div>
+              </RateBar2>
+            </Rate2>
+          </Goal2>
+        )}
+        {goalStatus[3] && (
+          <Goal3>
+            <Title3>
+              <div id="circle"></div>
+              <span>{goalStatus[3].goal.content}</span>
+            </Title3>
+            <Rate3>
+              <span>{goalStatus[3].goal_rate}%</span>
+              <RateBar3>
+                <div id="current"></div>
+              </RateBar3>
+            </Rate3>
+          </Goal3>
+        )}
       </RateBox>
     </Wrapper>
   );
@@ -196,7 +215,7 @@ const RateBar1 = styled.div`
   background: var(--gray_01, rgba(192, 192, 192, 0.1));
   #current {
     z-index: 100;
-    width: 114px;
+    width: calc(125 * ${(num) => num}%) px;
     height: 10px;
     flex-shrink: 0;
     border-radius: 30px;
@@ -259,7 +278,7 @@ const RateBar2 = styled.div`
   background: var(--gray_01, rgba(192, 192, 192, 0.1));
   #current {
     z-index: 100;
-    width: 114px;
+    width: calc(125 * ${(num) => num}%) px;
     height: 10px;
     flex-shrink: 0;
     border-radius: 30px;
@@ -322,7 +341,7 @@ const RateBar3 = styled.div`
   background: var(--gray_01, rgba(192, 192, 192, 0.1));
   #current {
     z-index: 100;
-    width: 110px;
+    width: calc(125 * ${(num) => num}%) px;
     height: 10px;
     flex-shrink: 0;
     border-radius: 30px;

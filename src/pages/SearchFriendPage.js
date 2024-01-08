@@ -76,8 +76,8 @@ const SearchFriendPage = () => {
       </Top>
       <Friend>
         {clicked ? <Title>검색 결과</Title> : <Title>친구</Title>}
-        {!clicked === 0 &&
-          (!friendList ? (
+        {!clicked &&
+          (friendList === 0 ? (
             <Text>
               <span id="info">추가한 친구가 없습니다.</span>
             </Text>
@@ -91,7 +91,7 @@ const SearchFriendPage = () => {
             })
           ))}
         {clicked &&
-          (!result === 0 ? (
+          (result === 0 ? (
             <Text>
               <span id="info">해당 닉네임의 사용자가 없거나</span>
               <span id="info">이미 팔로우한 사용자입니다.</span>
