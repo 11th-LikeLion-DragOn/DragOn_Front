@@ -6,12 +6,6 @@ import { SearchFriend, GetFriendList } from "../api/friend";
 import before from "../assets/icons/click-left.png";
 import search from "../assets/icons/search.png";
 import FriendResult from "../components/SearchFriendPage/FriendResult";
-import none from "../assets/icons/profile0.png";
-import red from "../assets/icons/profile1.png";
-import gray from "../assets/icons/profile2.png";
-import green from "../assets/icons/profile3.png";
-import pink from "../assets/icons/profile4.png";
-import yellow from "../assets/icons/profile5.png";
 
 const SearchFriendPage = () => {
   const navigate = useNavigate();
@@ -31,6 +25,8 @@ const SearchFriendPage = () => {
       });
   }, [clicked]);
 
+  console.log(result);
+
   const onChange = (e) => {
     setText(e.target.value);
   };
@@ -43,8 +39,8 @@ const SearchFriendPage = () => {
     try {
       setClicked(true);
       const response = await SearchFriend(text);
-      setResult(response.user_data);
-      console.log(response.data);
+      setResult(response.data.user_data);
+      console.log(result);
     } catch (error) {
       console.log("친구 검색 실패", error);
     }
@@ -77,7 +73,7 @@ const SearchFriendPage = () => {
       <Friend>
         {clicked ? <Title>검색 결과</Title> : <Title>친구</Title>}
         {!clicked &&
-          (friendList ? (
+          (friendList.length != 0 ? (
             friendList.map((friend) => {
               <FriendResult
                 key={friendList.id}
@@ -91,10 +87,8 @@ const SearchFriendPage = () => {
             </Text>
           ))}
         {clicked &&
-          (result ? (
-            result.map((friend) => {
-              <FriendResult key={result.id} friend={friend} isFriend={false} />;
-            })
+          (result.length != 0 ? (
+            <FriendResult key={result.id} friend={result} isFriend={false} />
           ) : (
             <Text>
               <span id="info">해당 닉네임의 사용자가 없거나</span>

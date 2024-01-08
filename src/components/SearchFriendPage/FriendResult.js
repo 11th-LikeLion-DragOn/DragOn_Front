@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { SetFriendState } from "../../api/friend";
 
@@ -9,8 +9,25 @@ import green from "../../assets/icons/profile3.png";
 import pink from "../../assets/icons/profile4.png";
 import yellow from "../../assets/icons/profile5.png";
 
-const FriendResult = (friend, isFriend) => {
-  console.log(friend);
+const FriendResult = ({ friend, isFriend }) => {
+  const [profile, setProfile] = useState();
+
+  const mapProfileToIcon = (profileValue) => {
+    const profileMap = {
+      none: none,
+      red: red,
+      gray: gray,
+      green: green,
+      pink: pink,
+      yellow: yellow,
+    };
+
+    return profileMap[profileValue];
+  };
+
+  useEffect(() => {
+    setProfile(mapProfileToIcon(friend.profile));
+  }, []);
 
   const changeFriendState = async (id) => {
     try {
@@ -24,7 +41,7 @@ const FriendResult = (friend, isFriend) => {
   return (
     <Wrapper>
       <Profile>
-        <img src={friend.profile} />
+        <img src={profile} />
         <span>{friend.nickname}</span>
       </Profile>
       {isFriend ? (

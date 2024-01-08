@@ -54,6 +54,16 @@ export const GetTestResult = async () => {
   }
 };
 
+//챌린지 달성 여부 체크
+export const checkChallenge = async (goalId) => {
+  try {
+    const response = await http.patch(`/main/goal/${goalId}/`);
+    return response;
+  } catch (error) {
+    console.error("챌린지 달성 여부 변경 실패", error);
+  }
+};
+
 //챌린지 댓글 모아보기
 export const getComments = async (challengeId) => {
   try {

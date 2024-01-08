@@ -39,7 +39,7 @@ const StatusBox = ({ balls, currentStatus }) => {
             </Title1>
             <Rate1>
               <span>{currentStatus[1].goal_rate}%</span>
-              <RateBar1 num={currentStatus[1].goal_rate}>
+              <RateBar1 num={currentStatus[1].goal_rate.toString()}>
                 <div id="current"></div>
               </RateBar1>
             </Rate1>
@@ -53,7 +53,7 @@ const StatusBox = ({ balls, currentStatus }) => {
             </Title2>
             <Rate2>
               <span>{currentStatus[2].goal_rate}%</span>
-              <RateBar2>
+              <RateBar2 num={currentStatus[2].goal_rate.toString()}>
                 <div id="current"></div>
               </RateBar2>
             </Rate2>
@@ -67,7 +67,7 @@ const StatusBox = ({ balls, currentStatus }) => {
             </Title3>
             <Rate3>
               <span>{currentStatus[3].goal_rate}%</span>
-              <RateBar3>
+              <RateBar3 num={currentStatus[3].goal_rate.toString()}>
                 <div id="current"></div>
               </RateBar3>
             </Rate3>
@@ -205,7 +205,7 @@ const RateBar1 = styled.div`
   background: var(--gray_01, rgba(192, 192, 192, 0.1));
   #current {
     z-index: 100;
-    width: calc(125 * ${(num) => num}%) px;
+    width: ${(props) => 125 * props.num};
     height: 10px;
     flex-shrink: 0;
     border-radius: 30px;
@@ -268,7 +268,7 @@ const RateBar2 = styled.div`
   background: var(--gray_01, rgba(192, 192, 192, 0.1));
   #current {
     z-index: 100;
-    width: calc(125 * ${(num) => num}%) px;
+    width: ${(props) => 125 * props.num};
     height: 10px;
     flex-shrink: 0;
     border-radius: 30px;
@@ -331,7 +331,7 @@ const RateBar3 = styled.div`
   background: var(--gray_01, rgba(192, 192, 192, 0.1));
   #current {
     z-index: 100;
-    width: calc(125 * ${(num) => num}%) px;
+    width: ${(props) => 125 * props.num};
     height: 10px;
     flex-shrink: 0;
     border-radius: 30px;
