@@ -55,10 +55,12 @@ export const PostChallenge = async (userId) => {
   }
 };
 
-//Patch: 목표 삭제하기
+// Patch: 목표 삭제하기
 export const DeleteGoal = async (goalId) => {
   try {
-    const response = await http.patch(`/main/goal/${goalId}/`);
+    const response = await http.patch(`/main/goal/${goalId}/`, {
+      activate: true,
+    });
     return response.data;
   } catch (error) {
     console.error("목표 삭제 실패", error);
