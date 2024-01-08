@@ -94,8 +94,6 @@ export const EditComment = async (challengeId, commentId, text) => {
   }
 };
 
-
-
 //챌린지 댓글 삭제
 export const DeleteComment = async (challengeId, commentId) => {
   try {
