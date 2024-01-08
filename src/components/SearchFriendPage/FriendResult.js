@@ -1,16 +1,37 @@
 import React from "react";
 import { styled } from "styled-components";
+import { SetFriendState } from "../../api/friend";
 
-import profile1 from "../../assets/icons/profile1.png";
+import none from "../../assets/icons/profile0.png";
+import red from "../../assets/icons/profile1.png";
+import gray from "../../assets/icons/profile2.png";
+import green from "../../assets/icons/profile3.png";
+import pink from "../../assets/icons/profile4.png";
+import yellow from "../../assets/icons/profile5.png";
 
-const FriendResult = () => {
+const FriendResult = (friend, isFriend) => {
+  console.log(friend);
+
+  const changeFriendState = async (id) => {
+    try {
+      const response = await SetFriendState(id);
+      console.log(response);
+    } catch (error) {
+      console.log("친구 추가/삭제 실패", error);
+    }
+  };
+
   return (
     <Wrapper>
       <Profile>
-        <img src={profile1} />
-        <span>가나다라마바사</span>
+        <img src={friend.profile} />
+        <span>{friend.nickname}</span>
       </Profile>
-      <AddButton>추가하기</AddButton>
+      {isFriend ? (
+        <DelButton onClick={changeFriendState(friend.id)}>삭제하기</DelButton>
+      ) : (
+        <AddButton onClick={changeFriendState(friend.id)}>추가하기</AddButton>
+      )}
     </Wrapper>
   );
 };
@@ -57,6 +78,25 @@ const AddButton = styled.div`
   cursor: pointer;
 
   color: var(--gray3);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Pretendard;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+const DelButton = styled.div`
+  display: inline-flex;
+  padding: 4px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 11px;
+  background: rgba(199, 198, 198, 0.2);
+  cursor: pointer;
+
+  color: var(--black);
   font-feature-settings: "clig" off, "liga" off;
   font-family: Pretendard;
   font-size: 11px;
