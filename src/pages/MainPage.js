@@ -28,12 +28,15 @@ const MainPage = () => {
   const [balls, setBalls] = useState(1);
   const [modal, setModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const formattedDate = format(selectedDate, "yyyy-MM-dd");
+  const [formattedDate, setFormattedDate] = useState(
+    format(selectedDate, "yyyy-MM-dd")
+  );
+
   const nickname = useSelector((state) => state.nickname);
 
   const [currentStatus, setCurrentStatus] = useState([]); //달성률 현황
   const [dayStatus, setDayStatus] = useState([]); //날짜별 챌린지 달성 여부
-  const [response, setResponse] = useState([]); //아이콘 반응
+  const [response, setResponse] = useState([]); //아이콘 반응 개수
   const [comments, setComments] = useState([]); //댓글
 
   useEffect(() => {
@@ -55,9 +58,9 @@ const MainPage = () => {
       .catch((error) => {
         console.error("날짜별 챌린지 달성 여부 조회 실패", error);
       });
-    //아이콘 반응 가져오기
+    //아이콘 반응 개수 가져오기
     //댓글 가져오기
-  }, [formattedDate]);
+  }, [selectedDate, formattedDate]);
 
   const openModal = () => {
     setModal(true);
@@ -74,26 +77,7 @@ const MainPage = () => {
   const handleDaySelect = (date) => {
     console.log("Selected Date:", date);
     setSelectedDate(date);
-  };
-
-  //챌린지 달성 관리
-  const [goal1, setGoal1] = useState(false);
-  const [goal2, setGoal2] = useState(false);
-  const [goal3, setGoal3] = useState(false);
-
-  const handleGoal1 = () => {
-    setGoal1(!goal1);
-    console.log(goal1);
-  };
-
-  const handleGoal2 = () => {
-    setGoal2(!goal2);
-    console.log(goal2);
-  };
-
-  const handleGoal3 = () => {
-    setGoal3(!goal3);
-    console.log(goal3);
+    setFormattedDate(format(selectedDate, "yyyy-MM-dd"));
   };
 
   return (
@@ -114,15 +98,7 @@ const MainPage = () => {
       </MyChallenge>
       <Calendar openModal={openModal} onDaySelect={handleDaySelect} />
       <ChallengeBox>
-        <Challenge
-          selectedDate={selectedDate}
-          goal1={goal1}
-          goal2={goal2}
-          goal3={goal3}
-          func1={handleGoal1}
-          func2={handleGoal2}
-          func3={handleGoal3}
-        />
+        <Challenge selectedDate={selectedDate} dayStatus={dayStatus} />
       </ChallengeBox>
       <Reaction>
         <span>진행 중인 나의 챌린지를</span>
@@ -138,15 +114,7 @@ const MainPage = () => {
           <CommentInput placeholder="댓글을 입력해주세요" />
         </CommentBox>
       </ChallengeBox>
-      {modal && (
-        <FillModal
-          closeModal={closeModal}
-          balls={balls}
-          goal1={goal1}
-          goal2={goal2}
-          goal3={goal3}
-        />
-      )}
+      {modal && <FillModal closeModal={closeModal} balls={balls} />}
     </Wrapper>
   );
 };
