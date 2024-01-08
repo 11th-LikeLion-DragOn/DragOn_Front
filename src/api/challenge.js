@@ -94,21 +94,6 @@ export const EditComment = async (challengeId, commentId, text) => {
   }
 };
 
-//Post: 목표 생성하기
-
-//Post : 챌린지 생성하기
-export const PostChallenge = async (userId) => {
-  try {
-    const response = await http.post("/main/challengeadd/", {
-      //내용작성,
-    });
-    return response.data;
-  } catch (error) {
-    console.error("챌린지 생성하기 실패", error);
-    throw error;
-  }
-};
-
 //챌린지 댓글 삭제
 export const DeleteComment = async (challengeId, commentId) => {
   try {
