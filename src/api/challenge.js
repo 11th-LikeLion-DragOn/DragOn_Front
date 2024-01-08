@@ -155,3 +155,13 @@ export const GetChallengeStatus = async () => {
     console.error("챌린지 달성 현황 조회 실패", error);
   }
 };
+
+//챌린지 달력
+export const ClickedChallenge = async (date) => {
+  try {
+    const response = await http.get(`/main/calendar/?date=${date}/`);
+    return response;
+  } catch (error) {
+    console.error("일자별 챌린지 조회", error);
+  }
+};

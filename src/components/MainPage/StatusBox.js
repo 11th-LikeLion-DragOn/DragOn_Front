@@ -34,10 +34,12 @@ const StatusBox = ({ balls }) => {
           <span id="cnt">{balls}개</span>
           <img src={info} onClick={() => setModal(!modal)} />
         </MarbleCnt>
-        <StatusRate>
-          <span id="achieve">전체 달성률</span>
-          <span id="rate">{goalStatus[4].challenge_rate}%</span>
-        </StatusRate>
+        {goalStatus && (
+          <StatusRate>
+            <span id="achieve">전체 달성률</span>
+            <span id="rate">{0}%</span>
+          </StatusRate>
+        )}
       </Status>
       {modal && <MarbleModal />}
       <RateBox>

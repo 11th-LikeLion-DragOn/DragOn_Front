@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import * as dateFns from "date-fns";
+import { format } from "date-fns";
+import { ClickedChallenge } from "../api/challenge";
 
 import MainTop from "../components/MainPage/MainTop";
 import StatusBox from "../components/MainPage/StatusBox";
@@ -22,9 +23,22 @@ const MainPage = () => {
   const navigate = useNavigate();
   const [balls, setBalls] = useState(1);
   const [modal, setModal] = useState(false);
-  const [goalStatus, setGoalStatus] = useState([]);
+  const [dayStatus, setDayStatus] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const nickname = useSelector((state) => state.nickname);
+
+  const formattedDate = format(selectedDate, "yyyy-MM-dd");
+
+  useEffect(() => {
+    ClickedChallenge(formattedDate)
+      .then((response) => {
+        setDayStatus(response.data.data);
+        console.log(dayStatus);
+      })
+      .catch((error) => {
+        console.error("날짜별 챌린지 상태 조회 실패", error);
+      });
+  }, [formattedDate]);
 
   const openModal = () => {
     setModal(true);
