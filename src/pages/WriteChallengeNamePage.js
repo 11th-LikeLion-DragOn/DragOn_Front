@@ -9,7 +9,7 @@ import CustomSelect from "../components/SetPeriodPage/CustomSelect";
 const WriteChallengeNamePage = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
-  const [period, setPeriod] = useState("");
+  const [period, setPeriod] = useState(0);
 
   const goNext = async () => {
     try {
@@ -38,7 +38,7 @@ const WriteChallengeNamePage = () => {
         <div className="toptext">저는 이 챌린지를 </div>
         <Bottom>
           <CustomSelect setPeriod={setPeriod} />
-          <div className="bottomtext">동안 진행할거에요.</div>
+          <div className="bottomtext">주 동안 진행할거에요.</div>
         </Bottom>
 
         <Btn onClick={goNext}>다음으로 넘어가기 </Btn>
