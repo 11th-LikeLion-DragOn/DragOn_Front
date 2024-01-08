@@ -31,9 +31,16 @@ const FriendMainPage = () => {
       <Calendar />
       <ChallengeBox>
         <Challenge selectedDate={selectedDate} />
-        <IconBox />
+      </ChallengeBox>
+      <Reaction>
+        <span>친구의 챌린지에 대해</span>
+        <span>반응을 남겨주세요.</span>
+      </Reaction>
+      <ChallengeBox>
         <CommentBox>
-          <span id="title">댓글</span>
+          <span id="title">친구들의 반응</span>
+          <IconBox />
+          <span id="title">친구들의 댓글</span>
           <Comment />
           <Comment />
           <CommentInput placeholder="댓글을 입력해주세요" />
@@ -100,6 +107,22 @@ const ChallengeBox = styled.div`
   gap: 24px;
   border-radius: 14px;
   border: 1px solid rgba(199, 198, 198, 0.2);
+`;
+
+const Reaction = styled.div`
+  padding-top: 16px;
+  width: 354px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: var(--gray3);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  border-top: 1px solid rgba(199, 198, 198, 0.2);
 `;
 
 const CommentBox = styled.div`
