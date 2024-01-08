@@ -54,6 +54,7 @@ export default FriendMainPage;
 
 const Wrapper = styled.div`
   margin: auto auto;
+  margin-bottom: 100px;
   width: 393px;
   display: flex;
   flex-direction: column;
@@ -63,9 +64,10 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
   display: flex;
-  justify-content: flex-end;
+  padding: 0px 1px 1px 0px;
+  justify-content: center;
   align-items: flex-end;
-  gap: 60px;
+  gap: 27px;
   span {
     color: var(--black);
     font-feature-settings: "clig" off, "liga" off;
@@ -97,7 +99,6 @@ const Management = styled.div`
 `;
 
 const ChallengeBox = styled.div`
-  margin-bottom: 100px;
   width: 315px;
   display: flex;
   padding: 18px 19px;
@@ -139,7 +140,8 @@ const CommentBox = styled.div`
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    padding-right: 288px;
+    padding-right: 230px;
+    margin-bottom: 14px;
   }
 `;
 

@@ -121,6 +121,7 @@ export default MainPage;
 
 const Wrapper = styled.div`
   margin: auto auto;
+  margin-bottom: 100px;
   width: 393px;
   display: flex;
   flex-direction: column;
