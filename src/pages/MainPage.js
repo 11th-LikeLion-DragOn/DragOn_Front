@@ -11,6 +11,12 @@ import FillModal from "../components/MainPage/FillModal";
 import Challenge from "../components/MainPage/Challenge";
 import IconBox from "../components/MainPage/IconBox";
 import Comment from "../components/MainPage/Comment";
+import none from "../assets/icons/profile0.png";
+import red from "../assets/icons/profile1.png";
+import gray from "../assets/icons/profile2.png";
+import green from "../assets/icons/profile3.png";
+import pink from "../assets/icons/profile4.png";
+import yellow from "../assets/icons/profile5.png";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -83,9 +89,16 @@ const MainPage = () => {
           func2={handleGoal2}
           func3={handleGoal3}
         />
-        <IconBox />
+      </ChallengeBox>
+      <Reaction>
+        <span>진행 중인 나의 챌린지를</span>
+        <span>친구와 함께 공유해요.</span>
+      </Reaction>
+      <ChallengeBox>
         <CommentBox>
-          <span id="title">댓글</span>
+          <span id="title">친구들의 반응</span>
+          <IconBox />
+          <span id="title">친구들의 댓글</span>
           <Comment />
           <Comment />
           <CommentInput placeholder="댓글을 입력해주세요" />
@@ -108,6 +121,7 @@ export default MainPage;
 
 const Wrapper = styled.div`
   margin: auto auto;
+  margin-bottom: 100px;
   width: 393px;
   display: flex;
   flex-direction: column;
@@ -159,7 +173,6 @@ const Management = styled.div`
 `;
 
 const ChallengeBox = styled.div`
-  margin-bottom: 100px;
   width: 315px;
   display: flex;
   padding: 18px 19px;
@@ -169,6 +182,22 @@ const ChallengeBox = styled.div`
   gap: 24px;
   border-radius: 14px;
   border: 1px solid rgba(199, 198, 198, 0.2);
+`;
+
+const Reaction = styled.div`
+  padding-top: 16px;
+  width: 354px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: var(--gray3);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  border-top: 1px solid rgba(199, 198, 198, 0.2);
 `;
 
 const CommentBox = styled.div`
@@ -185,7 +214,8 @@ const CommentBox = styled.div`
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    padding-right: 288px;
+    padding-right: 230px;
+    margin-bottom: 14px;
   }
 `;
 

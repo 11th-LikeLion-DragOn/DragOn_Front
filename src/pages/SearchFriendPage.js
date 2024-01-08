@@ -1,14 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { SearchFriend, GetFriendList } from "../api/friend";
 
 import before from "../assets/icons/click-left.png";
 import search from "../assets/icons/search.png";
-import MyFriend from "../components/SearchFriendPage/MyFriend";
+import FriendResult from "../components/SearchFriendPage/FriendResult";
+import none from "../assets/icons/profile0.png";
+import red from "../assets/icons/profile1.png";
+import gray from "../assets/icons/profile2.png";
+import green from "../assets/icons/profile3.png";
+import pink from "../assets/icons/profile4.png";
+import yellow from "../assets/icons/profile5.png";
 
 const SearchFriendPage = () => {
   const navigate = useNavigate();
   const [text, setText] = useState("");
+  const [clicked, setClicked] = useState(false);
+  const [friendList, setFriendList] = useState([]);
+  const [result, setResult] = useState([]);
+
+  useEffect(() => {
+    GetFriendList()
+      .then((response) => {
+        setFriendList(response.data.following_list);
+        console.log(response.data.following_list);
+      })
+      .catch((error) => {
+        console.error("친구 목록 조회 실패", error);
+      });
+  }, [clicked]);
 
   const onChange = (e) => {
     setText(e.target.value);
@@ -18,31 +39,68 @@ const SearchFriendPage = () => {
     navigate(-1);
   };
 
+  const searchFriend = async (text) => {
+    try {
+      setClicked(true);
+      const response = await SearchFriend(text);
+      setResult(response.user_data);
+      console.log(response.data);
+    } catch (error) {
+      console.log("친구 검색 실패", error);
+    }
+  };
+
   return (
     <Wrapper>
       <Top>
         <img id="before" src={before} onClick={goBack} />
-        <form class="input-container">
-          <SearchBar>
+        <form
+          class="input-container"
+          onSubmit={(e) => {
+            e.preventDefault();
+            searchFriend(text);
+          }}
+        >
+          <InputContainer>
             <Input
               type="text"
               placeholder="닉네임으로 친구를 추가해보세요."
-              onchange={onChange}
+              value={text}
+              onChange={onChange}
             />
             <SubmitButton>
               <img src={search} />
             </SubmitButton>
-          </SearchBar>
+          </InputContainer>
         </form>
       </Top>
       <Friend>
-        <Title>친구</Title>
-        <FriendList>
-          <MyFriend />
-          <MyFriend />
-          <MyFriend />
-          <MyFriend />
-        </FriendList>
+        {clicked ? <Title>검색 결과</Title> : <Title>친구</Title>}
+        {!clicked === 0 &&
+          (!friendList ? (
+            <Text>
+              <span id="info">추가한 친구가 없습니다.</span>
+            </Text>
+          ) : (
+            friendList.map((friend) => {
+              <FriendResult
+                key={friendList.id}
+                friend={friend}
+                isFriend={true}
+              />;
+            })
+          ))}
+        {clicked &&
+          (!result === 0 ? (
+            <Text>
+              <span id="info">해당 닉네임의 사용자가 없거나</span>
+              <span id="info">이미 팔로우한 사용자입니다.</span>
+            </Text>
+          ) : (
+            result.map((friend) => {
+              <FriendResult key={result.id} friend={friend} isFriend={false} />;
+            })
+          ))}
       </Friend>
     </Wrapper>
   );
@@ -82,7 +140,7 @@ const Top = styled.div`
   }
 `;
 
-const SearchBar = styled.div`
+const InputContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 122px;
@@ -108,10 +166,12 @@ const Input = styled.input`
   line-height: normal;
 `;
 
-const SubmitButton = styled.div`
+const SubmitButton = styled.button`
   position: absolute;
   right: 34px;
   z-index: 50;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
   img {
     width: 12px;
@@ -121,11 +181,27 @@ const SubmitButton = styled.div`
 `;
 
 const Friend = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 20px;
+  #info {
+    color: var(--black);
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    white-space: pre-line;
+  }
 `;
 
 const Title = styled.div`
   margin-bottom: 24px;
+  width: 352px;
   color: var(--black);
   font-feature-settings: "clig" off, "liga" off;
   font-family: Pretendard;
@@ -139,4 +215,11 @@ const FriendList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 25px;
+`;
+
+const Text = styled.div`
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

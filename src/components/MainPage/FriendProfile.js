@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
+import none from "../../assets/icons/profile0.png";
+import red from "../../assets/icons/profile1.png";
+import gray from "../../assets/icons/profile2.png";
+import green from "../../assets/icons/profile3.png";
+import pink from "../../assets/icons/profile4.png";
+import yellow from "../../assets/icons/profile5.png";
+
 const FriendProfile = ({ friend }) => {
   const navigate = useNavigate();
 

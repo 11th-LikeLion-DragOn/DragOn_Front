@@ -31,9 +31,16 @@ const FriendMainPage = () => {
       <Calendar />
       <ChallengeBox>
         <Challenge selectedDate={selectedDate} />
-        <IconBox />
+      </ChallengeBox>
+      <Reaction>
+        <span>친구의 챌린지에 대해</span>
+        <span>반응을 남겨주세요.</span>
+      </Reaction>
+      <ChallengeBox>
         <CommentBox>
-          <span id="title">댓글</span>
+          <span id="title">친구들의 반응</span>
+          <IconBox />
+          <span id="title">친구들의 댓글</span>
           <Comment />
           <Comment />
           <CommentInput placeholder="댓글을 입력해주세요" />
@@ -47,6 +54,7 @@ export default FriendMainPage;
 
 const Wrapper = styled.div`
   margin: auto auto;
+  margin-bottom: 100px;
   width: 393px;
   display: flex;
   flex-direction: column;
@@ -56,9 +64,10 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
   display: flex;
-  justify-content: flex-end;
+  padding: 0px 1px 1px 0px;
+  justify-content: center;
   align-items: flex-end;
-  gap: 60px;
+  gap: 27px;
   span {
     color: var(--black);
     font-feature-settings: "clig" off, "liga" off;
@@ -90,7 +99,6 @@ const Management = styled.div`
 `;
 
 const ChallengeBox = styled.div`
-  margin-bottom: 100px;
   width: 315px;
   display: flex;
   padding: 18px 19px;
@@ -100,6 +108,22 @@ const ChallengeBox = styled.div`
   gap: 24px;
   border-radius: 14px;
   border: 1px solid rgba(199, 198, 198, 0.2);
+`;
+
+const Reaction = styled.div`
+  padding-top: 16px;
+  width: 354px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: var(--gray3);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  border-top: 1px solid rgba(199, 198, 198, 0.2);
 `;
 
 const CommentBox = styled.div`
@@ -116,7 +140,8 @@ const CommentBox = styled.div`
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    padding-right: 288px;
+    padding-right: 230px;
+    margin-bottom: 14px;
   }
 `;
 
