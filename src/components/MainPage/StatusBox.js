@@ -6,23 +6,11 @@ import { GetChallengeStatus } from "../../api/challenge";
 import info from "../../assets/icons/info.png";
 import MarbleModal from "./MarbleModal";
 
-const StatusBox = ({ balls }) => {
+const StatusBox = ({ balls, currentStatus }) => {
   const location = useLocation();
   const [modal, setModal] = useState(false);
-  const [goalStatus, setGoalStatus] = useState([]);
 
   const isFriendHome = location.pathname === "/friendhome";
-
-  useEffect(() => {
-    GetChallengeStatus()
-      .then((response) => {
-        setGoalStatus(response.data.data.AchievementRate);
-        console.log(goalStatus);
-      })
-      .catch((error) => {
-        console.error("챌린지 달성 현황 조회 실패", error);
-      });
-  }, []);
 
   return (
     <Wrapper>
@@ -34,51 +22,51 @@ const StatusBox = ({ balls }) => {
           <span id="cnt">{balls}개</span>
           <img src={info} onClick={() => setModal(!modal)} />
         </MarbleCnt>
-        {goalStatus && (
+        {currentStatus[4] && (
           <StatusRate>
             <span id="achieve">전체 달성률</span>
-            <span id="rate">{0}%</span>
+            <span id="rate">{currentStatus[4].challenge_rate}%</span>
           </StatusRate>
         )}
       </Status>
       {modal && <MarbleModal />}
       <RateBox>
-        {goalStatus[1] && (
+        {currentStatus[1] && (
           <Goal1>
             <Title1>
               <div id="circle"></div>
-              <span>{goalStatus[1].goal.content}</span>
+              <span>{currentStatus[1].goal.content}</span>
             </Title1>
             <Rate1>
-              <span>{goalStatus[1].goal_rate}%</span>
-              <RateBar1 num={goalStatus[1].goal_rate}>
+              <span>{currentStatus[1].goal_rate}%</span>
+              <RateBar1 num={currentStatus[1].goal_rate}>
                 <div id="current"></div>
               </RateBar1>
             </Rate1>
           </Goal1>
         )}
-        {goalStatus[2] && (
+        {currentStatus[2] && (
           <Goal2>
             <Title2>
               <div id="circle"></div>
-              <span>{goalStatus[2].goal.content}</span>
+              <span>{currentStatus[2].goal.content}</span>
             </Title2>
             <Rate2>
-              <span>{goalStatus[2].goal_rate}%</span>
+              <span>{currentStatus[2].goal_rate}%</span>
               <RateBar2>
                 <div id="current"></div>
               </RateBar2>
             </Rate2>
           </Goal2>
         )}
-        {goalStatus[3] && (
+        {currentStatus[3] && (
           <Goal3>
             <Title3>
               <div id="circle"></div>
-              <span>{goalStatus[3].goal.content}</span>
+              <span>{currentStatus[3].goal.content}</span>
             </Title3>
             <Rate3>
-              <span>{goalStatus[3].goal_rate}%</span>
+              <span>{currentStatus[3].goal_rate}%</span>
               <RateBar3>
                 <div id="current"></div>
               </RateBar3>

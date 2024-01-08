@@ -94,7 +94,7 @@ const MainPage = () => {
           </span>
           <Management onClick={goManage}>챌린지 관리하기</Management>
         </Title>
-        <StatusBox balls={balls} />
+        <StatusBox balls={balls} currentStatus={currentStatus} />
       </MyChallenge>
       <Calendar openModal={openModal} onDaySelect={handleDaySelect} />
       <ChallengeBox>
