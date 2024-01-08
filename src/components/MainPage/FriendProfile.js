@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
@@ -11,14 +11,32 @@ import yellow from "../../assets/icons/profile5.png";
 
 const FriendProfile = ({ friend }) => {
   const navigate = useNavigate();
+  const [profile, setProfile] = useState();
 
   const goFriendHome = () => {
     navigate("/friendhome");
   };
 
+  const mapProfileToIcon = (profileValue) => {
+    const profileMap = {
+      none: none,
+      red: red,
+      gray: gray,
+      green: green,
+      pink: pink,
+      yellow: yellow,
+    };
+
+    return profileMap[profileValue];
+  };
+
+  useEffect(() => {
+    setProfile(mapProfileToIcon(friend.profile));
+  }, []);
+
   return (
     <Wrapper onClick={goFriendHome}>
-      <img src={friend.profile} />
+      <img src={profile} />
       <span>{friend.nickname}</span>
     </Wrapper>
   );
