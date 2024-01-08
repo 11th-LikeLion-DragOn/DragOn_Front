@@ -1,30 +1,31 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 
-const CustomSelect = () => {
+const CustomSelect = ({ setPeriod }) => {
   const [isShowOptions, setShowOptions] = useState(false);
   const [currentValue, setCurrentValue] = useState("기간을 선택해주세요");
 
   const handleOnChangeSelectValue = (e) => {
     const { innerText } = e.target;
     setCurrentValue(innerText);
+    setPeriod(parseInt(innerText, 10));
   };
   return (
     <SelectBox onClick={() => setShowOptions((prev) => !prev)}>
       <Label>{currentValue}</Label>
       <SelectOptions show={isShowOptions}>
-        <Option onClick={handleOnChangeSelectValue}>1주</Option>
-        <Option onClick={handleOnChangeSelectValue}>2주</Option>
-        <Option onClick={handleOnChangeSelectValue}>3주</Option>
-        <Option onClick={handleOnChangeSelectValue}>4주</Option>
-        <Option onClick={handleOnChangeSelectValue}>5주</Option>
-        <Option onClick={handleOnChangeSelectValue}>6주</Option>
-        <Option onClick={handleOnChangeSelectValue}>7주</Option>
-        <Option onClick={handleOnChangeSelectValue}>8주</Option>
-        <Option onClick={handleOnChangeSelectValue}>9주</Option>
-        <Option onClick={handleOnChangeSelectValue}>10주</Option>
-        <Option onClick={handleOnChangeSelectValue}>11주</Option>
-        <Option onClick={handleOnChangeSelectValue}>12주</Option>
+        <Option onClick={handleOnChangeSelectValue}>1</Option>
+        <Option onClick={handleOnChangeSelectValue}>2</Option>
+        <Option onClick={handleOnChangeSelectValue}>3</Option>
+        <Option onClick={handleOnChangeSelectValue}>4</Option>
+        <Option onClick={handleOnChangeSelectValue}>5</Option>
+        <Option onClick={handleOnChangeSelectValue}>6</Option>
+        <Option onClick={handleOnChangeSelectValue}>7</Option>
+        <Option onClick={handleOnChangeSelectValue}>8</Option>
+        <Option onClick={handleOnChangeSelectValue}>9</Option>
+        <Option onClick={handleOnChangeSelectValue}>10</Option>
+        <Option onClick={handleOnChangeSelectValue}>11</Option>
+        <Option onClick={handleOnChangeSelectValue}>12</Option>
       </SelectOptions>
     </SelectBox>
   );
