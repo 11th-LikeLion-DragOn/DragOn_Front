@@ -48,7 +48,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin: auto;
-  height: 100vh;
+
   .toptext {
     margin-top: 20px;
     margin-right: 225px;
@@ -65,6 +65,7 @@ const Q1 = styled.div`
   line-height: normal;
   margin-top: 30px;
   margin-right: 90px;
+  margin-bottom: 10px;
 `;
 const Q2 = styled.div`
   color: var(--purple_01, #8438ff);
