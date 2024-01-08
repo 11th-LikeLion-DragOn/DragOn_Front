@@ -12,19 +12,16 @@ const CurrentChallenge = () => {
   const [openQuitModal, setOpenQuitModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState(null);
-  // const [goals, setGoals] = useState([
-  //   { id: 1, name: "영어 공부" },
-  //   { id: 2, name: "스페인어 화상수업" },
-  //   { id: 3, name: "매일 감사일기 작성하기" },
-  // ]);
+  const [quitChallengeName, setQuitChallengeName] = useState(null);
 
   const showModal = (goal) => {
     setSelectedGoal(goal);
     setOpenModal(true);
   };
 
-  const showQuitModal = () => {
+  const showQuitModal = (challengeName) => {
     setOpenQuitModal(true);
+    setQuitChallengeName(challengeName);
   };
 
   const deleteGoal = () => {
@@ -40,9 +37,15 @@ const CurrentChallenge = () => {
       <Wrapper>
         <Title>
           담곰이의 갓생살기 ✨
-          <img onClick={showQuitModal} src={quit} />
+          <img
+            onClick={() => showQuitModal("담곰이의 갓생살기 ✨")}
+            src={quit}
+          />
           {openQuitModal && (
-            <QuitChallenge setOpenQuitModal={setOpenQuitModal} />
+            <QuitChallenge
+              setOpenQuitModal={setOpenQuitModal}
+              quitChallengeName={quitChallengeName}
+            />
           )}
         </Title>
         <Period>
@@ -56,7 +59,12 @@ const CurrentChallenge = () => {
             <div className="delete" onClick={() => showModal("영어 공부")}>
               목표삭제
             </div>
-            {openModal && <DeleteGoalModal setOpenModal={setOpenModal} />}
+            {openModal && (
+              <DeleteGoalModal
+                setOpenModal={setOpenModal}
+                selectedGoal={selectedGoal}
+              />
+            )}
           </First>
           <Second>
             <GreenOne />
