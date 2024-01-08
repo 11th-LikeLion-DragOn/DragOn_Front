@@ -1,19 +1,6 @@
 import axios from "axios";
 import { http } from "../api/http";
 
-//Post : 챌린지 생성하기
-export const PostChallenge = async (userId) => {
-  try {
-    const response = await http.post(`/main/challengeadd/${userId}/`, {
-      //내용작성,
-    });
-    return response.data;
-  } catch (error) {
-    console.error("챌린지 생성하기 실패", error);
-    throw error;
-  }
-};
-
 //Get: 챌린지 목록 조회
 export const GetChallengeList = async () => {
   try {
@@ -55,4 +42,39 @@ export const PostTest = async (selectedOptions) => {
   }
 };
 
-//Post: 목표 생성하기
+//Post : 챌린지 생성하기
+export const PostChallenge = async (userId) => {
+  try {
+    const response = await http.post("/main/challengeadd/", {
+      //내용작성,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("챌린지 생성하기 실패", error);
+    throw error;
+  }
+};
+
+// Patch: 목표 삭제하기
+export const DeleteGoal = async (goalId) => {
+  try {
+    const response = await http.patch(`/main/goal/${goalId}/`, {
+      activate: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("목표 삭제 실패", error);
+    throw error;
+  }
+};
+
+//Get: 챌린지 성향테스트 결과 조회
+export const GetTestResult = async () => {
+  try {
+    const response = await http.get("/mypage/mytest/");
+    return response.data;
+  } catch (error) {
+    console.error("챌린지 목록 조회 실패", error);
+    throw error;
+  }
+};
