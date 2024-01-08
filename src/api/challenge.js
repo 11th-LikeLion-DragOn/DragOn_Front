@@ -5,7 +5,7 @@ import { comment } from "stylis";
 //Get: 챌린지 목록 조회
 export const GetChallengeList = async () => {
   try {
-    const response = await http.post("/main/challengelist", {});
+    const response = await http.get("/main/challengelist/");
     return response.data;
   } catch (error) {
     console.error("챌린지 목록 조회 실패", error);
@@ -94,20 +94,7 @@ export const EditComment = async (challengeId, commentId, text) => {
   }
 };
 
-//Post: 목표 생성하기
 
-//Post : 챌린지 생성하기
-export const PostChallenge = async (userId) => {
-  try {
-    const response = await http.post("/main/challengeadd/", {
-      //내용작성,
-    });
-    return response.data;
-  } catch (error) {
-    console.error("챌린지 생성하기 실패", error);
-    throw error;
-  }
-};
 
 //챌린지 댓글 삭제
 export const DeleteComment = async (challengeId, commentId) => {
@@ -163,5 +150,19 @@ export const ClickedChallenge = async (date) => {
     return response;
   } catch (error) {
     console.error("일자별 챌린지 조회", error);
+  }
+};
+
+//Post : 챌린지 생성하기
+export const PostChallenge = async (name, period) => {
+  try {
+    const response = await http.post("/main/challengeadd/", {
+      name: name,
+      period: period,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("챌린지 생성하기 실패", error);
+    throw error;
   }
 };
