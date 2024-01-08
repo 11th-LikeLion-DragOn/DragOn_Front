@@ -25,11 +25,13 @@ const HistoryChallenge = ({ challengeList }) => {
     <>
       <Wrapper>
         {/* <Title>중간고사 공부를 해보아요 💚</Title> */}
-        {challengeList.map((challenge) => (
-          <div key={challenge.id}>
-            <Title>{challenge.name}</Title>
-          </div>
-        ))}
+
+        {Array.isArray(challengeList) &&
+          challengeList.map((challenge) => (
+            <div key={challenge.id}>
+              <Title>{challenge.name}</Title>
+            </div>
+          ))}
         <Period>
           <div>챌린지 진행기간</div>
           <div>2023.10.05 ~ 2023.10.26 (3주) </div>

@@ -17,6 +17,7 @@ const ChallengeListPage = () => {
     try {
       const list = await GetChallengeList();
       setChallengeList(list);
+      console.log(list);
     } catch (error) {
       console.error("챌린지 목록 조회 실패", error);
     }

@@ -48,20 +48,22 @@ const CurrentChallenge = ({ challengeList }) => {
             />
           )}
         </Title> */}
-        {challengeList.map((challenge) => (
-          <div key={challenge.id}>
-            <Title>
-              {challenge.name} ✨
-              <img onClick={() => showQuitModal(challenge.name)} src={quit} />
-              {openQuitModal && (
-                <QuitChallenge
-                  setOpenQuitModal={setOpenQuitModal}
-                  quitChallengeName={quitChallengeName}
-                />
-              )}
-            </Title>
-          </div>
-        ))}
+
+        {Array.isArray(challengeList) &&
+          challengeList.map((challenge) => (
+            <div key={challenge.id}>
+              <Title>
+                {challenge.name} ✨
+                <img onClick={() => showQuitModal(challenge.name)} src={quit} />
+                {openQuitModal && (
+                  <QuitChallenge
+                    setOpenQuitModal={setOpenQuitModal}
+                    quitChallengeName={quitChallengeName}
+                  />
+                )}
+              </Title>
+            </div>
+          ))}
 
         <Period>
           <div>챌린지 진행기간</div>
