@@ -2,15 +2,8 @@ import React, { useState } from "react";
 import * as dateFns from "date-fns";
 import { styled } from "styled-components";
 
-const Challenge = ({
-  selectedDate,
-  goal1,
-  goal2,
-  goal3,
-  func1,
-  func2,
-  func3,
-}) => {
+const Challenge = ({ selectedDate, dayStatus }) => {
+  console.log(dayStatus);
   return (
     <Wrapper>
       <Date>
@@ -18,18 +11,24 @@ const Challenge = ({
         {dateFns.format(selectedDate, "d")}일
       </Date>
       <ChallengeList>
-        <Goal1>
-          <div id="circle" goal1={goal1} onClick={func1}></div>
-          <span>영어 공부</span>
-        </Goal1>
-        <Goal2>
-          <div id="circle" goal2={goal2} onClick={func2}></div>
-          <span>스페인어 화상수업</span>
-        </Goal2>
-        <Goal3>
-          <div id="circle" goal3={goal3} onClick={func3}></div>
-          <span>매일 감사일기 작성하기</span>
-        </Goal3>
+        {dayStatus[0] && (
+          <Goal1>
+            <div id="circle" goal1={dayStatus[0].is_done}></div>
+            <span>{dayStatus[0].goal_content}</span>
+          </Goal1>
+        )}
+        {dayStatus[1] && (
+          <Goal2>
+            <div id="circle" goal2={dayStatus[1].is_done}></div>
+            <span>{dayStatus[1].goal_content}</span>
+          </Goal2>
+        )}
+        {dayStatus[2] && (
+          <Goal3>
+            <div id="circle" goal3={dayStatus[2].is_done}></div>
+            <span>{dayStatus[2].goal_content}</span>
+          </Goal3>
+        )}
       </ChallengeList>
     </Wrapper>
   );

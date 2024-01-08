@@ -3,7 +3,11 @@ import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { format } from "date-fns";
-import { ClickedChallenge } from "../api/challenge";
+import {
+  GetChallengeStatus,
+  ClickedChallenge,
+  getComments,
+} from "../api/challenge";
 
 import MainTop from "../components/MainPage/MainTop";
 import StatusBox from "../components/MainPage/StatusBox";
@@ -23,22 +27,40 @@ const MainPage = () => {
   const navigate = useNavigate();
   const [balls, setBalls] = useState(1);
   const [modal, setModal] = useState(false);
-  const [dayStatus, setDayStatus] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [formattedDate, setFormattedDate] = useState(
+    format(selectedDate, "yyyy-MM-dd")
+  );
+
   const nickname = useSelector((state) => state.nickname);
 
-  const formattedDate = format(selectedDate, "yyyy-MM-dd");
+  const [currentStatus, setCurrentStatus] = useState([]); //달성률 현황
+  const [dayStatus, setDayStatus] = useState([]); //날짜별 챌린지 달성 여부
+  const [response, setResponse] = useState([]); //아이콘 반응 개수
+  const [comments, setComments] = useState([]); //댓글
 
   useEffect(() => {
+    //달성률 현황 가져오기
+    GetChallengeStatus()
+      .then((response) => {
+        setCurrentStatus(response.data.data.AchievementRate);
+        console.log(currentStatus);
+      })
+      .catch((error) => {
+        console.error("달성률 현황 조회 실패", error);
+      });
+    //날짜별 챌린지 달성 상태 가져오기
     ClickedChallenge(formattedDate)
       .then((response) => {
         setDayStatus(response.data.data);
         console.log(dayStatus);
       })
       .catch((error) => {
-        console.error("날짜별 챌린지 상태 조회 실패", error);
+        console.error("날짜별 챌린지 달성 여부 조회 실패", error);
       });
-  }, [formattedDate]);
+    //아이콘 반응 개수 가져오기
+    //댓글 가져오기
+  }, [selectedDate, formattedDate]);
 
   const openModal = () => {
     setModal(true);
@@ -55,26 +77,7 @@ const MainPage = () => {
   const handleDaySelect = (date) => {
     console.log("Selected Date:", date);
     setSelectedDate(date);
-  };
-
-  //챌린지 달성 관리
-  const [goal1, setGoal1] = useState(false);
-  const [goal2, setGoal2] = useState(false);
-  const [goal3, setGoal3] = useState(false);
-
-  const handleGoal1 = () => {
-    setGoal1(!goal1);
-    console.log(goal1);
-  };
-
-  const handleGoal2 = () => {
-    setGoal2(!goal2);
-    console.log(goal2);
-  };
-
-  const handleGoal3 = () => {
-    setGoal3(!goal3);
-    console.log(goal3);
+    setFormattedDate(format(selectedDate, "yyyy-MM-dd"));
   };
 
   return (
@@ -91,19 +94,11 @@ const MainPage = () => {
           </span>
           <Management onClick={goManage}>챌린지 관리하기</Management>
         </Title>
-        <StatusBox balls={balls} />
+        <StatusBox balls={balls} currentStatus={currentStatus} />
       </MyChallenge>
       <Calendar openModal={openModal} onDaySelect={handleDaySelect} />
       <ChallengeBox>
-        <Challenge
-          selectedDate={selectedDate}
-          goal1={goal1}
-          goal2={goal2}
-          goal3={goal3}
-          func1={handleGoal1}
-          func2={handleGoal2}
-          func3={handleGoal3}
-        />
+        <Challenge selectedDate={selectedDate} dayStatus={dayStatus} />
       </ChallengeBox>
       <Reaction>
         <span>진행 중인 나의 챌린지를</span>
@@ -119,15 +114,7 @@ const MainPage = () => {
           <CommentInput placeholder="댓글을 입력해주세요" />
         </CommentBox>
       </ChallengeBox>
-      {modal && (
-        <FillModal
-          closeModal={closeModal}
-          balls={balls}
-          goal1={goal1}
-          goal2={goal2}
-          goal3={goal3}
-        />
-      )}
+      {modal && <FillModal closeModal={closeModal} balls={balls} />}
     </Wrapper>
   );
 };
