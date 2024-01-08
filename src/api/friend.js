@@ -15,7 +15,7 @@ export const GetFriendList = async () => {
 //친구 검색
 export const SearchFriend = async (text) => {
   try {
-    const response = await http.get(`/mypage/search/${text}/`);
+    const response = await http.get(`/mypage/search/${text}`);
     return response;
   } catch (error) {
     console.error("친구 검색 실패", error);

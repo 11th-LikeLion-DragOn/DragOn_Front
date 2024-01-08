@@ -47,8 +47,7 @@ const Wrapper = styled.div`
   width: 315px;
   display: flex;
   justify-content: center;
-  padding: 24px 0px;
-  border-top: 1.2px solid rgba(199, 198, 198, 0.2);
+  margin-bottom: 30px;
 `;
 
 const Icons = styled.div`

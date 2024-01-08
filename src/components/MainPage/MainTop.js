@@ -1,34 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
+import { GetFriendList } from "../../api/friend";
 
 import clickLeft from "../../assets/icons/click-left.png";
 import setting from "../../assets/icons/setting.png";
-import alarmStar from "../../assets/icons/alarm-star.png";
-import alarmEmpty from "../../assets/icons/alarm-empty.png";
 import FriendProfile from "./FriendProfile";
 import addFriend from "../../assets/icons/friend-list.png";
 import home from "../../assets/icons/home.png";
 
-import profile1 from "../../assets/icons/profile1.png";
-import profile2 from "../../assets/icons/profile2.png";
-import profile3 from "../../assets/icons/profile3.png";
-import profile4 from "../../assets/icons/profile4.png";
-import profile5 from "../../assets/icons/profile5.png";
+import none from "../../assets/icons/profile0.png";
+import red from "../../assets/icons/profile1.png";
+import gray from "../../assets/icons/profile2.png";
+import green from "../../assets/icons/profile3.png";
+import pink from "../../assets/icons/profile4.png";
+import yellow from "../../assets/icons/profile5.png";
 
 const MainTop = () => {
   const navigate = useNavigate();
+  const [friendList, setFriendList] = useState([]);
   const location = useLocation();
 
   const isFriendHome = location.pathname === "/friendhome";
 
-  const list = [
-    { id: 1, nickname: "가나다라마", profile: profile1 },
-    { id: 2, nickname: "바니바니", profile: profile2 },
-    { id: 3, nickname: "홍삼홍삼", profile: profile3 },
-    { id: 4, nickname: "당근당근", profile: profile4 },
-    { id: 4, nickname: "감자감자", profile: profile4 },
-  ];
+  useEffect(() => {
+    GetFriendList()
+      .then((response) => {
+        setFriendList(response.data.following_list);
+        console.log(response.data.following_list);
+      })
+      .catch((error) => {
+        console.error("친구 목록 조회 실패", error);
+      });
+  }, []);
 
   const goSetting = () => {
     navigate("/setting");
@@ -36,10 +40,6 @@ const MainTop = () => {
 
   const searchFriend = () => {
     navigate("/searchfriend");
-  };
-
-  const goAlarm = () => {
-    navigate("/alarm");
   };
 
   const goHome = () => {
@@ -58,16 +58,16 @@ const MainTop = () => {
           {!isFriendHome && (
             <>
               <img id="setting" src={setting} onClick={goSetting} />
-              <img id="alarm" src={alarmEmpty} onClick={goAlarm} />
             </>
           )}
           {isFriendHome && <img id="home" src={home} onClick={goHome} />}
         </Right>
       </Buttons>
       <FriendList>
-        {list.map((friend) => {
-          return <FriendProfile key={list.id} friend={friend} />;
-        })}
+        {friendList &&
+          friendList.map((friend) => {
+            return <FriendProfile key={friendList.id} friend={friend} />;
+          })}
         <img id="addFriend" src={addFriend} onClick={searchFriend} />
       </FriendList>
     </Wrapper>

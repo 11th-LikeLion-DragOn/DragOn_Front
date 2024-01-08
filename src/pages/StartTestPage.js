@@ -65,4 +65,6 @@ const Btn = styled.button`
   font-weight: 700;
   line-height: normal;
   margin-top: 100px;
+  border: none;
+  cursor: pointer;
 `;
