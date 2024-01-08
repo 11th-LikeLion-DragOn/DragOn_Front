@@ -8,7 +8,7 @@ import quit from "../../assets/icons/quit.png";
 import QuitChallenge from "./QuitChallenge";
 import DeleteGoalModal from "./DeleteGoalModal";
 
-const CurrentChallenge = () => {
+const CurrentChallenge = ({ challengeList }) => {
   const [openQuitModal, setOpenQuitModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState(null);
@@ -35,7 +35,7 @@ const CurrentChallenge = () => {
   return (
     <>
       <Wrapper>
-        <Title>
+        {/* <Title>
           담곰이의 갓생살기 ✨
           <img
             onClick={() => showQuitModal("담곰이의 갓생살기 ✨")}
@@ -47,7 +47,22 @@ const CurrentChallenge = () => {
               quitChallengeName={quitChallengeName}
             />
           )}
-        </Title>
+        </Title> */}
+        {challengeList.map((challenge) => (
+          <div key={challenge.id}>
+            <Title>
+              {challenge.name} ✨
+              <img onClick={() => showQuitModal(challenge.name)} src={quit} />
+              {openQuitModal && (
+                <QuitChallenge
+                  setOpenQuitModal={setOpenQuitModal}
+                  quitChallengeName={quitChallengeName}
+                />
+              )}
+            </Title>
+          </div>
+        ))}
+
         <Period>
           <div>챌린지 진행기간</div>
           <div>2023.11.01 ~ 2023.12.13 (6주) </div>
