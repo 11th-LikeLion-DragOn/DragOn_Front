@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { PostChallenge } from "../api/challenge";
 
 import TopBar from "../components/common/TopBar";
 import CustomSelect from "../components/SetPeriodPage/CustomSelect";
@@ -8,9 +9,17 @@ import CustomSelect from "../components/SetPeriodPage/CustomSelect";
 const WriteChallengeNamePage = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
+  const [period, setPeriod] = useState("");
 
-  const goNext = () => {
-    navigate(`/makechallenge/${name}`);
+  const goNext = async () => {
+    try {
+      const response = await PostChallenge(name, period);
+      console.log("챌린지 생성 성공", response);
+
+      navigate(`/makechallenge/${response.id}`);
+    } catch (error) {
+      console.error("챌린지 생성 실패", error);
+    }
   };
 
   return (
@@ -28,7 +37,7 @@ const WriteChallengeNamePage = () => {
 
         <div className="toptext">저는 이 챌린지를 </div>
         <Bottom>
-          <CustomSelect />
+          <CustomSelect setPeriod={setPeriod} />
           <div className="bottomtext">동안 진행할거에요.</div>
         </Bottom>
 
