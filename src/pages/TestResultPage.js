@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
+import { GetTestResult } from "../api/challenge";
 //components
 import TopBar from "../components/common/TopBar";
 //images
@@ -12,6 +13,21 @@ import link from "../assets/icons/link-circle.png";
 import kakao from "../assets/icons/kakao-circle.png";
 
 const TestResultPage = () => {
+  const [testResult, setTestResult] = useState(null);
+
+  useEffect(() => {
+    fetchTestResult();
+  }, []);
+
+  const fetchTestResult = async () => {
+    try {
+      const result = await GetTestResult();
+      setTestResult(result);
+    } catch (error) {
+      console.error("테스트 결과 조회 실패", error);
+    }
+  };
+
   return (
     <>
       <Wrapper>
@@ -19,9 +35,14 @@ const TestResultPage = () => {
         <Illu>
           <img src={illu1} />
         </Illu>
-        <div className="text">
-          목표로 돌격 💥 {"\n"}농담곰님은 <span>공격형 이무기</span>네요
-        </div>
+        {testResult ? (
+          <div className="text">
+            목표로 돌격 💥 {"\n"}
+            농담곰님은 <span>{testResult.result}</span>네요
+          </div>
+        ) : (
+          <div className="text">테스트 결과를 불러오는 중입니다...</div>
+        )}
         <hr></hr>
         <LinkWrapper>
           <img src={link} />
