@@ -12,14 +12,16 @@ const CurrentChallenge = () => {
   const [openQuitModal, setOpenQuitModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState(null);
+  const [quitChallengeName, setQuitChallengeName] = useState(null);
 
   const showModal = (goal) => {
     setSelectedGoal(goal);
     setOpenModal(true);
   };
 
-  const showQuitModal = () => {
+  const showQuitModal = (challengeName) => {
     setOpenQuitModal(true);
+    setQuitChallengeName(challengeName);
   };
 
   const deleteGoal = () => {
@@ -35,9 +37,15 @@ const CurrentChallenge = () => {
       <Wrapper>
         <Title>
           담곰이의 갓생살기 ✨
-          <img onClick={showQuitModal} src={quit} />
+          <img
+            onClick={() => showQuitModal("담곰이의 갓생살기 ✨")}
+            src={quit}
+          />
           {openQuitModal && (
-            <QuitChallenge setOpenQuitModal={setOpenQuitModal} />
+            <QuitChallenge
+              setOpenQuitModal={setOpenQuitModal}
+              quitChallengeName={quitChallengeName}
+            />
           )}
         </Title>
         <Period>

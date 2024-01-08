@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
 import { DeleteChallenge } from "../../api/challenge";
 
-const QuitChallenge = ({ setOpenQuitModal }) => {
+const QuitChallenge = ({ setOpenQuitModal, quitChallengeName }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -34,7 +34,7 @@ const QuitChallenge = ({ setOpenQuitModal }) => {
       <Box>
         <Wrapper>
           <div className="question">
-            <span>“담곰이의 갓생살기 ✨” </span>
+            <span>{quitChallengeName} </span>
             챌린지를 {"\n"} 정말 그만두시겠습니까?
           </div>
           <QuitBtn onClick={deleteGoal}>챌린지 그만두기 </QuitBtn>
