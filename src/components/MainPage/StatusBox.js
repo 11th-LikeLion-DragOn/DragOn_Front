@@ -205,7 +205,7 @@ const RateBar1 = styled.div`
   background: var(--gray_01, rgba(192, 192, 192, 0.1));
   #current {
     z-index: 100;
-    width: ${(props) => 125 * props.num};
+    width: ${(props) => 125 * props.num * 0.01}px;
     height: 10px;
     flex-shrink: 0;
     border-radius: 30px;
@@ -268,7 +268,7 @@ const RateBar2 = styled.div`
   background: var(--gray_01, rgba(192, 192, 192, 0.1));
   #current {
     z-index: 100;
-    width: ${(props) => 125 * props.num};
+    width: ${(props) => 125 * props.num * 0.01}px;
     height: 10px;
     flex-shrink: 0;
     border-radius: 30px;
@@ -331,7 +331,7 @@ const RateBar3 = styled.div`
   background: var(--gray_01, rgba(192, 192, 192, 0.1));
   #current {
     z-index: 100;
-    width: ${(props) => 125 * props.num};
+    width: ${(props) => 125 * props.num * 0.01}px;
     height: 10px;
     flex-shrink: 0;
     border-radius: 30px;

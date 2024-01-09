@@ -54,7 +54,7 @@ export const GetTestResult = async () => {
   }
 };
 
-//챌린지 달성 여부 체크
+//챌린지 달성 여부 변경
 export const checkChallenge = async (goalId) => {
   try {
     const response = await http.patch(`/main/goal/${goalId}/`);
