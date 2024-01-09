@@ -33,3 +33,7 @@ export const SetFriendState = async (id) => {
     throw error;
   }
 };
+
+//친구의 달성률
+
+//친구의 달력
