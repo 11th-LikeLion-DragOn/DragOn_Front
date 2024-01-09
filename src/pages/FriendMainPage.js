@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 
 import MainTop from "../components/MainPage/MainTop";
 import StatusBox from "../components/MainPage/StatusBox";
 import Calendar from "../components/MainPage/Calendar";
-import FillModal from "../components/MainPage/FillModal";
 import Challenge from "../components/MainPage/Challenge";
 import IconBox from "../components/MainPage/IconBox";
 import Comment from "../components/MainPage/Comment";
@@ -13,6 +14,9 @@ import Comment from "../components/MainPage/Comment";
 const FriendMainPage = () => {
   const [balls, setBalls] = useState(1);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [formattedDate, setFormattedDate] = useState(
+    format(selectedDate, "yyyy-MM-dd")
+  );
 
   return (
     <Wrapper>

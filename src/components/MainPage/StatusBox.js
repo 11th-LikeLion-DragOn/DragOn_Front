@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useLocation } from "react-router-dom";
-import { GetChallengeStatus } from "../../api/challenge";
-
 import info from "../../assets/icons/info.png";
 import MarbleModal from "./MarbleModal";
-import { current } from "@reduxjs/toolkit";
 
 const StatusBox = ({ balls, currentStatus }) => {
   const location = useLocation();

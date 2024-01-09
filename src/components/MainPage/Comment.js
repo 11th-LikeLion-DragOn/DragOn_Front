@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { DeleteComment } from "../../api/challenge";
+import { useSelector } from "react-redux";
 
 import none from "../../assets/icons/profile0.png";
 import red from "../../assets/icons/profile1.png";
@@ -16,6 +17,8 @@ const Comment = ({ challengeId, comment }) => {
   const [openDropBox, setOpenDropBox] = useState(false);
   const [profile, setProfile] = useState();
   const [open, setOpen] = useState(false);
+
+  const nickname = useSelector((state) => state.nickname);
 
   const mapProfileToIcon = (profileValue) => {
     const profileMap = {
@@ -53,16 +56,10 @@ const Comment = ({ challengeId, comment }) => {
           <span id="time">{comment.created_at}</span>
         </ProfileText>
       </Profile>
-      <img id="more" src={more} onClick={() => setOpenDropBox(!openDropBox)} />
-      {openDropBox && (
-        <DropBox>
-          <span id="edit">수정</span>
-          <div id="line"></div>
-          <span id="del" onClick={deleteComment}>
-            삭제
-          </span>
-        </DropBox>
+      {nickname === comment.user.nickname && (
+        <img id="del" src={trash} onClick={deleteComment} />
       )}
+
       <Content>{comment.content}</Content>
       <Recomment onClick={() => setOpen(!open)}>답글</Recomment>
       {open && (
@@ -83,7 +80,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
 
-  #more {
+  #del {
     position: absolute;
     top: 10px;
     right: 5px;
