@@ -19,6 +19,22 @@ const TestResultPage = () => {
   const [testResult, setTestResult] = useState(null);
   const nickname = useSelector((state) => state.nickname);
 
+  const getImageComponent = (profileResult) => {
+    switch (profileResult) {
+      case "red":
+        return <img src={illu1} alt="Red Illu" />;
+      case "yellow":
+        return <img src={illu2} alt="Yellow Illu" />;
+      case "gray":
+        return <img src={illu3} alt="Gray Illu" />;
+      case "pink":
+        return <img src={illu4} alt="Pink Illu" />;
+      case "white":
+        return <img src={illu5} alt="White Illu" />;
+      default:
+        return null;
+    }
+  };
   useEffect(() => {
     fetchTestResult();
   }, []);
@@ -40,13 +56,13 @@ const TestResultPage = () => {
     <>
       <Wrapper>
         <TopBar titleText="챌린지 성향 테스트" />
-        <Illu>
-          <img src={illu1} />
-        </Illu>
+        {testResult && testResult.profile_result[0] && (
+          <Illu>{getImageComponent(testResult.profile_result[0])}</Illu>
+        )}
         {testResult ? (
           <div className="text">
             목표로 돌격 💥 {"\n"}
-            {nickname}님은 <span>{testResult.result}</span>네요
+            {nickname}님은 <span>{testResult.profile_result[1]}</span>네요
           </div>
         ) : (
           <div className="text">테스트 결과를 불러오는 중입니다...</div>
