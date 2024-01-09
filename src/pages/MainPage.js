@@ -7,6 +7,7 @@ import {
   GetChallengeStatus,
   ClickedChallenge,
   getComments,
+  checkChallenge,
 } from "../api/challenge";
 
 import MainTop from "../components/MainPage/MainTop";
@@ -74,6 +75,15 @@ const MainPage = () => {
     setFormattedDate(format(selectedDate, "yyyy-MM-dd"));
   };
 
+  const doneChallenge = async (goalId) => {
+    try {
+      const response = await checkChallenge(goalId);
+      console.log(response);
+    } catch (error) {
+      console.log("챌린지 달성 여부 변경 실패", error);
+    }
+  };
+
   return (
     <Wrapper>
       <MainTop />
@@ -92,7 +102,11 @@ const MainPage = () => {
       </MyChallenge>
       <Calendar openModal={openModal} onDaySelect={handleDaySelect} />
       <ChallengeBox>
-        <Challenge selectedDate={selectedDate} dayStatus={dayStatus} />
+        <Challenge
+          selectedDate={selectedDate}
+          dayStatus={dayStatus}
+          doneChallenge={doneChallenge}
+        />
       </ChallengeBox>
       <Reaction>
         <span>진행 중인 나의 챌린지를</span>

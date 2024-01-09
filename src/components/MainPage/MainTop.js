@@ -20,7 +20,7 @@ const MainTop = () => {
     GetFriendList()
       .then((response) => {
         setFriendList(response.data.following_list);
-        console.log(response.data.following_list);
+        console.log(friendList);
       })
       .catch((error) => {
         console.error("친구 목록 조회 실패", error);
