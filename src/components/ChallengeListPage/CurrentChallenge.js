@@ -9,6 +9,9 @@ import QuitChallenge from "./QuitChallenge";
 import DeleteGoalModal from "./DeleteGoalModal";
 
 const CurrentChallenge = ({ challengeList }) => {
+  // const { state } = location || {};
+  // const { challengeList } = state || {};
+
   const [openQuitModal, setOpenQuitModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState(null);
@@ -57,47 +60,65 @@ const CurrentChallenge = ({ challengeList }) => {
                   />
                 )}
               </Title>
+
               <Period>
                 <div>챌린지 진행기간</div>
-                <div>2023.11.01 ~ 2023.12.13 ({challenge.period}) </div>
+                <div>
+                  {challenge.created_at} ~ {challenge.ended_at}(
+                  {challenge.period}주){" "}
+                </div>
               </Period>
             </div>
           ))}
 
         <ListWrapper>
-          <First>
-            <RedOne />
-            <span className="challenge-text">영어 공부</span>
-            <div className="delete" onClick={() => showModal("영어 공부")}>
-              목표삭제
-            </div>
-            {openModal && (
-              <DeleteGoalModal
-                setOpenModal={setOpenModal}
-                selectedGoal={selectedGoal}
-              />
-            )}
-          </First>
-          <Second>
-            <GreenOne />
-            <span className="challenge-text">스페인어 화상수업</span>
-            <div
-              className="delete"
-              onClick={() => showModal("스페인어 화상수업")}
-            >
-              목표삭제
-            </div>
-          </Second>
-          <Third>
-            <BlueOne />
-            <span className="challenge-text">매일 감사일기 작성하기</span>
-            <div
-              className="delete"
-              onClick={() => showModal("매일 감사일기 작성")}
-            >
-              목표삭제
-            </div>
-          </Third>
+          {Array.isArray(challengeList) &&
+            challengeList.map((challenge) => (
+              <div key={challenge.id}>
+                <First>
+                  <RedOne />
+                  <span className="challenge-text">
+                    {challenge.goals[0].content}
+                  </span>
+                  <div
+                    className="delete"
+                    onClick={() => showModal(challenge.goals[0].content)}
+                  >
+                    목표삭제
+                  </div>
+                  {openModal && (
+                    <DeleteGoalModal
+                      setOpenModal={setOpenModal}
+                      selectedGoal={selectedGoal}
+                    />
+                  )}
+                </First>
+                <Second>
+                  <GreenOne />
+                  <span className="challenge-text">
+                    {challenge.goals[1].content}
+                  </span>
+                  <div
+                    className="delete"
+                    onClick={() => showModal(challenge.goals[1].content)}
+                  >
+                    목표삭제
+                  </div>
+                </Second>
+                <Third>
+                  <BlueOne />
+                  <span className="challenge-text">
+                    {challenge.goals[2].content}
+                  </span>
+                  <div
+                    className="delete"
+                    onClick={() => showModal(challenge.goals[2].content)}
+                  >
+                    목표삭제
+                  </div>
+                </Third>
+              </div>
+            ))}
         </ListWrapper>
       </Wrapper>
     </>

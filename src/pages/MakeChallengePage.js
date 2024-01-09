@@ -18,6 +18,7 @@ const MakeChallengePage = () => {
 
   const goNext = async () => {
     try {
+      const goals = [];
       if (goal1.trim() !== "") {
         const goal1Response = await PostGoal(goal1, challengeId);
         console.log("목표1 생성 성공:", goal1Response);
@@ -29,9 +30,12 @@ const MakeChallengePage = () => {
       if (goal3.trim() !== "") {
         const goal3Response = await PostGoal(goal3, challengeId);
         console.log("목표3 생성 성공:", goal3Response);
+        goals.push(goal3Response);
       }
 
-      // navigate("/challengelist");
+      navigate("/challengelist", {
+        state: { goals, challengeName, challengeId },
+      });
     } catch (error) {
       console.error("목표 생성 실패", error);
     }
