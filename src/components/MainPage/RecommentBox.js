@@ -1,14 +1,38 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+import { WriteRecomment } from "../../api/challenge";
 
 import Recomment from "./Recomment";
 
-const RecommentBox = () => {
+const RecommentBox = ({ commentId, recomments }) => {
+  const [content, setContent] = useState("");
+
+  const writeRecomment = async () => {
+    WriteRecomment(commentId, content)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("댓글 작성 실패", error);
+      });
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      writeRecomment();
+    }
+  };
+
   return (
     <Wrapper>
-      <Recomment />
+      {recomments.length != 0 &&
+        recomments.map((recomment) => <Recomment recomment={recomment} />)}
       <InputArea>
-        <RecommentInput placeholder="답글을 입력해주세요" />
+        <RecommentInput
+          placeholder="답글을 입력해주세요"
+          onChange={(e) => setContent(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
       </InputArea>
     </Wrapper>
   );

@@ -55,9 +55,9 @@ export const GetTestResult = async () => {
 };
 
 //챌린지 달성 여부 변경
-export const checkChallenge = async (goalId) => {
+export const checkChallenge = async (goalId, date) => {
   try {
-    const response = await http.patch(`/main/goal/${goalId}/`);
+    const response = await http.patch(`/main/goal/${goalId}/?date=${date}`);
     return response;
   } catch (error) {
     console.error("챌린지 달성 여부 변경 실패", error);
@@ -108,7 +108,7 @@ export const EditComment = async (challengeId, commentId, text) => {
 export const DeleteComment = async (challengeId, commentId) => {
   try {
     const response = await http.delete(
-      `/main/challenge/${challengeId}/comments/${commentId}/`
+      `/main/challenge/${challengeId}/comment/${commentId}/`
     );
     return response;
   } catch (error) {

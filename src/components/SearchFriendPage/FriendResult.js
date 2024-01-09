@@ -11,6 +11,7 @@ import yellow from "../../assets/icons/profile5.png";
 
 const FriendResult = ({ friend, isFriend }) => {
   const [profile, setProfile] = useState();
+  console.log(friend);
 
   const mapProfileToIcon = (profileValue) => {
     const profileMap = {
@@ -45,9 +46,13 @@ const FriendResult = ({ friend, isFriend }) => {
         <span>{friend.nickname}</span>
       </Profile>
       {isFriend ? (
-        <DelButton onClick={changeFriendState(friend.id)}>삭제하기</DelButton>
+        <DelButton onClick={() => changeFriendState(friend.id)}>
+          삭제하기
+        </DelButton>
       ) : (
-        <AddButton onClick={changeFriendState(friend.id)}>추가하기</AddButton>
+        <AddButton onClick={() => changeFriendState(friend.id)}>
+          추가하기
+        </AddButton>
       )}
     </Wrapper>
   );
@@ -61,6 +66,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 14px;
 `;
 
 const Profile = styled.div`

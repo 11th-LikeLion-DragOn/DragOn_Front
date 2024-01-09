@@ -9,9 +9,7 @@ const IconBox = ({ reaction, clickReaction }) => {
           <span id="icon" onClick={() => clickReaction("good")}>
             👍
           </span>
-          <span clicked={reaction.good_clicked.toString()}>
-            {reaction.good_count}
-          </span>
+          <span clicked={reaction.good_clicked}>{reaction.good_count}</span>
         </Icon>
         <Icon>
           <span id="icon" onClick={() => clickReaction("question")}>

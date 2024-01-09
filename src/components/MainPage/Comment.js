@@ -1,25 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
+import { DeleteComment } from "../../api/challenge";
 
-import profile from "../../assets/icons/profile5.png";
+import none from "../../assets/icons/profile0.png";
+import red from "../../assets/icons/profile1.png";
+import gray from "../../assets/icons/profile2.png";
+import green from "../../assets/icons/profile3.png";
+import pink from "../../assets/icons/profile4.png";
+import yellow from "../../assets/icons/profile5.png";
 import more from "../../assets/icons/more.png";
 import RecommentBox from "./RecommentBox";
 import trash from "../../assets/icons/trash.png";
 
-const Comment = () => {
+const Comment = ({ challengeId, comment }) => {
   const [openDropBox, setOpenDropBox] = useState(false);
-  const [content, setContent] = useState(
-    "님 어제 저랑 술마셨잖아요ㅋㅋ 이게 머죠?????"
-  );
+  const [profile, setProfile] = useState();
   const [open, setOpen] = useState(false);
+
+  const mapProfileToIcon = (profileValue) => {
+    const profileMap = {
+      none: none,
+      red: red,
+      gray: gray,
+      green: green,
+      pink: pink,
+      yellow: yellow,
+    };
+
+    return profileMap[profileValue];
+  };
+
+  useEffect(() => {
+    setProfile(mapProfileToIcon(comment.user.profile));
+  }, []);
+
+  const deleteComment = async () => {
+    DeleteComment(challengeId, comment.id)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("댓글 삭제 실패", error);
+      });
+  };
 
   return (
     <Wrapper>
       <Profile>
         <img src={profile} />
         <ProfileText>
-          <span id="username">농담곰</span>
-          <span id="time">2023.11.16 13:14</span>
+          <span id="username">{comment.user.nickname}</span>
+          <span id="time">{comment.created_at}</span>
         </ProfileText>
       </Profile>
       <img id="more" src={more} onClick={() => setOpenDropBox(!openDropBox)} />
@@ -27,12 +58,16 @@ const Comment = () => {
         <DropBox>
           <span id="edit">수정</span>
           <div id="line"></div>
-          <span id="del">삭제</span>
+          <span id="del" onClick={deleteComment}>
+            삭제
+          </span>
         </DropBox>
       )}
-      <Content>{content}</Content>
+      <Content>{comment.content}</Content>
       <Recomment onClick={() => setOpen(!open)}>답글</Recomment>
-      {open && <RecommentBox />}
+      {open && (
+        <RecommentBox commentId={comment.id} recomments={comment.recomment} />
+      )}
     </Wrapper>
   );
 };
@@ -123,6 +158,10 @@ const DropBox = styled.div`
     width: 42px;
     height: 0.7px;
     background-color: var(--gray2);
+  }
+
+  #del {
+    cursor: pointer;
   }
 `;
 
