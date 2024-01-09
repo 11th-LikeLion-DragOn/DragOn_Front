@@ -49,7 +49,7 @@ export const GetTestResult = async () => {
     const response = await http.get("/mypage/mytest/");
     return response.data;
   } catch (error) {
-    console.error("챌린지 목록 조회 실패", error);
+    console.error("챌린지 성향테스트 결과 조회 실패", error);
     throw error;
   }
 };
@@ -169,7 +169,6 @@ export const PostGoal = async (content, challengeId) => {
   }
 };
 
-
 //챌린지 달성 현황 조회
 export const GetChallengeStatus = async () => {
   try {
@@ -189,7 +188,6 @@ export const ClickedChallenge = async (date) => {
     console.error("일자별 챌린지 조회", error);
   }
 };
-
 
 //챌린지 반응 개수 조회
 export const GetReaction = async (challengeId) => {

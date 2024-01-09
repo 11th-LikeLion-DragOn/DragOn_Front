@@ -81,7 +81,7 @@ export const Logout = async () => {
 export const GetProfile = async (token) => {
   try {
     console.log("토큰:", token);
-    const response = await axios.get("/mypage/profile", {
+    const response = await http.get("/mypage/profile/", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -111,13 +111,14 @@ export const DeleteAccount = async (token) => {
 };
 
 //비밀번호 변경
+
 export const ChangePW = async (
   current_password,
   new_password,
   confirm_new_password
 ) => {
   try {
-    const response = await http.put("/accounts/password_reset", {
+    const response = await http.post("/accounts/password_reset", {
       current_password: current_password,
       new_password: new_password,
       confirm_new_password: confirm_new_password,

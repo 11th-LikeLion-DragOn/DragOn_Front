@@ -13,7 +13,9 @@ const TestingPage = () => {
 
   const goResult = async () => {
     try {
-      await PostTest(selectedOptions);
+      const response = await PostTest(selectedOptions);
+
+      console.log("테스트 결과 전송 성공:", response.data);
       navigate("/testresult");
     } catch (error) {
       console.log("테스트 결과 전송 실패", error);

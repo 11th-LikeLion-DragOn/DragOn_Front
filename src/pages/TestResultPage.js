@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { GetTestResult } from "../api/challenge";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 //components
 import TopBar from "../components/common/TopBar";
 //images
@@ -13,7 +15,9 @@ import link from "../assets/icons/link-circle.png";
 import kakao from "../assets/icons/kakao-circle.png";
 
 const TestResultPage = () => {
+  const navigate = useNavigate();
   const [testResult, setTestResult] = useState(null);
+  const nickname = useSelector((state) => state.nickname);
 
   useEffect(() => {
     fetchTestResult();
@@ -23,9 +27,13 @@ const TestResultPage = () => {
     try {
       const result = await GetTestResult();
       setTestResult(result);
+      console.log("테스트 결과 조회 성공:", result);
     } catch (error) {
       console.error("테스트 결과 조회 실패", error);
     }
+  };
+  const handleTestComplete = () => {
+    navigate("/setting");
   };
 
   return (
@@ -38,7 +46,7 @@ const TestResultPage = () => {
         {testResult ? (
           <div className="text">
             목표로 돌격 💥 {"\n"}
-            농담곰님은 <span>{testResult.result}</span>네요
+            {nickname}님은 <span>{testResult.result}</span>네요
           </div>
         ) : (
           <div className="text">테스트 결과를 불러오는 중입니다...</div>
@@ -48,7 +56,7 @@ const TestResultPage = () => {
           <img src={link} />
           <img src={kakao} />
         </LinkWrapper>
-        <Btn>테스트 완료하기</Btn>
+        <Btn onClick={handleTestComplete}>테스트 완료하기</Btn>
       </Wrapper>
     </>
   );
