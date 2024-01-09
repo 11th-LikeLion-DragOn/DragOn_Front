@@ -13,6 +13,7 @@ const WriteChallengeNamePage = () => {
 
   const goNext = async () => {
     try {
+      console.log(period);
       const response = await PostChallenge(name, period);
       console.log("챌린지 생성 성공", response);
 

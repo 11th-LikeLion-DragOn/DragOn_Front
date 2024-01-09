@@ -152,15 +152,29 @@ export const ClickedChallenge = async (date) => {
 };
 
 //Post : 챌린지 생성하기
-export const PostChallenge = async (name, period) => {
+export const PostChallenge = async (challengeName, challengePeriod) => {
   try {
     const response = await http.post("/main/challengeadd/", {
-      name: name,
-      period: period,
+      name: challengeName,
+      period: challengePeriod,
     });
     return response.data;
   } catch (error) {
     console.error("챌린지 생성하기 실패", error);
+    throw error;
+  }
+};
+
+// Post: 목표 생성하기
+export const PostGoal = async (content, challengeId) => {
+  try {
+    const response = await http.post(`/main/goaladd/${challengeId}/`, {
+      content: content,
+      challenge: challengeId,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("목표 생성하기 실패", error);
     throw error;
   }
 };

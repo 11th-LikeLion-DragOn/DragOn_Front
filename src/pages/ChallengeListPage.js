@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { GetChallengeList } from "../api/challenge";
 //components
+import NoChallenge from "../components/ChallengeListPage/NoChallenge";
 import TopBar from "../components/common/TopBar";
 import HistoryChallenge from "../components/ChallengeListPage/HistoryChallenge";
 import CurrentChallenge from "../components/ChallengeListPage/CurrentChallenge";
@@ -16,7 +17,7 @@ const ChallengeListPage = () => {
   const fetchChallengeList = async () => {
     try {
       const list = await GetChallengeList();
-      setChallengeList(list);
+      setChallengeList(list.data);
       console.log(list);
     } catch (error) {
       console.error("챌린지 목록 조회 실패", error);
@@ -29,7 +30,11 @@ const ChallengeListPage = () => {
         <TopBar titleText="챌린지 관리하기" />
         <Current>
           <div className="ing">진행 중인 챌린지</div>
-          <CurrentChallenge challengeList={challengeList} />
+          {challengeList && challengeList.length > 0 ? (
+            <CurrentChallenge challengeList={challengeList} />
+          ) : (
+            <NoChallenge />
+          )}
         </Current>
         <History>
           <div className="history">챌린지 히스토리</div>

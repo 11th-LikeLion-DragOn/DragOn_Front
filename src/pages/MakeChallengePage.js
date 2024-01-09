@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
+import { PostGoal } from "../api/challenge";
 
 import TopBar from "../components/common/TopBar";
 import { ReactComponent as RedOne } from "../assets/icons/red.svg";
@@ -15,10 +16,27 @@ const MakeChallengePage = () => {
   const [goal2, setGoal2] = useState("");
   const [goal3, setGoal3] = useState("");
 
-  const goNext = () => {
-    navigate("/setperiod");
-  };
+  const goNext = async () => {
+    try {
+      const challengeId = "ChallengeId"; //클라에서 챌린지 아이디 어떻게 알고 넘겨주지?
 
+      if (goal1.trim() !== "") {
+        await PostGoal(goal1, challengeId);
+      }
+
+      if (goal2.trim() !== "") {
+        await PostGoal(goal2, challengeId);
+      }
+
+      if (goal3.trim() !== "") {
+        await PostGoal(goal3, challengeId);
+      }
+
+      navigate("/challengelist");
+    } catch (error) {
+      console.error("목표 생성 및 페이지 이동 실패", error);
+    }
+  };
   return (
     <>
       <Wrapper>

@@ -3,26 +3,35 @@ import { styled } from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
 import { DeleteChallenge } from "../../api/challenge";
 
-const QuitChallenge = ({ setOpenQuitModal, quitChallengeName }) => {
+const QuitChallenge = ({
+  setOpenQuitModal,
+  quitChallengeName,
+  quitChallengeId,
+  challengeList,
+  setChallengeList,
+}) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const challenge = location.state ? location.state.challenge : null;
 
-  const deleteGoal = () => {
-    if (challenge) {
-      DeleteChallenge(challenge.id)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log("챌린지 삭제 실패", error);
-        });
-    } else {
-      console.log("챌린지 정보를 찾을 수 없습니다.");
+  const deleteChall = async () => {
+    try {
+      if (!quitChallengeName || !quitChallengeId) {
+        console.log("챌린지 정보가 없습니다.");
+        return;
+      }
+
+      await DeleteChallenge(quitChallengeId);
+      console.log(`삭제된 챌린지: ${quitChallengeName}`);
+      const updatedChallengeList = challengeList.filter(
+        (challenge) => challenge.id !== quitChallengeId
+      );
+      setChallengeList(updatedChallengeList);
+    } catch (error) {
+      console.log("챌린지 삭제 실패", error);
     }
     setOpenQuitModal(false);
-    navigate("/nochallengelist");
   };
 
   const closeModal = () => {
@@ -37,7 +46,7 @@ const QuitChallenge = ({ setOpenQuitModal, quitChallengeName }) => {
             <span>{quitChallengeName} </span>
             챌린지를 {"\n"} 정말 그만두시겠습니까?
           </div>
-          <QuitBtn onClick={deleteGoal}>챌린지 그만두기 </QuitBtn>
+          <QuitBtn onClick={deleteChall}>챌린지 그만두기 </QuitBtn>
           <CancelBtn onClick={closeModal}>취소하기</CancelBtn>
         </Wrapper>
       </Box>
