@@ -4,13 +4,14 @@ import { WriteRecomment } from "../../api/challenge";
 
 import Recomment from "./Recomment";
 
-const RecommentBox = ({ commentId, recomments }) => {
+const RecommentBox = ({ handleRender, commentId, recomments }) => {
   const [content, setContent] = useState("");
 
   const writeRecomment = async () => {
     WriteRecomment(commentId, content)
       .then((response) => {
         console.log(response);
+        deleteText();
       })
       .catch((error) => {
         console.log("댓글 작성 실패", error);
@@ -20,7 +21,12 @@ const RecommentBox = ({ commentId, recomments }) => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       writeRecomment();
+      handleRender();
     }
+  };
+
+  const deleteText = () => {
+    setContent("");
   };
 
   return (
@@ -32,6 +38,7 @@ const RecommentBox = ({ commentId, recomments }) => {
           placeholder="답글을 입력해주세요"
           onChange={(e) => setContent(e.target.value)}
           onKeyDown={handleKeyDown}
+          value={content}
         />
       </InputArea>
     </Wrapper>

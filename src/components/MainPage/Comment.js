@@ -9,12 +9,10 @@ import gray from "../../assets/icons/profile2.png";
 import green from "../../assets/icons/profile3.png";
 import pink from "../../assets/icons/profile4.png";
 import yellow from "../../assets/icons/profile5.png";
-import more from "../../assets/icons/more.png";
 import RecommentBox from "./RecommentBox";
 import trash from "../../assets/icons/trash.png";
 
-const Comment = ({ challengeId, comment }) => {
-  const [openDropBox, setOpenDropBox] = useState(false);
+const Comment = ({ render, setRender, challengeId, comment }) => {
   const [profile, setProfile] = useState();
   const [open, setOpen] = useState(false);
 
@@ -33,6 +31,10 @@ const Comment = ({ challengeId, comment }) => {
     return profileMap[profileValue];
   };
 
+  const handleRender = () => {
+    setRender(render + 0.1);
+  };
+
   useEffect(() => {
     setProfile(mapProfileToIcon(comment.user.profile));
   }, []);
@@ -41,6 +43,7 @@ const Comment = ({ challengeId, comment }) => {
     DeleteComment(challengeId, comment.id)
       .then((response) => {
         console.log(response);
+        setRender(render + 0.1);
       })
       .catch((error) => {
         console.log("댓글 삭제 실패", error);
@@ -63,7 +66,11 @@ const Comment = ({ challengeId, comment }) => {
       <Content>{comment.content}</Content>
       <Recomment onClick={() => setOpen(!open)}>답글</Recomment>
       {open && (
-        <RecommentBox commentId={comment.id} recomments={comment.recomment} />
+        <RecommentBox
+          handleRender={handleRender}
+          commentId={comment.id}
+          recomments={comment.recomment}
+        />
       )}
     </Wrapper>
   );

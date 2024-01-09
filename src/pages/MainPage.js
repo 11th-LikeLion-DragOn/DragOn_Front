@@ -38,6 +38,7 @@ const MainPage = () => {
   const [comments, setComments] = useState([]); //댓글
   const [content, setContent] = useState(""); //댓글 작성 내용
   const [challengeId, setChallengeId] = useState(); //챌린지 id
+  const [render, setRender] = useState(0);
 
   useEffect(() => {
     //달성률 현황 가져오기
@@ -77,7 +78,7 @@ const MainPage = () => {
       .catch((error) => {
         console.error("댓글 조회 실패", error);
       });
-  }, [selectedDate]);
+  }, [render]);
 
   const openModal = () => {
     setModal(true);
@@ -95,12 +96,14 @@ const MainPage = () => {
     console.log("Selected Date:", date);
     setSelectedDate(date);
     setFormattedDate(format(selectedDate, "yyyy-MM-dd"));
+    setRender(render + 0.1);
   };
 
   const doneChallenge = async (goalId) => {
     try {
       const response = await checkChallenge(goalId, formattedDate);
       console.log(response);
+      setRender(render + 0.1);
     } catch (error) {
       console.log("챌린지 달성 여부 변경 실패", error);
     }
@@ -110,6 +113,7 @@ const MainPage = () => {
     ClickReaction(challengeId, type)
       .then((response) => {
         console.log(response);
+        setRender(render + 0.1);
       })
       .catch((error) => {
         console.log("챌린지 반응 클릭 실패", error);
@@ -120,6 +124,7 @@ const MainPage = () => {
     WriteCommemt(challengeId, content)
       .then((response) => {
         console.log(response);
+        deleteText();
       })
       .catch((error) => {
         console.log("댓글 작성 실패", error);
@@ -129,7 +134,12 @@ const MainPage = () => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       writeComment();
+      setRender(render + 0.1);
     }
+  };
+
+  const deleteText = () => {
+    setContent("");
   };
 
   return (
@@ -168,12 +178,18 @@ const MainPage = () => {
           <CommentBox>
             {comments.length != 0 &&
               comments.map((comment) => (
-                <Comment challengeId={challengeId} comment={comment} />
+                <Comment
+                  render={render}
+                  setRender={setRender}
+                  challengeId={challengeId}
+                  comment={comment}
+                />
               ))}
             <CommentInput
               placeholder="댓글을 입력해주세요"
               onChange={(e) => setContent(e.target.value)}
               onKeyDown={handleKeyDown}
+              value={content}
             />
           </CommentBox>
         </Box>
