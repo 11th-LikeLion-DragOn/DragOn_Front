@@ -9,7 +9,7 @@ import { ReactComponent as GreenOne } from "../assets/icons/green.svg";
 import { ReactComponent as BlueOne } from "../assets/icons/blue.svg";
 
 const MakeChallengePage = () => {
-  const { challengeName } = useParams();
+  const { challengeName, challengeId } = useParams();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [goal1, setGoal1] = useState("");
@@ -18,25 +18,25 @@ const MakeChallengePage = () => {
 
   const goNext = async () => {
     try {
-      const challengeId = "ChallengeId"; //클라에서 챌린지 아이디 어떻게 알고 넘겨주지?
-
       if (goal1.trim() !== "") {
-        await PostGoal(goal1, challengeId);
+        const goal1Response = await PostGoal(goal1, challengeId);
+        console.log("목표1 생성 성공:", goal1Response);
       }
-
       if (goal2.trim() !== "") {
-        await PostGoal(goal2, challengeId);
+        const goal2Response = await PostGoal(goal2, challengeId);
+        console.log("목표2 생성 성공:", goal2Response);
       }
-
       if (goal3.trim() !== "") {
-        await PostGoal(goal3, challengeId);
+        const goal3Response = await PostGoal(goal3, challengeId);
+        console.log("목표3 생성 성공:", goal3Response);
       }
 
-      navigate("/challengelist");
+      // navigate("/challengelist");
     } catch (error) {
-      console.error("목표 생성 및 페이지 이동 실패", error);
+      console.error("목표 생성 실패", error);
     }
   };
+
   return (
     <>
       <Wrapper>

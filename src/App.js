@@ -57,7 +57,7 @@ function App() {
           {/* 챌린지 생성하기*/}
           <Route path="/writechallenge" element={<WriteChallengeNamePage />} />
           <Route
-            path="/makechallenge/:challengeName"
+            path="/makechallenge/:challengeName/:challengeId"
             element={<MakeChallengePage />}
           />
 
