@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 //api
 import { GetProfile, Logout } from "../api/user";
 //components
@@ -20,6 +21,8 @@ const SettingPage = () => {
     username: "농담곰",
     nickname: "damgom333",
   });
+  const nickname = useSelector((state) => state.nickname);
+  const username = useSelector((state) => state.username);
 
   // 탈퇴 클릭 시 모달
   const showQuitModalHandler = () => {
@@ -74,8 +77,8 @@ const SettingPage = () => {
         <Info>
           <img src={profile1} />
           <div className="info-text">
-            <div className="name">{user.username}</div>
-            <div className="nickname">{user.nickname}</div>
+            <div className="name">{nickname}</div>
+            <div className="nickname">{username}</div>
           </div>
         </Info>
 
