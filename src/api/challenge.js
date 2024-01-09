@@ -175,7 +175,6 @@ export const PostChallenge = async (challengeName, challengePeriod) => {
   }
 };
 
-
 // Post: 목표 생성하기
 export const PostGoal = async (content, challengeId) => {
   try {
@@ -186,6 +185,9 @@ export const PostGoal = async (content, challengeId) => {
     return response.data;
   } catch (error) {
     console.error("목표 생성하기 실패", error);
+    throw error;
+  }
+};
 
 //챌린지 반응 개수 조회
 export const GetReaction = async (challengeId) => {
