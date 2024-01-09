@@ -18,14 +18,12 @@ const SearchFriendPage = () => {
     GetFriendList()
       .then((response) => {
         setFriendList(response.data.following_list);
-        console.log(response.data.following_list);
+        console.log(friendList);
       })
       .catch((error) => {
         console.error("친구 목록 조회 실패", error);
       });
   }, [clicked]);
-
-  console.log(result);
 
   const onChange = (e) => {
     setText(e.target.value);
@@ -74,13 +72,13 @@ const SearchFriendPage = () => {
         {clicked ? <Title>검색 결과</Title> : <Title>친구</Title>}
         {!clicked &&
           (friendList.length != 0 ? (
-            friendList.map((friend) => {
+            friendList.map((friend) => (
               <FriendResult
                 key={friendList.id}
                 friend={friend}
                 isFriend={true}
-              />;
-            })
+              />
+            ))
           ) : (
             <Text>
               <span id="info">추가한 친구가 없습니다.</span>

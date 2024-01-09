@@ -55,9 +55,9 @@ export const GetTestResult = async () => {
 };
 
 //챌린지 달성 여부 변경
-export const checkChallenge = async (goalId) => {
+export const checkChallenge = async (goalId, date) => {
   try {
-    const response = await http.patch(`/main/goal/${goalId}/`);
+    const response = await http.patch(`/main/goal/${goalId}/?date=${date}`);
     return response;
   } catch (error) {
     console.error("챌린지 달성 여부 변경 실패", error);
@@ -108,7 +108,7 @@ export const EditComment = async (challengeId, commentId, text) => {
 export const DeleteComment = async (challengeId, commentId) => {
   try {
     const response = await http.delete(
-      `/main/challenge/${challengeId}/comments/${commentId}/`
+      `/main/challenge/${challengeId}/comment/${commentId}/`
     );
     return response;
   } catch (error) {
@@ -141,26 +141,6 @@ export const WriteRecomment = async (commentId, text) => {
   }
 };
 
-//챌린지 달성 현황 조회
-export const GetChallengeStatus = async () => {
-  try {
-    const response = await http.get("/main/achieverate/");
-    return response;
-  } catch (error) {
-    console.error("챌린지 달성 현황 조회 실패", error);
-  }
-};
-
-//챌린지 달력
-export const ClickedChallenge = async (date) => {
-  try {
-    const response = await http.get(`/main/calendar/?date=${date}/`);
-    return response;
-  } catch (error) {
-    console.error("일자별 챌린지 조회", error);
-  }
-};
-
 //Post : 챌린지 생성하기
 export const PostChallenge = async (challengeName, challengePeriod) => {
   try {
@@ -188,6 +168,28 @@ export const PostGoal = async (content, challengeId) => {
     throw error;
   }
 };
+
+
+//챌린지 달성 현황 조회
+export const GetChallengeStatus = async () => {
+  try {
+    const response = await http.get("/main/achieverate/");
+    return response;
+  } catch (error) {
+    console.error("챌린지 달성 현황 조회 실패", error);
+  }
+};
+
+//챌린지 달력
+export const ClickedChallenge = async (date) => {
+  try {
+    const response = await http.get(`/main/calendar/?date=${date}/`);
+    return response;
+  } catch (error) {
+    console.error("일자별 챌린지 조회", error);
+  }
+};
+
 
 //챌린지 반응 개수 조회
 export const GetReaction = async (challengeId) => {
