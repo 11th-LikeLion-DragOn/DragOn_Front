@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
+import { PostGoal } from "../api/challenge";
 
 import TopBar from "../components/common/TopBar";
 import { ReactComponent as RedOne } from "../assets/icons/red.svg";
@@ -8,15 +9,32 @@ import { ReactComponent as GreenOne } from "../assets/icons/green.svg";
 import { ReactComponent as BlueOne } from "../assets/icons/blue.svg";
 
 const MakeChallengePage = () => {
-  const { challengeName } = useParams();
+  const { challengeName, challengeId } = useParams();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [goal1, setGoal1] = useState("");
   const [goal2, setGoal2] = useState("");
   const [goal3, setGoal3] = useState("");
 
-  const goNext = () => {
-    navigate("/setperiod");
+  const goNext = async () => {
+    try {
+      if (goal1.trim() !== "") {
+        const goal1Response = await PostGoal(goal1, challengeId);
+        console.log("목표1 생성 성공:", goal1Response);
+      }
+      if (goal2.trim() !== "") {
+        const goal2Response = await PostGoal(goal2, challengeId);
+        console.log("목표2 생성 성공:", goal2Response);
+      }
+      if (goal3.trim() !== "") {
+        const goal3Response = await PostGoal(goal3, challengeId);
+        console.log("목표3 생성 성공:", goal3Response);
+      }
+
+      // navigate("/challengelist");
+    } catch (error) {
+      console.error("목표 생성 실패", error);
+    }
   };
 
   return (
