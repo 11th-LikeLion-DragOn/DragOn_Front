@@ -98,7 +98,7 @@ export const GetProfile = async (token) => {
 export const DeleteAccount = async (token) => {
   try {
     console.log("토큰:", token);
-    const response = await http.delete("/accounts/delete", {
+    const response = await http.delete("/accounts/delete/", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
