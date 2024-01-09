@@ -17,7 +17,7 @@ export const GetChallengeList = async () => {
 export const DeleteChallenge = async (challengeId) => {
   try {
     const response = await http.delete(`/main/challenge/${challengeId}/`);
-    return response.data;
+    return response.data || {};
   } catch (error) {
     console.error("챌린지 삭제 실패", error);
     throw error;
