@@ -9,9 +9,6 @@ import QuitChallenge from "./QuitChallenge";
 import DeleteGoalModal from "./DeleteGoalModal";
 
 const CurrentChallenge = ({ challengeList }) => {
-  // const { state } = location || {};
-  // const { challengeList } = state || {};
-
   const [openQuitModal, setOpenQuitModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState(null);
