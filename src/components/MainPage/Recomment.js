@@ -3,19 +3,17 @@ import { styled } from "styled-components";
 
 import profile from "../../assets/icons/profile4.png";
 
-const Recomment = () => {
-  const [content, setContent] = useState("다들.. 조용히 해주길바랍니다...");
-
+const Recomment = ({ recomment }) => {
   return (
     <Wrapper>
       <Profile>
         <img src={profile} />
         <ProfileText>
-          <span id="username">가나다라마바사</span>
-          <span id="time">2023.11.16 13:14</span>
+          <span id="username">{recomment.user.nickname}</span>
+          <span id="time">{recomment.created_at}</span>
         </ProfileText>
       </Profile>
-      <Content>{content}</Content>
+      <Content>{recomment.content}</Content>
     </Wrapper>
   );
 };
