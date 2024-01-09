@@ -17,7 +17,7 @@ export const GetChallengeList = async () => {
 export const DeleteChallenge = async (challengeId) => {
   try {
     const response = await http.delete(`/main/challenge/${challengeId}/`);
-    return response.data;
+    return response.data || {};
   } catch (error) {
     console.error("챌린지 삭제 실패", error);
     throw error;
@@ -169,6 +169,7 @@ export const PostGoal = async (content, challengeId) => {
   }
 };
 
+
 //챌린지 달성 현황 조회
 export const GetChallengeStatus = async () => {
   try {
@@ -188,6 +189,7 @@ export const ClickedChallenge = async (date) => {
     console.error("일자별 챌린지 조회", error);
   }
 };
+
 
 //챌린지 반응 개수 조회
 export const GetReaction = async (challengeId) => {
