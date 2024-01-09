@@ -49,7 +49,7 @@ export const GetTestResult = async () => {
     const response = await http.get("/mypage/mytest/");
     return response.data;
   } catch (error) {
-    console.error("챌린지 목록 조회 실패", error);
+    console.error("챌린지 성향테스트 결과 조회 실패", error);
     throw error;
   }
 };
