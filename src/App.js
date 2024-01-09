@@ -18,7 +18,6 @@ import MakeChallengePage from "./pages/MakeChallengePage";
 import SetPeriodPage from "./pages/SetPeriodPage";
 import ChallengeListPage from "./pages/ChallengeListPage";
 import FillChallengePage from "./pages/FillChallengePage";
-import NoChallengeListPage from "./pages/NoChallengeListPage";
 import FriendMainPage from "./pages/FriendMainPage";
 import WriteChallengeNamePage from "./pages/WriteChallengeNamePage";
 
@@ -58,18 +57,14 @@ function App() {
           {/* 챌린지 생성하기*/}
           <Route path="/writechallenge" element={<WriteChallengeNamePage />} />
           <Route
-            path="/makechallenge/:challengeName"
+            path="/makechallenge/:challengeName/:challengeId"
             element={<MakeChallengePage />}
           />
-          <Route path={"/setperiod"} element={<SetPeriodPage />}></Route>
+
           {/* 챌린지 관리하기 */}
           <Route
             path={"/challengelist"}
             element={<ChallengeListPage />}
-          ></Route>
-          <Route
-            path={"/nochallengelist"}
-            element={<NoChallengeListPage />}
           ></Route>
         </Routes>
       </Router>

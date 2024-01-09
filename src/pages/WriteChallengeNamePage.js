@@ -13,10 +13,12 @@ const WriteChallengeNamePage = () => {
 
   const goNext = async () => {
     try {
+      console.log(period);
       const response = await PostChallenge(name, period);
+      const challengeId = response.data.id;
+      const challengeName = response.data.name;
       console.log("챌린지 생성 성공", response);
-
-      navigate(`/makechallenge/${response.id}`);
+      navigate(`/makechallenge/${challengeName}/${challengeId}`);
     } catch (error) {
       console.error("챌린지 생성 실패", error);
     }

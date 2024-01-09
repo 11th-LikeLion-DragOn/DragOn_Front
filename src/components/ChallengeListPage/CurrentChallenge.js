@@ -13,15 +13,23 @@ const CurrentChallenge = ({ challengeList }) => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState(null);
   const [quitChallengeName, setQuitChallengeName] = useState(null);
+  const [quitChallengeId, setQuitChallengeId] = useState(0);
 
   const showModal = (goal) => {
     setSelectedGoal(goal);
     setOpenModal(true);
   };
 
-  const showQuitModal = (challengeName) => {
+  const showQuitModal = (challenge) => {
+    console.log("Selected Challenge:", challenge);
+    if (!challenge || !challenge.name || !challenge.id) {
+      console.log("잘못된 챌린지 정보입니다.");
+      return;
+    }
+
     setOpenQuitModal(true);
-    setQuitChallengeName(challengeName);
+    setQuitChallengeName(challenge.name);
+    setQuitChallengeId(challenge.id);
   };
 
   const deleteGoal = () => {
@@ -35,40 +43,27 @@ const CurrentChallenge = ({ challengeList }) => {
   return (
     <>
       <Wrapper>
-        {/* <Title>
-          담곰이의 갓생살기 ✨
-          <img
-            onClick={() => showQuitModal("담곰이의 갓생살기 ✨")}
-            src={quit}
-          />
-          {openQuitModal && (
-            <QuitChallenge
-              setOpenQuitModal={setOpenQuitModal}
-              quitChallengeName={quitChallengeName}
-            />
-          )}
-        </Title> */}
-
         {Array.isArray(challengeList) &&
           challengeList.map((challenge) => (
             <div key={challenge.id}>
               <Title>
-                {challenge.name} ✨
-                <img onClick={() => showQuitModal(challenge.name)} src={quit} />
+                {challenge.name}
+                <img onClick={() => showQuitModal(challenge)} src={quit} />
                 {openQuitModal && (
                   <QuitChallenge
                     setOpenQuitModal={setOpenQuitModal}
                     quitChallengeName={quitChallengeName}
+                    quitChallengeId={quitChallengeId}
                   />
                 )}
               </Title>
+              <Period>
+                <div>챌린지 진행기간</div>
+                <div>2023.11.01 ~ 2023.12.13 ({challenge.period}) </div>
+              </Period>
             </div>
           ))}
 
-        <Period>
-          <div>챌린지 진행기간</div>
-          <div>2023.11.01 ~ 2023.12.13 (6주) </div>
-        </Period>
         <ListWrapper>
           <First>
             <RedOne />
