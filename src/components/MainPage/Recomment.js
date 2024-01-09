@@ -1,9 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 
-import profile from "../../assets/icons/profile4.png";
+import none from "../../assets/icons/profile0.png";
+import red from "../../assets/icons/profile1.png";
+import gray from "../../assets/icons/profile2.png";
+import green from "../../assets/icons/profile3.png";
+import pink from "../../assets/icons/profile4.png";
+import yellow from "../../assets/icons/profile5.png";
 
 const Recomment = ({ recomment }) => {
+  const [profile, setProfile] = useState();
+
+  const mapProfileToIcon = (profileValue) => {
+    const profileMap = {
+      none: none,
+      red: red,
+      gray: gray,
+      green: green,
+      pink: pink,
+      yellow: yellow,
+    };
+
+    return profileMap[profileValue];
+  };
+
+  useEffect(() => {
+    setProfile(mapProfileToIcon(recomment.user.profile));
+  }, []);
+
   return (
     <Wrapper>
       <Profile>
