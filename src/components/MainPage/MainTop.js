@@ -9,13 +9,6 @@ import FriendProfile from "./FriendProfile";
 import addFriend from "../../assets/icons/friend-list.png";
 import home from "../../assets/icons/home.png";
 
-import none from "../../assets/icons/profile0.png";
-import red from "../../assets/icons/profile1.png";
-import gray from "../../assets/icons/profile2.png";
-import green from "../../assets/icons/profile3.png";
-import pink from "../../assets/icons/profile4.png";
-import yellow from "../../assets/icons/profile5.png";
-
 const MainTop = () => {
   const navigate = useNavigate();
   const [friendList, setFriendList] = useState([]);
@@ -27,7 +20,7 @@ const MainTop = () => {
     GetFriendList()
       .then((response) => {
         setFriendList(response.data.following_list);
-        console.log(response.data.following_list);
+        console.log(friendList);
       })
       .catch((error) => {
         console.error("친구 목록 조회 실패", error);

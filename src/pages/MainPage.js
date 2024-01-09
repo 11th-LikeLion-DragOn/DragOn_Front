@@ -6,7 +6,10 @@ import { format } from "date-fns";
 import {
   GetChallengeStatus,
   ClickedChallenge,
-  getComments,
+  GetComments,
+  checkChallenge,
+  GetReaction,
+  ClickReaction,
 } from "../api/challenge";
 
 import MainTop from "../components/MainPage/MainTop";
@@ -16,12 +19,6 @@ import FillModal from "../components/MainPage/FillModal";
 import Challenge from "../components/MainPage/Challenge";
 import IconBox from "../components/MainPage/IconBox";
 import Comment from "../components/MainPage/Comment";
-import none from "../assets/icons/profile0.png";
-import red from "../assets/icons/profile1.png";
-import gray from "../assets/icons/profile2.png";
-import green from "../assets/icons/profile3.png";
-import pink from "../assets/icons/profile4.png";
-import yellow from "../assets/icons/profile5.png";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -36,8 +33,9 @@ const MainPage = () => {
 
   const [currentStatus, setCurrentStatus] = useState([]); //달성률 현황
   const [dayStatus, setDayStatus] = useState([]); //날짜별 챌린지 달성 여부
-  const [response, setResponse] = useState([]); //아이콘 반응 개수
+  const [reaction, setReaction] = useState([]); //아이콘 반응 개수
   const [comments, setComments] = useState([]); //댓글
+  const [challengeId, setChallengeId] = useState(); //챌린지 id
 
   useEffect(() => {
     //달성률 현황 가져오기
@@ -45,6 +43,8 @@ const MainPage = () => {
       .then((response) => {
         setCurrentStatus(response.data.data.AchievementRate);
         console.log(currentStatus);
+        setChallengeId(response.data.data.AchievementRate[0].challenge.id);
+        console.log(challengeId);
       })
       .catch((error) => {
         console.error("달성률 현황 조회 실패", error);
@@ -53,14 +53,29 @@ const MainPage = () => {
     ClickedChallenge(formattedDate)
       .then((response) => {
         setDayStatus(response.data.data);
-        console.log(dayStatus);
       })
       .catch((error) => {
         console.error("날짜별 챌린지 달성 여부 조회 실패", error);
       });
     //아이콘 반응 개수 가져오기
+    GetReaction(challengeId)
+      .then((response) => {
+        setReaction(response.data.data);
+        console.log(reaction);
+      })
+      .catch((error) => {
+        console.error("챌린지 반응 조회 실패", error);
+      });
     //댓글 가져오기
-  }, [selectedDate, formattedDate]);
+    GetComments(challengeId)
+      .then((response) => {
+        setComments(response.data.data);
+        console.log(comments);
+      })
+      .catch((error) => {
+        console.error("댓글 조회 실패", error);
+      });
+  }, [selectedDate]);
 
   const openModal = () => {
     setModal(true);
@@ -78,6 +93,24 @@ const MainPage = () => {
     console.log("Selected Date:", date);
     setSelectedDate(date);
     setFormattedDate(format(selectedDate, "yyyy-MM-dd"));
+  };
+
+  const doneChallenge = async (goalId) => {
+    try {
+      const response = await checkChallenge(goalId);
+      console.log(response);
+    } catch (error) {
+      console.log("챌린지 달성 여부 변경 실패", error);
+    }
+  };
+
+  const clickReaction = async (type) => {
+    try {
+      const response = await ClickReaction(challengeId, type);
+      console.log(response);
+    } catch (error) {
+      console.log("챌린지 반응 클릭 실패", error);
+    }
   };
 
   return (
@@ -98,21 +131,27 @@ const MainPage = () => {
       </MyChallenge>
       <Calendar openModal={openModal} onDaySelect={handleDaySelect} />
       <ChallengeBox>
-        <Challenge selectedDate={selectedDate} dayStatus={dayStatus} />
+        <Challenge
+          selectedDate={selectedDate}
+          dayStatus={dayStatus}
+          doneChallenge={doneChallenge}
+        />
       </ChallengeBox>
       <Reaction>
         <span>진행 중인 나의 챌린지를</span>
         <span>친구와 함께 공유해요.</span>
       </Reaction>
       <ChallengeBox>
-        <CommentBox>
+        <Box>
           <span id="title">친구들의 반응</span>
-          <IconBox />
+          <IconBox reaction={reaction} clickReaction={clickReaction} />
           <span id="title">친구들의 댓글</span>
-          <Comment />
-          <Comment />
-          <CommentInput placeholder="댓글을 입력해주세요" />
-        </CommentBox>
+          <CommentBox>
+            <Comment />
+            <Comment />
+            <CommentInput placeholder="댓글을 입력해주세요" />
+          </CommentBox>
+        </Box>
       </ChallengeBox>
       {modal && <FillModal closeModal={closeModal} balls={balls} />}
     </Wrapper>
@@ -202,7 +241,7 @@ const Reaction = styled.div`
   border-top: 1px solid rgba(199, 198, 198, 0.2);
 `;
 
-const CommentBox = styled.div`
+const Box = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -219,6 +258,12 @@ const CommentBox = styled.div`
     padding-right: 230px;
     margin-bottom: 14px;
   }
+`;
+
+const CommentBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const CommentInput = styled.input`

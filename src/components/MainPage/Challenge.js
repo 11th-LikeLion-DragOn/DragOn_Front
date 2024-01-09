@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import * as dateFns from "date-fns";
 import { styled } from "styled-components";
 
-const Challenge = ({ selectedDate, dayStatus }) => {
+const Challenge = ({ selectedDate, dayStatus, doneChallenge }) => {
   console.log(dayStatus);
+
   return (
     <Wrapper>
       <Date>
@@ -13,19 +14,31 @@ const Challenge = ({ selectedDate, dayStatus }) => {
       <ChallengeList>
         {dayStatus[0] && (
           <Goal1>
-            <div id="circle" goal1={dayStatus[0].is_done}></div>
+            <div
+              id="circle"
+              goal1={dayStatus[0].is_done}
+              onClick={() => doneChallenge(dayStatus[0].goal_id)}
+            ></div>
             <span>{dayStatus[0].goal_content}</span>
           </Goal1>
         )}
         {dayStatus[1] && (
           <Goal2>
-            <div id="circle" goal2={dayStatus[1].is_done}></div>
+            <div
+              id="circle"
+              goal2={dayStatus[1].is_done}
+              onClick={() => doneChallenge(dayStatus[1].goal_id)}
+            ></div>
             <span>{dayStatus[1].goal_content}</span>
           </Goal2>
         )}
         {dayStatus[2] && (
           <Goal3>
-            <div id="circle" goal3={dayStatus[2].is_done}></div>
+            <div
+              id="circle"
+              goal3={dayStatus[2].is_done}
+              onClick={() => doneChallenge(dayStatus[2].goal_id)}
+            ></div>
             <span>{dayStatus[2].goal_content}</span>
           </Goal3>
         )}
@@ -77,8 +90,10 @@ const Goal1 = styled.div`
     height: 15px;
     flex-shrink: 0;
     border-radius: 50%;
-    background-color: ${({ goal1 }) => (goal1 ? "var(--red)" : "var(--white)")};
-    border: ${({ goal1 }) => (goal1 ? "none" : "1px solid var(--gray2)")};
+    background-color: ${(props) =>
+      props.goal1 === true ? "var(--red)" : "var(--white)"};
+    border: ${(props) =>
+      props.goal1 === true ? "none" : "1px solid var(--gray2)"};
     cursor: pointer;
   }
 `;
@@ -93,9 +108,10 @@ const Goal2 = styled.div`
     height: 15px;
     flex-shrink: 0;
     border-radius: 50%;
-    background-color: ${({ goal2 }) =>
-      goal2 ? "var(--green)" : "var(--white)"};
-    border: ${({ goal2 }) => (goal2 ? "none" : "1px solid var(--gray2)")};
+    background-color: ${(props) =>
+      props.goal2 === true ? "var(--green)" : "var(--white)"};
+    border: ${(props) =>
+      props.goal2 === true ? "none" : "1px solid var(--gray2)"};
     cursor: pointer;
   }
 `;
@@ -110,9 +126,10 @@ const Goal3 = styled.div`
     height: 15px;
     flex-shrink: 0;
     border-radius: 50%;
-    background-color: ${({ goal3 }) =>
-      goal3 ? "var(--blue)" : "var(--white)"};
-    border: ${({ goal3 }) => (goal3 ? "none" : "1px solid var(--gray2)")};
+    background-color: ${(props) =>
+      props.goal3 === true ? "var(--blue)" : "var(--white)"};
+    border: ${(props) =>
+      props.goal3 === true ? "none" : "1px solid var(--gray2)"};
     cursor: pointer;
   }
 `;

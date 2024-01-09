@@ -54,11 +54,21 @@ export const GetTestResult = async () => {
   }
 };
 
+//챌린지 달성 여부 변경
+export const checkChallenge = async (goalId) => {
+  try {
+    const response = await http.patch(`/main/goal/${goalId}/`);
+    return response;
+  } catch (error) {
+    console.error("챌린지 달성 여부 변경 실패", error);
+  }
+};
+
 //챌린지 댓글 모아보기
-export const getComments = async (challengeId) => {
+export const GetComments = async (challengeId) => {
   try {
     const response = await http.get(
-      `/main/challenge/${challengeId}/commentList/`
+      `/main/challenge/${challengeId}/commentlist/`
     );
     return response;
   } catch (error) {
@@ -165,6 +175,7 @@ export const PostChallenge = async (challengeName, challengePeriod) => {
   }
 };
 
+
 // Post: 목표 생성하기
 export const PostGoal = async (content, challengeId) => {
   try {
@@ -175,6 +186,26 @@ export const PostGoal = async (content, challengeId) => {
     return response.data;
   } catch (error) {
     console.error("목표 생성하기 실패", error);
+
+//챌린지 반응 개수 조회
+export const GetReaction = async (challengeId) => {
+  try {
+    const response = await http.get(`/main/reaction-count/${challengeId}/`);
+    return response;
+  } catch (error) {
+    console.error("챌린지 반응 조회 실패", error);
+    throw error;
+  }
+};
+
+//챌린지 반응 개수 변경
+export const ClickReaction = async (challengeId, type) => {
+  try {
+    const response = await http.post(`/main/reactions/${challengeId}/${type}/`);
+    return response;
+  } catch (error) {
+    console.error("챌린지 반응 클릭 실패", error);
+
     throw error;
   }
 };
