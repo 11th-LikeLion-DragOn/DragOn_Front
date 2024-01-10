@@ -10,12 +10,16 @@ import green from "../../assets/icons/profile3.png";
 import pink from "../../assets/icons/profile4.png";
 import yellow from "../../assets/icons/profile5.png";
 
-const FriendProfile = ({ key, friend }) => {
+const FriendProfile = ({ friend }) => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState();
+  const [friendProfile, setFriendProfile] = useState([]);
+  const [friendStatus, setFriendStatus] = useState([]);
 
   const goFriendHome = () => {
-    navigate("/friendhome");
+    navigate("/friendhome", {
+      state: { friendProfile: friendProfile, friendStatus: friendStatus },
+    });
   };
 
   const mapProfileToIcon = (profileValue) => {
@@ -33,6 +37,24 @@ const FriendProfile = ({ key, friend }) => {
 
   useEffect(() => {
     setProfile(mapProfileToIcon(friend.profile));
+    //친구 프로필 조회
+    GetFriendProfile(friend.id)
+      .then((response) => {
+        setFriendProfile(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("친구 프로필 조회 실패", error);
+      });
+    //친구 달성률 조회
+    GetFriendStatus(friend.id)
+      .then((response) => {
+        setFriendStatus(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("친구 달성률 조회 실패", error);
+      });
   }, []);
 
   return (

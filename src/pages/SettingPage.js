@@ -30,8 +30,6 @@ const SettingPage = () => {
   const balls = useAppSelector((state) => state.balls);
   const user_profile = useAppSelector((state) => state.profile);
 
-  console.log(user_profile);
-
   const mapProfileToIcon = (profileValue) => {
     const profileMap = {
       none: none,
@@ -65,6 +63,7 @@ const SettingPage = () => {
   const logout = () => {
     Logout();
     navigate("/");
+    window.location.replace("/");
   };
 
   useEffect(() => {

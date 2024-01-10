@@ -11,6 +11,7 @@ import {
   GetReaction,
   ClickReaction,
   WriteCommemt,
+  GetAllCalendar,
 } from "../api/challenge";
 
 import MainTop from "../components/MainPage/MainTop";
@@ -32,7 +33,7 @@ const MainPage = () => {
 
   const nickname = useAppSelector((state) => state.nickname);
   const balls = useAppSelector((state) => state.balls);
-  const userId = useAppSelector((state) => state.goalId);
+  const userId = useAppSelector((state) => state.id);
 
   const [currentStatus, setCurrentStatus] = useState([]); //달성률 현황
   const [dayStatus, setDayStatus] = useState([]); //날짜별 챌린지 달성 여부
@@ -40,7 +41,40 @@ const MainPage = () => {
   const [comments, setComments] = useState([]); //댓글
   const [content, setContent] = useState(""); //댓글 작성 내용
   const [challengeId, setChallengeId] = useState(); //챌린지 id
+  const [calendar, setCalendar] = useState([]);
   const [render, setRender] = useState(0);
+
+  const openModal = () => {
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
+  const goManage = () => {
+    navigate("/challengelist");
+  };
+
+  const getChallengeInfo = (id) => {
+    //아이콘 반응 개수 가져오기
+    GetReaction(id)
+      .then((response) => {
+        setReaction(response.data.data);
+      })
+      .catch((error) => {
+        console.error("챌린지 반응 조회 실패", error);
+      });
+    //댓글 가져오기
+    GetComments(id)
+      .then((response) => {
+        setComments(response.data.data);
+        console.log(comments);
+      })
+      .catch((error) => {
+        console.error("댓글 조회 실패", error);
+      });
+  };
 
   useEffect(() => {
     //달성률 현황 가져오기
@@ -49,6 +83,7 @@ const MainPage = () => {
         setCurrentStatus(response.data.data.AchievementRate);
         console.log(currentStatus);
         setChallengeId(response.data.data.AchievementRate[0].challenge.id);
+        getChallengeInfo(response.data.data.AchievementRate[0].challenge.id);
         console.log(challengeId);
       })
       .catch((error) => {
@@ -62,37 +97,15 @@ const MainPage = () => {
       .catch((error) => {
         console.error("날짜별 챌린지 달성 여부 조회 실패", error);
       });
-    //아이콘 반응 개수 가져오기
-    GetReaction(challengeId)
+    //달력 전체 조회
+    GetAllCalendar(userId, yearMonth)
       .then((response) => {
-        setReaction(response.data.data);
-        console.log(reaction);
+        setCalendar(response.data.data);
       })
       .catch((error) => {
-        console.error("챌린지 반응 조회 실패", error);
-      });
-    //댓글 가져오기
-    GetComments(challengeId)
-      .then((response) => {
-        setComments(response.data.data);
-        console.log(comments);
-      })
-      .catch((error) => {
-        console.error("댓글 조회 실패", error);
+        console.error("달력 전체 조회", error);
       });
   }, [render]);
-
-  const openModal = () => {
-    setModal(true);
-  };
-
-  const closeModal = () => {
-    setModal(false);
-  };
-
-  const goManage = () => {
-    navigate("/challengelist");
-  };
 
   const handleDaySelect = (date) => {
     console.log("Selected Date:", date);
@@ -161,7 +174,11 @@ const MainPage = () => {
         </Title>
         <StatusBox balls={balls} currentStatus={currentStatus} />
       </MyChallenge>
-      <Calendar openModal={openModal} onDaySelect={handleDaySelect} />
+      <Calendar
+        openModal={openModal}
+        onDaySelect={handleDaySelect}
+        calendar={calendar}
+      />
       <ChallengeBox>
         <Challenge
           selectedDate={selectedDate}
@@ -169,7 +186,6 @@ const MainPage = () => {
           doneChallenge={doneChallenge}
         />
       </ChallengeBox>
-
       <Reaction>
         <span>진행 중인 나의 챌린지를</span>
         <span>친구와 함께 공유해요.</span>
