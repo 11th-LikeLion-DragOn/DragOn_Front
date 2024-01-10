@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../redux/store";
 //api
 import { GetProfile, Logout } from "../api/user";
 //components
@@ -17,41 +17,16 @@ const SettingPage = () => {
   const navigate = useNavigate();
   const storedToken = localStorage.getItem("token");
   const [showQuitModal, setShowQuitModal] = useState(false);
-  const [user, setUser] = useState({
-    username: "농담곰",
-    nickname: "damgom333",
-  });
-  const nickname = useSelector((state) => state.nickname);
-  const username = useSelector((state) => state.username);
+
+  const user_id = useAppSelector((state) => state.id);
+  const nickname = useAppSelector((state) => state.nickname);
+  const username = useAppSelector((state) => state.username);
+  const balls = useAppSelector((state) => state.balls);
 
   // 탈퇴 클릭 시 모달
   const showQuitModalHandler = () => {
     setShowQuitModal(true);
   };
-
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        const storedToken = localStorage.getItem("token");
-        console.log("토큰:", storedToken); //토근 받아와졌나 확인
-
-        const profileData = await GetProfile(storedToken);
-        console.log("Profile Data:", profileData);
-
-        if (profileData) {
-          setUser({
-            username: profileData.username,
-            nickname: profileData.nickname,
-          });
-        } else {
-          console.error("프로필 데이터가 없습니다.");
-        }
-      } catch (error) {
-        console.error("프로필 조회 실패 ", error);
-      }
-    };
-    fetchProfileData();
-  }, []);
 
   const goChangeNick = () => {
     navigate("/changenick");
@@ -77,13 +52,13 @@ const SettingPage = () => {
         <Info>
           <img src={profile1} />
           <div className="info-text">
-            <div className="name">{nickname}</div>
-            <div className="nickname">{username}</div>
+            <div className="name">{username}</div>
+            <div className="nickname">{nickname}</div>
           </div>
         </Info>
 
         <Excharge>
-          보유한 여의주 1개
+          보유한 여의주 {balls}개
           <img src={marblePurple} />
           <div className="chargebtn">충전하기</div>
         </Excharge>

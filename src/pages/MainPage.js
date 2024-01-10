@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../redux/store";
 import { format } from "date-fns";
 import {
   GetChallengeStatus,
@@ -23,15 +23,17 @@ import Comment from "../components/MainPage/Comment";
 
 const MainPage = () => {
   const navigate = useNavigate();
-  const [balls, setBalls] = useState(1);
   const [modal, setModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [formattedDate, setFormattedDate] = useState(
     format(selectedDate, "yyyy-MM-dd")
   );
+  const [yearMonth, setYearMonth] = useState(format(selectedDate, "yyyy-MM"));
 
-  const nickname = useSelector((state) => state.nickname);
+  const nickname = useAppSelector((state) => state.nickname);
+  const balls = useAppSelector((state) => state.balls);
 
+  const [userInfo, setUserInfo] = useState([]);
   const [currentStatus, setCurrentStatus] = useState([]); //달성률 현황
   const [dayStatus, setDayStatus] = useState([]); //날짜별 챌린지 달성 여부
   const [reaction, setReaction] = useState([]); //아이콘 반응 개수
@@ -167,34 +169,37 @@ const MainPage = () => {
           doneChallenge={doneChallenge}
         />
       </ChallengeBox>
+
       <Reaction>
         <span>진행 중인 나의 챌린지를</span>
         <span>친구와 함께 공유해요.</span>
       </Reaction>
-      <ChallengeBox>
-        <Box>
-          <span id="title">친구들의 반응</span>
-          <IconBox reaction={reaction} clickReaction={clickReaction} />
-          <span id="title">친구들의 댓글</span>
-          <CommentBox>
-            {comments.length != 0 &&
-              comments.map((comment) => (
-                <Comment
-                  render={render}
-                  setRender={setRender}
-                  challengeId={challengeId}
-                  comment={comment}
-                />
-              ))}
-            <CommentInput
-              placeholder="댓글을 입력해주세요"
-              onChange={(e) => setContent(e.target.value)}
-              onKeyDown={handleKeyDown}
-              value={content}
-            />
-          </CommentBox>
-        </Box>
-      </ChallengeBox>
+      {dayStatus.length != 0 && (
+        <ChallengeBox>
+          <Box>
+            <span id="title">친구들의 반응</span>
+            <IconBox reaction={reaction} clickReaction={clickReaction} />
+            <span id="title">친구들의 댓글</span>
+            <CommentBox>
+              {comments.length != 0 &&
+                comments.map((comment) => (
+                  <Comment
+                    render={render}
+                    setRender={setRender}
+                    challengeId={challengeId}
+                    comment={comment}
+                  />
+                ))}
+              <CommentInput
+                placeholder="댓글을 입력해주세요"
+                onChange={(e) => setContent(e.target.value)}
+                onKeyDown={handleKeyDown}
+                value={content}
+              />
+            </CommentBox>
+          </Box>
+        </ChallengeBox>
+      )}
       {modal && <FillModal closeModal={closeModal} balls={balls} />}
     </Wrapper>
   );

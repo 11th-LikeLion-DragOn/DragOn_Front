@@ -6,6 +6,7 @@ import kakao from "../assets/icons/kakao-login.png";
 import { PostLogin } from "../api/user";
 import { useAppDispatch } from "../redux/store";
 import { setUser } from "../redux/userSlice";
+import { GetProfile } from "../api/user";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -26,13 +27,17 @@ const LoginPage = () => {
         const token = data.data.access_token;
         window.localStorage.setItem("token", JSON.stringify(token));
         console.log(data);
-        dispatch(
-          setUser({
-            id: data.data.id,
-            nickname: data.data.nickname,
-            username: data.data.username,
-          })
-        );
+        GetProfile(token).then((response) => {
+          console.log(response);
+          dispatch(
+            setUser({
+              id: response.data.id,
+              nickname: response.data.nickname,
+              username: response.data.username,
+              balls: response.data.balls,
+            })
+          );
+        });
         navigate("/main");
       })
       .catch((error) => {
