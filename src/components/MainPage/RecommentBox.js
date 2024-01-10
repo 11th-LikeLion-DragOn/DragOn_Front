@@ -32,7 +32,9 @@ const RecommentBox = ({ handleRender, commentId, recomments }) => {
   return (
     <Wrapper>
       {recomments.length != 0 &&
-        recomments.map((recomment) => <Recomment recomment={recomment} />)}
+        recomments.map((recomment) => (
+          <Recomment key={recomment.id} recomment={recomment} />
+        ))}
       <InputArea>
         <RecommentInput
           placeholder="답글을 입력해주세요"

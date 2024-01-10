@@ -200,6 +200,7 @@ const MainPage = () => {
               {comments.length != 0 &&
                 comments.map((comment) => (
                   <Comment
+                    key={comment.id}
                     render={render}
                     setRender={setRender}
                     challengeId={challengeId}

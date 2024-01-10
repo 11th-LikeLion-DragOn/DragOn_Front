@@ -49,7 +49,7 @@ const FillChallengePage = () => {
   const doneChallenge = (status) => {
     setId(status.goal_id);
     setContent(status.goat_content);
-    openModal;
+    openModal();
   };
 
   return (
