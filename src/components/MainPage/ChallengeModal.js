@@ -4,7 +4,9 @@ import * as dateFns from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { FillChallenge } from "../../api/challenge";
 
+
 const ChallengeModal = ({ selectedDate, closeModal, id, content }) => {
+
   const navigate = useNavigate();
 
   const fillChallenge = (id, content) => {
