@@ -8,6 +8,72 @@ import HistoryChallenge from "../components/ChallengeListPage/HistoryChallenge";
 import CurrentChallenge from "../components/ChallengeListPage/CurrentChallenge";
 
 const ChallengeListPage = () => {
+  const historyData = [
+    {
+      id: 1,
+      chname: "중간고사 공부를 해보아요💚",
+      period: 7,
+      created_at: "2023-11-03",
+      ended_at: "2023-11-11",
+      goals: [
+        {
+          id: 1,
+          content: "인물로 본 일본사 노트 정리하기",
+        },
+        {
+          id: 2,
+          content: "사용자 연구 프레젠테이션 읽기",
+        },
+        {
+          id: 3,
+          content: "트랜스 미디어 팀플 도서 읽기",
+        },
+      ],
+    },
+    {
+      id: 2,
+      chname: "담곰이의 갓생살기 ✨",
+      period: 14,
+      created_at: "2024-12-11",
+      ended_at: "2024-12-26",
+      goals: [
+        {
+          id: 1,
+          content: "Animal Farm 영어 원서 읽기",
+        },
+        {
+          id: 2,
+          content: "스페인어 화상수업 과제 제출",
+        },
+        {
+          id: 3,
+          content: "매일 감사 일기 작성하기",
+        },
+      ],
+    },
+    {
+      id: 3,
+      chname: "2024 새해 맞이 🐉",
+      period: 14,
+      created_at: "2024-01-01",
+      ended_at: "2024-01-15",
+      goals: [
+        {
+          id: 1,
+          content: "지역 도서관 봉사활동 하기",
+        },
+        {
+          id: 2,
+          content: "건강한 식단과 비타민 챙겨 먹기",
+        },
+        {
+          id: 3,
+          content: "매일 10분 이상 독서하기",
+        },
+      ],
+    },
+  ];
+
   const [challengeList, setChallengeList] = useState([]);
 
   useEffect(() => {
@@ -38,9 +104,13 @@ const ChallengeListPage = () => {
         </Current>
         <History>
           <div className="history">챌린지 히스토리</div>
-          <HistoryChallenge challengeList={challengeList} />
-          <HistoryChallenge challengeList={challengeList} />
-          <HistoryChallenge challengeList={challengeList} />
+          {historyData && historyData.length > 0 ? (
+            historyData.map((challenge) => (
+              <HistoryChallenge key={challenge.id} challenge={challenge} />
+            ))
+          ) : (
+            <NoChallenge />
+          )}
         </History>
       </Wrapper>
     </>
