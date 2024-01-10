@@ -17,7 +17,8 @@ const ChangePasswordPage = () => {
     if (password === rePw) {
       setShowError(false);
       try {
-        await ChangePW(myPw, password, rePw);
+        const response = await ChangePW(myPw, password, rePw);
+        console.log("비밀번호 변경 성공:", response);
         navigate("/setting");
       } catch (error) {
         console.error("비밀번호 변경 실패", error);
