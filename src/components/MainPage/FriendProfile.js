@@ -16,12 +16,6 @@ const FriendProfile = ({ friend }) => {
   const [friendProfile, setFriendProfile] = useState([]);
   const [friendStatus, setFriendStatus] = useState([]);
 
-  const goFriendHome = () => {
-    navigate("/friendhome", {
-      state: { friendProfile: friendProfile, friendStatus: friendStatus },
-    });
-  };
-
   const mapProfileToIcon = (profileValue) => {
     const profileMap = {
       none: none,
@@ -49,13 +43,22 @@ const FriendProfile = ({ friend }) => {
     //친구 달성률 조회
     GetFriendStatus(friend.id)
       .then((response) => {
-        setFriendStatus(response.data);
-        console.log(response.data);
+        setFriendStatus(response.data.data.AchievementRate);
+        console.log(response.data.data.AchievementRate);
       })
       .catch((error) => {
         console.error("친구 달성률 조회 실패", error);
       });
   }, []);
+
+  const goFriendHome = () => {
+    navigate("/friendhome", {
+      state: { friendProfile: friendProfile, friendStatus: friendStatus },
+    });
+  };
+
+  console.log(friendProfile);
+  console.log(friendStatus);
 
   return (
     <Wrapper onClick={goFriendHome}>
