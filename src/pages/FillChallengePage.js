@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useLocation } from "react-router-dom";
+import { format } from "date-fns";
+import { ClickedChallenge } from "../api/challenge";
 
 import TopBar from "../components/common/TopBar";
 import Calendar from "../components/MainPage/Calendar";
@@ -9,12 +11,14 @@ import ChallengeModal from "../components/MainPage/ChallengeModal";
 
 const FillChallengePage = () => {
   const location = useLocation();
-  const goal1 = location.state.goal1;
-  const goal2 = location.state.goal2;
-  const goal3 = location.state.goal3;
 
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [formattedDate, setFormattedDate] = useState(
+    format(selectedDate, "yyyy-MM-dd")
+  );
   const [modal, setModal] = useState(false);
+  const [dayStatus, setDayStatus] = useState([]); //날짜별 챌린지 달성 여부
+  const [render, setRender] = useState(0);
 
   const openModal = () => {
     setModal(true);
@@ -24,28 +28,32 @@ const FillChallengePage = () => {
     setModal(false);
   };
 
+  const fillChallenge = () => {
+    openModal();
+  };
+
   const handleDaySelect = (date) => {
     console.log("Selected Date:", date);
     setSelectedDate(date);
+    console.log(formattedDate);
+    setRender(render + 0.1);
   };
 
-  const handleChallenge1 = () => {
-    setTimeout(() => {
-      openModal();
-    }, 0);
-  };
+  useEffect(() => {
+    //날짜별 챌린지 달성 상태 가져오기
+    ClickedChallenge(formattedDate)
+      .then((response) => {
+        setDayStatus(response.data.data);
+        console.log(dayStatus);
+      })
+      .catch((error) => {
+        console.error("날짜별 챌린지 달성 여부 조회 실패", error);
+      });
+  }, [render]);
 
-  const handleChallenge2 = () => {
-    setTimeout(() => {
-      openModal();
-    }, 0);
-  };
-
-  const handleChallenge3 = () => {
-    setTimeout(() => {
-      openModal();
-    }, 0);
-  };
+  //골 눌렀을 때 Modal 열림,
+  //Modal에 골id, 골content 전달
+  //메꾸기 함수 바인딩
 
   return (
     <Wrapper>
@@ -54,12 +62,8 @@ const FillChallengePage = () => {
       <ChallengeList>
         <Challenge
           selectedDate={selectedDate}
-          goal1={goal1}
-          goal2={goal2}
-          goal3={goal3}
-          func1={handleChallenge1}
-          func2={handleChallenge2}
-          func3={handleChallenge3}
+          doneChallenge={fillChallenge}
+          dayStatus={dayStatus}
         />
       </ChallengeList>
       {modal && (

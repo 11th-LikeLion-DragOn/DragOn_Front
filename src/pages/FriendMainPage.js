@@ -47,7 +47,6 @@ const FriendMainPage = () => {
       console.log("친구 추가/삭제 실패", error);
     }
   };
-
   const getChallengeInfo = (id) => {
     //아이콘 반응 개수 가져오기
     GetReaction(id)
@@ -77,7 +76,7 @@ const FriendMainPage = () => {
   };
 
   useEffect(() => {
-    getChallengeInfo(friendId);
+    getChallengeInfo(challengeId);
     ClickFriendChallenge(friendId, formattedDate)
       .then((response) => {
         setDayStatus(response.data.data);
@@ -120,6 +119,8 @@ const FriendMainPage = () => {
   const deleteText = () => {
     setContent("");
   };
+
+  console.log(formattedDate);
 
   return (
     <Wrapper>

@@ -223,3 +223,13 @@ export const GetAllCalendar = async (userId, date) => {
     console.error("챌린지 달력 전체 조회 실패", error);
   }
 };
+
+//챌린지 메꾸기
+export const FillChallenge = async (goalId, date) => {
+  try {
+    const response = await http.patch(`/main/balls/${goalId}/?date=${date}/`);
+    return response;
+  } catch (error) {
+    console.error("챌린지 메꾸기 실패", error);
+  }
+};

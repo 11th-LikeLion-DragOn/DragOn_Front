@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import * as dateFns from "date-fns";
 import { useNavigate } from "react-router-dom";
 
-const FillModal = ({ selectedDate, closeModal }) => {
+const ChallengeModal = ({ selectedDate, closeModal }) => {
   const navigate = useNavigate();
 
   const fillChallenge = () => {
@@ -28,7 +28,7 @@ const FillModal = ({ selectedDate, closeModal }) => {
   );
 };
 
-export default FillModal;
+export default ChallengeModal;
 
 const Wrapper = styled.div`
   z-index: 50;
