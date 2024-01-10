@@ -76,6 +76,14 @@ const MainPage = () => {
       });
   };
 
+  const handleDaySelect = (date) => {
+    console.log("Selected Date:", date);
+    setSelectedDate(date);
+    setFormattedDate(format(selectedDate, "yyyy-MM-dd"));
+    console.log(formattedDate);
+    setRender(render + 0.1);
+  };
+
   useEffect(() => {
     //달성률 현황 가져오기
     GetChallengeStatus()
@@ -106,14 +114,6 @@ const MainPage = () => {
         console.error("달력 전체 조회", error);
       });
   }, [render]);
-
-  const handleDaySelect = (date) => {
-    console.log("Selected Date:", date);
-    setSelectedDate(date);
-    setFormattedDate(format(selectedDate, "yyyy-MM-dd"));
-    console.log(formattedDate);
-    setRender(render + 0.1);
-  };
 
   const doneChallenge = async (goalId) => {
     try {

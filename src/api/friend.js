@@ -57,3 +57,13 @@ export const GetFriendStatus = async (friendId) => {
 };
 
 //친구의 달력
+export const ClickFriendChallenge = async (id, date) => {
+  try {
+    const response = await http.get(
+      `/mypage/fricalendar/?user_id=${id}&date=${date}`
+    );
+    return response;
+  } catch (error) {
+    console.error("친구의 달력 날짜별 조회 실패", error);
+  }
+};
