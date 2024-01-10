@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { format } from "date-fns";
+import { ClickedChallenge } from "../api/challenge";
 
 import TopBar from "../components/common/TopBar";
 import Calendar from "../components/MainPage/Calendar";

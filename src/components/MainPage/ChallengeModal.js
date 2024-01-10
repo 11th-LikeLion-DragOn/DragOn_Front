@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import * as dateFns from "date-fns";
 import { useNavigate } from "react-router-dom";
-import { ClickedChallenge } from "../../api/challenge";
+import { FillChallenge } from "../../api/challenge";
 
 const ChallengeModal = ({ selectedDate, closeModal, id, content }) => {
   const navigate = useNavigate();
