@@ -32,6 +32,9 @@ const MainPage = () => {
 
   const nickname = useAppSelector((state) => state.nickname);
   const balls = useAppSelector((state) => state.balls);
+  const user_profile = useAppSelector((state) => state.profile);
+
+  console.log(user_profile);
 
   const [userInfo, setUserInfo] = useState([]);
   const [currentStatus, setCurrentStatus] = useState([]); //달성률 현황

@@ -35,6 +35,7 @@ const LoginPage = () => {
               nickname: response.data.nickname,
               username: response.data.username,
               balls: response.data.balls,
+              profile: response.data.profile,
             })
           );
         });
