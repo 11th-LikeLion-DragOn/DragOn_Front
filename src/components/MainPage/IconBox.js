@@ -3,45 +3,46 @@ import { styled } from "styled-components";
 
 const IconBox = ({ reaction, clickReaction }) => {
   console.log(reaction);
+  console.log(typeof reaction.good_clicked);
 
   return (
     <Wrapper>
       <Icons>
-        <Icon>
+        <Icon clicked={reaction.good_clicked}>
           <span id="icon" onClick={() => clickReaction("good")}>
             👍
           </span>
-          <span clicked={reaction.good_clicked}>{reaction.good_count}</span>
+          <span id="span">{reaction.good_count}</span>
         </Icon>
-        <Icon>
+        <Icon clicked={reaction.question_clicked}>
           <span id="icon" onClick={() => clickReaction("question")}>
             🤔
           </span>
-          <span>{reaction.question_count}</span>
+          <span id="span">{reaction.question_count}</span>
         </Icon>
-        <Icon>
+        <Icon clicked={reaction.fighting_clicked}>
           <span id="icon" onClick={() => clickReaction("fighting")}>
             🙌
           </span>
-          <span>{reaction.fighting_count}</span>
+          <span id="span">{reaction.fighting_count}</span>
         </Icon>
-        <Icon>
+        <Icon clicked={reaction.fire_clicked}>
           <span id="icon" onClick={() => clickReaction("fire")}>
             🔥
           </span>
-          <span>{reaction.fire_count}</span>
+          <span id="span">{reaction.fire_count}</span>
         </Icon>
-        <Icon>
+        <Icon clicked={reaction.mark_clicked}>
           <span id="icon" onClick={() => clickReaction("mark")}>
             ⁉️
           </span>
-          <span>{reaction.mark_count}</span>
+          <span id="span">{reaction.mark_count}</span>
         </Icon>
-        <Icon>
+        <Icon clicked={reaction.heart_clicked}>
           <span id="icon" onClick={() => clickReaction("heart")}>
             ❤️
           </span>
-          <span>{reaction.heart_count}</span>
+          <span id="span">{reaction.heart_count}</span>
         </Icon>
       </Icons>
     </Wrapper>
@@ -69,8 +70,6 @@ const Icon = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  color: ${(props) =>
-    props.clicked === "true" ? "var(--purple1)" : "var(--gray2)"};
   text-align: center;
   font-feature-settings: "clig" off, "liga" off;
   font-family: Pretendard;
@@ -82,5 +81,9 @@ const Icon = styled.div`
   #icon {
     font-size: 24px;
     cursor: pointer;
+  }
+
+  #span {
+    color: ${(props) => (props.clicked ? "var(--purple1)" : "var(--gray2)")};
   }
 `;

@@ -14,30 +14,27 @@ const Challenge = ({ selectedDate, dayStatus, doneChallenge }) => {
       {dayStatus.length != 0 ? (
         <ChallengeList>
           {dayStatus[0] && (
-            <Goal1>
+            <Goal1 goal1={dayStatus[0].is_done}>
               <div
                 id="circle"
-                goal1={dayStatus[0].is_done}
                 onClick={() => doneChallenge(dayStatus[0].goal_id)}
               ></div>
               <span>{dayStatus[0].goal_content}</span>
             </Goal1>
           )}
           {dayStatus[1] && (
-            <Goal2>
+            <Goal2 goal2={dayStatus[1].is_done}>
               <div
                 id="circle"
-                goal2={dayStatus[1].is_done}
                 onClick={() => doneChallenge(dayStatus[1].goal_id)}
               ></div>
               <span>{dayStatus[1].goal_content}</span>
             </Goal2>
           )}
           {dayStatus[2] && (
-            <Goal3>
+            <Goal3 goal3={dayStatus[2].is_done}>
               <div
                 id="circle"
-                goal3={dayStatus[2].is_done}
                 onClick={() => doneChallenge(dayStatus[2].goal_id)}
               ></div>
               <span>{dayStatus[2].goal_content}</span>
@@ -105,9 +102,9 @@ const Goal1 = styled.div`
     height: 15px;
     flex-shrink: 0;
     border-radius: 50%;
-    background-color: ${({ goal1 }) => (goal1 ? "var(--red)" : "var(--white)")};
-    border: ${(props) =>
-      props.goal1 === true ? "none" : "1px solid var(--gray2)"};
+    background-color: ${(props) =>
+      props.goal1 ? "var(--red)" : "var(--white)"};
+    border: ${(props) => (props.goal1 ? "none" : "1px solid var(--gray2)")};
     cursor: pointer;
   }
 `;
@@ -123,9 +120,8 @@ const Goal2 = styled.div`
     flex-shrink: 0;
     border-radius: 50%;
     background-color: ${(props) =>
-      props.goal2 === true ? "var(--green)" : "var(--white)"};
-    border: ${(props) =>
-      props.goal2 === true ? "none" : "1px solid var(--gray2)"};
+      props.goal2 ? "var(--green)" : "var(--white)"};
+    border: ${(props) => (props.goal2 ? "none" : "1px solid var(--gray2)")};
     cursor: pointer;
   }
 `;
@@ -141,9 +137,8 @@ const Goal3 = styled.div`
     flex-shrink: 0;
     border-radius: 50%;
     background-color: ${(props) =>
-      props.goal3 === true ? "var(--blue)" : "var(--white)"};
-    border: ${(props) =>
-      props.goal3 === true ? "none" : "1px solid var(--gray2)"};
+      props.goal3 ? "var(--blue)" : "var(--white)"};
+    border: ${(props) => (props.goal3 ? "none" : "1px solid var(--gray2)")};
     cursor: pointer;
   }
 `;
