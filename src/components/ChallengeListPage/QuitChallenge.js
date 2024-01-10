@@ -58,19 +58,30 @@ const QuitChallenge = ({
 };
 
 export default QuitChallenge;
-const Box = styled.div``;
-const Wrapper = styled.div`
-  z-index: 999;
+const Box = styled.div`
+  z-index: 50;
   position: absolute;
-  top: 48%;
-  left: 40.5%;
-  margin: auto;
-
+  margin: auto auto;
+  top: 0;
+  left: 0;
+  width: 393px;
+  height: 852px;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+const Wrapper = styled.div`
   width: 371px;
   height: 200px;
   border-radius: 11px;
   border: 1px solid var(--gray_03, #d6d6d6);
   background: var(--background_02, #fafafa);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
   .question {
     color: var(--black, #303030);
     text-align: center;
@@ -101,7 +112,7 @@ const QuitBtn = styled.button`
   font-weight: 700;
   line-height: normal;
   margin-top: 20px;
-  margin-left: 19.5px;
+  border: none;
 `;
 const CancelBtn = styled.button`
   display: flex;
@@ -112,7 +123,6 @@ const CancelBtn = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
-  margin-left: 19.5px;
   color: var(--black, #303030);
   text-align: center;
   margin-top: 2px;

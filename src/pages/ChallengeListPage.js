@@ -118,6 +118,8 @@ const ChallengeListPage = () => {
 };
 export default ChallengeListPage;
 const Wrapper = styled.div`
+  width: 393px;
+  position: relative;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

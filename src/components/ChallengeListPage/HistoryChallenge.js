@@ -18,18 +18,30 @@ const HistoryChallenge = ({ challenge }) => {
         </Period>
         <ListWrapper>
           <First>
-            <RedOne />
-            <span className="challenge-text">{challenge.goals[0].content}</span>
+            <div id="box">
+              <RedOne />
+              <span className="challenge-text">
+                {challenge.goals[0].content}
+              </span>
+            </div>
             <div className="percent">100%</div>
           </First>
           <Second>
-            <GreenOne />
-            <span className="challenge-text">{challenge.goals[1].content}</span>
+            <div id="box">
+              <GreenOne />
+              <span className="challenge-text">
+                {challenge.goals[1].content}
+              </span>
+            </div>
             <div className="percent">100%</div>
           </Second>
           <Third>
-            <BlueOne />
-            <span className="challenge-text">{challenge.goals[2].content}</span>
+            <div id="box">
+              <BlueOne />
+              <span className="challenge-text">
+                {challenge.goals[2].content}
+              </span>
+            </div>
             <div className="percent">100%</div>
           </Third>
         </ListWrapper>
@@ -83,6 +95,11 @@ const ListWrapper = styled.div`
 
   .challenge-text {
     margin-right: 100px;
+  }
+
+  #box {
+    display: flex;
+    gap: 16px;
   }
 `;
 const First = styled.div`
