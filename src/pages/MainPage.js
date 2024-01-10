@@ -42,6 +42,39 @@ const MainPage = () => {
   const [challengeId, setChallengeId] = useState(); //챌린지 id
   const [render, setRender] = useState(0);
 
+  const openModal = () => {
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
+  const goManage = () => {
+    navigate("/challengelist");
+  };
+
+  const getChallengeInfo = (id) => {
+    //아이콘 반응 개수 가져오기
+    GetReaction(id)
+      .then((response) => {
+        setReaction(response.data.data);
+        console.log(reaction);
+      })
+      .catch((error) => {
+        console.error("챌린지 반응 조회 실패", error);
+      });
+    //댓글 가져오기
+    GetComments(id)
+      .then((response) => {
+        setComments(response.data.data);
+        console.log(comments);
+      })
+      .catch((error) => {
+        console.error("댓글 조회 실패", error);
+      });
+  };
+
   useEffect(() => {
     //달성률 현황 가져오기
     GetChallengeStatus()
@@ -49,6 +82,7 @@ const MainPage = () => {
         setCurrentStatus(response.data.data.AchievementRate);
         console.log(currentStatus);
         setChallengeId(response.data.data.AchievementRate[0].challenge.id);
+        getChallengeInfo(response.data.data.AchievementRate[0].challenge.id);
         console.log(challengeId);
       })
       .catch((error) => {
@@ -62,37 +96,7 @@ const MainPage = () => {
       .catch((error) => {
         console.error("날짜별 챌린지 달성 여부 조회 실패", error);
       });
-    //아이콘 반응 개수 가져오기
-    GetReaction(challengeId)
-      .then((response) => {
-        setReaction(response.data.data);
-        console.log(reaction);
-      })
-      .catch((error) => {
-        console.error("챌린지 반응 조회 실패", error);
-      });
-    //댓글 가져오기
-    GetComments(challengeId)
-      .then((response) => {
-        setComments(response.data.data);
-        console.log(comments);
-      })
-      .catch((error) => {
-        console.error("댓글 조회 실패", error);
-      });
   }, [render]);
-
-  const openModal = () => {
-    setModal(true);
-  };
-
-  const closeModal = () => {
-    setModal(false);
-  };
-
-  const goManage = () => {
-    navigate("/challengelist");
-  };
 
   const handleDaySelect = (date) => {
     console.log("Selected Date:", date);
