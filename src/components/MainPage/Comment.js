@@ -62,6 +62,7 @@ const Comment = ({ render, setRender, challengeId, comment }) => {
       {nickname === comment.user.nickname && (
         <img id="del" src={trash} onClick={deleteComment} />
       )}
+
       <Content>{comment.content}</Content>
       <Recomment onClick={() => setOpen(!open)}>답글</Recomment>
       {open && (
