@@ -14,9 +14,11 @@ const CurrentChallenge = ({ challengeList }) => {
   const [selectedGoal, setSelectedGoal] = useState(null);
   const [quitChallengeName, setQuitChallengeName] = useState(null);
   const [quitChallengeId, setQuitChallengeId] = useState(0);
+  const [selectedGoalName, setSelectedGoalName] = useState(null);
 
-  const showModal = (goal) => {
-    setSelectedGoal(goal);
+  const showModal = (goalId, goalName) => {
+    setSelectedGoal(goalId);
+    setSelectedGoalName(goalName);
     setOpenModal(true);
   };
 
@@ -62,7 +64,7 @@ const CurrentChallenge = ({ challengeList }) => {
                 <div>챌린지 진행기간</div>
                 <div>
                   {challenge.created_at} ~ {challenge.ended_at}(
-                  {challenge.period}주){" "}
+                  {challenge.period}일){" "}
                 </div>
               </Period>
             </div>
@@ -79,7 +81,12 @@ const CurrentChallenge = ({ challengeList }) => {
                   </span>
                   <div
                     className="delete"
-                    onClick={() => showModal(challenge.goals[0].content)}
+                    onClick={() =>
+                      showModal({
+                        id: challenge.goals[0].id,
+                        content: challenge.goals[0].content,
+                      })
+                    }
                   >
                     목표삭제
                   </div>
@@ -97,7 +104,12 @@ const CurrentChallenge = ({ challengeList }) => {
                   </span>
                   <div
                     className="delete"
-                    onClick={() => showModal(challenge.goals[1].content)}
+                    onClick={() =>
+                      showModal({
+                        id: challenge.goals[1].id,
+                        content: challenge.goals[1].content,
+                      })
+                    }
                   >
                     목표삭제
                   </div>
@@ -109,7 +121,12 @@ const CurrentChallenge = ({ challengeList }) => {
                   </span>
                   <div
                     className="delete"
-                    onClick={() => showModal(challenge.goals[2].content)}
+                    onClick={() =>
+                      showModal({
+                        id: challenge.goals[2].id,
+                        content: challenge.goals[2].content,
+                      })
+                    }
                   >
                     목표삭제
                   </div>
