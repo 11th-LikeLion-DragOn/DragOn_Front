@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
-import { useLocation } from "react-router-dom";
 import { format } from "date-fns";
 import { ClickedChallenge } from "../api/challenge";
 
 import TopBar from "../components/common/TopBar";
 import Calendar from "../components/MainPage/Calendar";
-import Challenge from "../components/MainPage/Challenge";
+// import Challenge from "../components/MainPage/Challenge";
 import ChallengeModal from "../components/MainPage/ChallengeModal";
 
 const FillChallengePage = () => {
-  const location = useLocation();
-
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [formattedDate, setFormattedDate] = useState(
     format(selectedDate, "yyyy-MM-dd")
   );
   const [modal, setModal] = useState(false);
+  const [id, setId] = useState("");
+  const [content, setContent] = useState("");
   const [dayStatus, setDayStatus] = useState([]); //날짜별 챌린지 달성 여부
   const [render, setRender] = useState(0);
 
@@ -51,23 +50,64 @@ const FillChallengePage = () => {
       });
   }, [render]);
 
-  //골 눌렀을 때 Modal 열림,
-  //Modal에 골id, 골content 전달
-  //메꾸기 함수 바인딩
+  const doneChallenge = (status) => {
+    setId(status.goal_id);
+    setContent(status.goat_content);
+    openModal();
+  };
 
   return (
     <Wrapper>
       <TopBar titleText={"챌린지 메꾸기"} />
       <Calendar onDaySelect={handleDaySelect} />
-      <ChallengeList>
-        <Challenge
-          selectedDate={selectedDate}
-          doneChallenge={fillChallenge}
-          dayStatus={dayStatus}
-        />
-      </ChallengeList>
+      <Challenge>
+        <Date>
+          {format(selectedDate, "M")}월 {format(selectedDate, "d")}일
+        </Date>
+        {dayStatus.length != 0 ? (
+          <ChallengeList>
+            {dayStatus[0] && (
+              <Goal1>
+                <div
+                  id="circle"
+                  goal1={dayStatus[0].is_done}
+                  onClick={() => doneChallenge(dayStatus[0])}
+                ></div>
+                <span>{dayStatus[0].goal_content}</span>
+              </Goal1>
+            )}
+            {dayStatus[1] && (
+              <Goal2>
+                <div
+                  id="circle"
+                  goal2={dayStatus[1].is_done}
+                  onClick={() => doneChallenge(dayStatus[1])}
+                ></div>
+                <span>{dayStatus[1].goal_content}</span>
+              </Goal2>
+            )}
+            {dayStatus[2] && (
+              <Goal3>
+                <div
+                  id="circle"
+                  goal3={dayStatus[2].is_done}
+                  onClick={() => doneChallenge(dayStatus[2])}
+                ></div>
+                <span>{dayStatus[2].goal_content}</span>
+              </Goal3>
+            )}
+          </ChallengeList>
+        ) : (
+          <span id="info">진행 중인 챌린지가 없습니다.</span>
+        )}
+      </Challenge>
       {modal && (
-        <ChallengeModal selectedDate={selectedDate} closeModal={closeModal} />
+        <ChallengeModal
+          selectedDate={selectedDate}
+          closeModal={closeModal}
+          id={id}
+          content={content}
+        />
       )}
     </Wrapper>
   );
@@ -85,15 +125,97 @@ const Wrapper = styled.div`
   gap: 34px;
 `;
 
-const ChallengeList = styled.div`
-  display: flex;
+const Challenge = styled.div`
   width: 315px;
-  padding: 18px 19px;
+
+  #info {
+    margin-left: 90px;
+    color: var(--black);
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+`;
+
+const Date = styled.div`
+  margin-bottom: 17px;
+  color: var(--black);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+`;
+
+const ChallengeList = styled.div`
+  padding-left: 9px;
+  margin-bottom: 10px;
+  display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 19px;
+
+  color: var(--black);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+const Goal1 = styled.div`
+  display: flex;
+  gap: 8px;
   align-items: center;
-  gap: 24px;
-  border-radius: 14px;
-  border: 1px solid rgba(199, 198, 198, 0.2);
-  background: var(--white);
+
+  #circle {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: ${({ goal1 }) => (goal1 ? "var(--red)" : "var(--white)")};
+    border: ${(props) =>
+      props.goal1 === true ? "none" : "1px solid var(--gray2)"};
+    cursor: pointer;
+  }
+`;
+
+const Goal2 = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  #circle {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: ${(props) =>
+      props.goal2 === true ? "var(--green)" : "var(--white)"};
+    border: ${(props) =>
+      props.goal2 === true ? "none" : "1px solid var(--gray2)"};
+    cursor: pointer;
+  }
+`;
+
+const Goal3 = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  #circle {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: ${(props) =>
+      props.goal3 === true ? "var(--blue)" : "var(--white)"};
+    border: ${(props) =>
+      props.goal3 === true ? "none" : "1px solid var(--gray2)"};
+    cursor: pointer;
+  }
 `;

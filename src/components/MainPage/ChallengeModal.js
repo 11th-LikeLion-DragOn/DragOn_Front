@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import * as dateFns from "date-fns";
 import { useNavigate } from "react-router-dom";
+import { FillChallenge } from "../../api/challenge";
 
-const ChallengeModal = ({ selectedDate, closeModal }) => {
+
+const ChallengeModal = ({ selectedDate, closeModal, id, content }) => {
+
   const navigate = useNavigate();
 
-  const fillChallenge = () => {
+  const fillChallenge = (id, content) => {
     //연동 함수 추가
     navigate("/main");
   };
@@ -16,7 +19,7 @@ const ChallengeModal = ({ selectedDate, closeModal }) => {
       <Modal>
         <Content>
           {dateFns.format(selectedDate, "M")}월{" "}
-          {dateFns.format(selectedDate, "d")}일 "영어 공부"
+          {dateFns.format(selectedDate, "d")}일 "{content}"
           <span>챌린지를 메꾸시겠습니까?</span>
         </Content>
         <div id="buttonBox">
