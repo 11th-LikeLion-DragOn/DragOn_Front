@@ -24,14 +24,17 @@ const QuitChallenge = ({
 
       await DeleteChallenge(quitChallengeId);
       console.log(`삭제된 챌린지: ${quitChallengeName}`);
+
       const updatedChallengeList = challengeList.filter(
         (challenge) => challenge.id !== quitChallengeId
       );
       setChallengeList(updatedChallengeList);
+
+      setOpenQuitModal(false);
     } catch (error) {
       console.log("챌린지 삭제 실패", error);
+      setOpenQuitModal(false);
     }
-    setOpenQuitModal(false);
   };
 
   const closeModal = () => {

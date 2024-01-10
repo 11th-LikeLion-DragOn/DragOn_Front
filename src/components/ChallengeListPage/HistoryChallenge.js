@@ -1,57 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
-//api
-import { GetChallengeList } from "../../api/challenge";
-
 import { ReactComponent as RedOne } from "../../assets/icons/red.svg";
 import { ReactComponent as GreenOne } from "../../assets/icons/green.svg";
 import { ReactComponent as BlueOne } from "../../assets/icons/blue.svg";
 
-const HistoryChallenge = ({ challengeList }) => {
-  const [list, setList] = useState([]);
-
-  // useEffect(() => {
-  //   GetChallengeList()
-  //     .then((response) => {
-  //       setList(response.data);
-  //       console.log(response);
-  //     })
-  //     .catch((error) => {
-  //       console.error("챌린지 목록 조회 실패", error);
-  //     });
-  // }, []);
-
+const HistoryChallenge = ({ challenge }) => {
   return (
     <>
       <Wrapper>
-        {/* <Title>중간고사 공부를 해보아요 💚</Title> */}
+        <Title>{challenge.chname}</Title>
 
-        {Array.isArray(challengeList) &&
-          challengeList.map((challenge) => (
-            <div key={challenge.id}>
-              <Title>{challenge.name}</Title>
-            </div>
-          ))}
         <Period>
           <div>챌린지 진행기간</div>
-          <div>2023.10.05 ~ 2023.10.26 (3주) </div>
+          <div>
+            {challenge.created_at} ~ {challenge.ended_at}({challenge.period}일){" "}
+          </div>
         </Period>
         <ListWrapper>
           <First>
             <RedOne />
-            <span className="challenge-text">
-              인물로 본 일본사 노트정리 하기
-            </span>
+            <span className="challenge-text">{challenge.goals[0].content}</span>
             <div className="percent">100%</div>
           </First>
           <Second>
             <GreenOne />
-            <span className="challenge-text">사용자연구 피피티 읽기</span>
+            <span className="challenge-text">{challenge.goals[1].content}</span>
             <div className="percent">100%</div>
           </Second>
           <Third>
             <BlueOne />
-            <span className="challenge-text">트랜스미디어 팀플 도서 읽기</span>
+            <span className="challenge-text">{challenge.goals[2].content}</span>
             <div className="percent">100%</div>
           </Third>
         </ListWrapper>
