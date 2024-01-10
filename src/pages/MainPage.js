@@ -11,6 +11,7 @@ import {
   GetReaction,
   ClickReaction,
   WriteCommemt,
+  GetAllCalendar,
 } from "../api/challenge";
 
 import MainTop from "../components/MainPage/MainTop";
@@ -32,7 +33,7 @@ const MainPage = () => {
 
   const nickname = useAppSelector((state) => state.nickname);
   const balls = useAppSelector((state) => state.balls);
-  const userId = useAppSelector((state) => state.goalId);
+  const userId = useAppSelector((state) => state.id);
 
   const [currentStatus, setCurrentStatus] = useState([]); //달성률 현황
   const [dayStatus, setDayStatus] = useState([]); //날짜별 챌린지 달성 여부
@@ -40,6 +41,7 @@ const MainPage = () => {
   const [comments, setComments] = useState([]); //댓글
   const [content, setContent] = useState(""); //댓글 작성 내용
   const [challengeId, setChallengeId] = useState(); //챌린지 id
+  const [calendar, setCalendar] = useState([]);
   const [render, setRender] = useState(0);
 
   const openModal = () => {
@@ -59,7 +61,6 @@ const MainPage = () => {
     GetReaction(id)
       .then((response) => {
         setReaction(response.data.data);
-        console.log(reaction);
       })
       .catch((error) => {
         console.error("챌린지 반응 조회 실패", error);
@@ -95,6 +96,14 @@ const MainPage = () => {
       })
       .catch((error) => {
         console.error("날짜별 챌린지 달성 여부 조회 실패", error);
+      });
+    //달력 전체 조회
+    GetAllCalendar(userId, yearMonth)
+      .then((response) => {
+        setCalendar(response.data.data);
+      })
+      .catch((error) => {
+        console.error("달력 전체 조회", error);
       });
   }, [render]);
 
@@ -165,7 +174,11 @@ const MainPage = () => {
         </Title>
         <StatusBox balls={balls} currentStatus={currentStatus} />
       </MyChallenge>
-      <Calendar openModal={openModal} onDaySelect={handleDaySelect} />
+      <Calendar
+        openModal={openModal}
+        onDaySelect={handleDaySelect}
+        calendar={calendar}
+      />
       <ChallengeBox>
         <Challenge
           selectedDate={selectedDate}
@@ -173,7 +186,6 @@ const MainPage = () => {
           doneChallenge={doneChallenge}
         />
       </ChallengeBox>
-
       <Reaction>
         <span>진행 중인 나의 챌린지를</span>
         <span>친구와 함께 공유해요.</span>

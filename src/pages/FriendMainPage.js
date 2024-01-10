@@ -3,6 +3,14 @@ import { styled } from "styled-components";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
+import { SetFriendState } from "../api/friend";
+import {
+  ClickedChallenge,
+  GetComments,
+  GetReaction,
+  ClickReaction,
+  WriteCommemt,
+} from "../api/challenge";
 
 import MainTop from "../components/MainPage/MainTop";
 import StatusBox from "../components/MainPage/StatusBox";
@@ -12,24 +20,50 @@ import IconBox from "../components/MainPage/IconBox";
 import Comment from "../components/MainPage/Comment";
 
 const FriendMainPage = () => {
+  const location = useLocation();
   const [balls, setBalls] = useState(1);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [formattedDate, setFormattedDate] = useState(
     format(selectedDate, "yyyy-MM-dd")
   );
+  const [render, setRender] = useState(0);
+
+  const friendProfile = location.state.friendProfile;
+  const friendStatus = location.state.friendStatus;
+
+  const changeFriendState = async (id) => {
+    try {
+      const response = await SetFriendState(id);
+      console.log(response);
+    } catch (error) {
+      console.log("친구 추가/삭제 실패", error);
+    }
+  };
+
+  const handleDaySelect = (date) => {
+    console.log("Selected Date:", date);
+    setSelectedDate(date);
+    setFormattedDate(format(selectedDate, "yyyy-MM-dd"));
+    console.log(formattedDate);
+    setRender(render + 0.1);
+  };
 
   return (
     <Wrapper>
       <MainTop />
       <Title>
         <span>
-          가나다라마바사님의
+          {friendProfile.user_info.nickname}님의
           <br />
           챌린지에 오신 걸
           <br />
           환영해요
         </span>
-        <Management>친구 삭제하기</Management>
+        <Management
+          onClick={() => changeFriendState(friendProfile.user_info.id)}
+        >
+          친구 삭제하기
+        </Management>
       </Title>
       <StatusBox balls={balls} />
       <Calendar />

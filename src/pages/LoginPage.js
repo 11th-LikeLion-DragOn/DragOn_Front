@@ -21,29 +21,26 @@ const LoginPage = () => {
     navigate("/signup");
   };
 
-  const handleLogin = () => {
-    PostLogin(username, password)
-      .then((data) => {
-        const token = data.data.access_token;
-        window.localStorage.setItem("token", JSON.stringify(token));
-        console.log(data);
-        GetProfile(token).then((response) => {
-          console.log(response);
-          dispatch(
-            setUser({
-              id: response.data.id,
-              nickname: response.data.nickname,
-              username: response.data.username,
-              balls: response.data.balls,
-              profile: response.data.profile,
-            })
-          );
-        });
-        navigate("/main");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handleLogin = async () => {
+    try {
+      const data = await PostLogin(username, password);
+      const token = data.data.access_token;
+      window.localStorage.setItem("token", JSON.stringify(token));
+      const response = await GetProfile(token);
+
+      dispatch(
+        setUser({
+          id: response.data.id,
+          nickname: response.data.nickname,
+          username: response.data.username,
+          balls: response.data.balls,
+          profile: response.data.profile,
+        })
+      );
+      window.location.replace("/main");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
