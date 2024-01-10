@@ -75,10 +75,12 @@ const CurrentChallenge = ({ challengeList }) => {
             challengeList.map((challenge) => (
               <div key={challenge.id}>
                 <First>
-                  <RedOne />
-                  <span className="challenge-text">
-                    {challenge.goals[0].content}
-                  </span>
+                  <div id="box">
+                    <RedOne />
+                    <span className="challenge-text">
+                      {challenge.goals[0].content}
+                    </span>
+                  </div>
                   <div
                     className="delete"
                     onClick={() =>
@@ -98,10 +100,12 @@ const CurrentChallenge = ({ challengeList }) => {
                   )}
                 </First>
                 <Second>
-                  <GreenOne />
-                  <span className="challenge-text">
-                    {challenge.goals[1].content}
-                  </span>
+                  <div id="box">
+                    <GreenOne />
+                    <span className="challenge-text">
+                      {challenge.goals[1].content}
+                    </span>
+                  </div>
                   <div
                     className="delete"
                     onClick={() =>
@@ -115,10 +119,12 @@ const CurrentChallenge = ({ challengeList }) => {
                   </div>
                 </Second>
                 <Third>
-                  <BlueOne />
-                  <span className="challenge-text">
-                    {challenge.goals[2].content}
-                  </span>
+                  <div id="box">
+                    <BlueOne />
+                    <span className="challenge-text">
+                      {challenge.goals[2].content}
+                    </span>
+                  </div>
                   <div
                     className="delete"
                     onClick={() =>
@@ -190,6 +196,11 @@ const ListWrapper = styled.div`
   .challenge-text {
     margin-right: 100px;
   }
+
+  #box {
+    display: flex;
+    gap: 16px;
+  }
 `;
 const First = styled.div`
   display: flex;
@@ -201,12 +212,12 @@ const Second = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 16px;
 `;
 
 const Third = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 16px;
 `;

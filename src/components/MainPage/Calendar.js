@@ -199,7 +199,7 @@ const Goal1 = styled.div`
   height: 5px;
   flex-shrink: 0;
   border-radius: 50%;
-  background-color: ${({ goal1 }) => (goal1 ? "var(--gray2)" : "var(--red)")};
+  background-color: ${(props) => (props.goal1 ? "var(--gray2)" : "var(--red)")};
 `;
 
 const Goal2 = styled.div`
@@ -208,7 +208,8 @@ const Goal2 = styled.div`
   height: 5px;
   flex-shrink: 0;
   border-radius: 50%;
-  background-color: ${({ goal2 }) => (goal2 ? "var(--gray2)" : "var(--green)")};
+  background-color: ${(props) =>
+    props.goal2 ? "var(--gray2)" : "var(--green)"};
 `;
 
 const Goal3 = styled.div`
@@ -217,5 +218,6 @@ const Goal3 = styled.div`
   height: 5px;
   flex-shrink: 0;
   border-radius: 50%;
-  background-color: ${({ goal3 }) => (goal3 ? "var(--gray2)" : "var(--blue)")};
+  background-color: ${(props) =>
+    props.goal3 ? "var(--gray2)" : "var(--blue)"};
 `;
