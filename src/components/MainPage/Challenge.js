@@ -11,38 +11,42 @@ const Challenge = ({ selectedDate, dayStatus, doneChallenge }) => {
         {dateFns.format(selectedDate, "M")}월{" "}
         {dateFns.format(selectedDate, "d")}일
       </Date>
-      <ChallengeList>
-        {dayStatus[0] && (
-          <Goal1>
-            <div
-              id="circle"
-              goal1={dayStatus[0].is_done}
-              onClick={() => doneChallenge(dayStatus[0].goal_id)}
-            ></div>
-            <span>{dayStatus[0].goal_content}</span>
-          </Goal1>
-        )}
-        {dayStatus[1] && (
-          <Goal2>
-            <div
-              id="circle"
-              goal2={dayStatus[1].is_done}
-              onClick={() => doneChallenge(dayStatus[1].goal_id)}
-            ></div>
-            <span>{dayStatus[1].goal_content}</span>
-          </Goal2>
-        )}
-        {dayStatus[2] && (
-          <Goal3>
-            <div
-              id="circle"
-              goal3={dayStatus[2].is_done}
-              onClick={() => doneChallenge(dayStatus[2].goal_id)}
-            ></div>
-            <span>{dayStatus[2].goal_content}</span>
-          </Goal3>
-        )}
-      </ChallengeList>
+      {dayStatus.length != 0 ? (
+        <ChallengeList>
+          {dayStatus[0] && (
+            <Goal1>
+              <div
+                id="circle"
+                goal1={dayStatus[0].is_done}
+                onClick={() => doneChallenge(dayStatus[0].goal_id)}
+              ></div>
+              <span>{dayStatus[0].goal_content}</span>
+            </Goal1>
+          )}
+          {dayStatus[1] && (
+            <Goal2>
+              <div
+                id="circle"
+                goal2={dayStatus[1].is_done}
+                onClick={() => doneChallenge(dayStatus[1].goal_id)}
+              ></div>
+              <span>{dayStatus[1].goal_content}</span>
+            </Goal2>
+          )}
+          {dayStatus[2] && (
+            <Goal3>
+              <div
+                id="circle"
+                goal3={dayStatus[2].is_done}
+                onClick={() => doneChallenge(dayStatus[2].goal_id)}
+              ></div>
+              <span>{dayStatus[2].goal_content}</span>
+            </Goal3>
+          )}
+        </ChallengeList>
+      ) : (
+        <span id="info">진행 중인 챌린지가 없습니다.</span>
+      )}
     </Wrapper>
   );
 };
@@ -51,6 +55,17 @@ export default Challenge;
 
 const Wrapper = styled.div`
   width: 315px;
+
+  #info {
+    margin-left: 90px;
+    color: var(--black);
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 `;
 
 const Date = styled.div`
