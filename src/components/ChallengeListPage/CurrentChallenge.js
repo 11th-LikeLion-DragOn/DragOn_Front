@@ -7,8 +7,9 @@ import { ReactComponent as BlueOne } from "../../assets/icons/blue.svg";
 import quit from "../../assets/icons/quit.png";
 import QuitChallenge from "./QuitChallenge";
 import DeleteGoalModal from "./DeleteGoalModal";
+import { DeleteGoal } from "../../api/challenge";
 
-const CurrentChallenge = ({ challengeList }) => {
+const CurrentChallenge = ({ challengeList, setChallengeList }) => {
   const [openQuitModal, setOpenQuitModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState(null);
@@ -34,10 +35,26 @@ const CurrentChallenge = ({ challengeList }) => {
     setQuitChallengeId(challenge.id);
   };
 
-  const deleteGoal = () => {
-    //목표 삭제
-    console.log(`Delete goal: ${selectedGoal}`);
-    //삭제 후 목표리스트 업데이트
+  const deleteGoal = async () => {
+    try {
+      await DeleteGoal(selectedGoal.id);
+      console.log(`Delete goal: ${selectedGoal.content}`);
+
+      // 삭제 후 목표리스트 업데이트
+      const updatedChallengeList = challengeList.map((challenge) => {
+        if (challenge.id === selectedGoal.challengeId) {
+          const updatedGoals = challenge.goals.filter(
+            (goal) => goal.id !== selectedGoal.id
+          );
+          return { ...challenge, goals: updatedGoals };
+        }
+        return challenge;
+      });
+
+      setChallengeList(updatedChallengeList);
+    } catch (error) {
+      console.error("목표 삭제 실패", error);
+    }
 
     setOpenModal(false);
   };

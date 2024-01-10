@@ -119,7 +119,7 @@ export const DeleteComment = async (challengeId, commentId) => {
 // Patch: 목표 삭제하기
 export const DeleteGoal = async (goalId) => {
   try {
-    const response = await http.patch(`/main/goal/${goalId}/`, {
+    const response = await http.patch(`/main/goaldelete/${goalId}/`, {
       activate: true,
     });
     return response.data;
