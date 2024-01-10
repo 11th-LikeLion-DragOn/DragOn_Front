@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { GetFriendProfile, GetFriendStatus } from "../../api/friend";
+import { GetAllCalendar } from "../../api/challenge";
+import { format } from "date-fns";
 
 import none from "../../assets/icons/profile0.png";
 import red from "../../assets/icons/profile1.png";
@@ -15,6 +17,9 @@ const FriendProfile = ({ friend }) => {
   const [profile, setProfile] = useState();
   const [friendProfile, setFriendProfile] = useState([]);
   const [friendStatus, setFriendStatus] = useState([]);
+  const [calendar, setCalendar] = useState([]); //친구 전체 달력
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [yearMonth, setYearMonth] = useState(format(selectedDate, "yyyy-MM"));
 
   const mapProfileToIcon = (profileValue) => {
     const profileMap = {
@@ -49,6 +54,14 @@ const FriendProfile = ({ friend }) => {
       .catch((error) => {
         console.error("친구 달성률 조회 실패", error);
       });
+    //친구 전체 달력 조회
+    GetAllCalendar(friend.id, yearMonth)
+      .then((response) => {
+        setCalendar(response.data.data);
+      })
+      .catch((error) => {
+        console.error("친구 달력 전체 조회 실패", error);
+      });
   }, []);
 
   const goFriendHome = () => {
@@ -59,6 +72,7 @@ const FriendProfile = ({ friend }) => {
 
   console.log(friendProfile);
   console.log(friendStatus);
+  console.log(calendar);
 
   return (
     <Wrapper onClick={goFriendHome}>
