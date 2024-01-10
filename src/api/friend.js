@@ -34,6 +34,26 @@ export const SetFriendState = async (id) => {
   }
 };
 
+//친구 프로필 조회
+export const GetFriendProfile = async (friendId) => {
+  try {
+    const response = await http.get(`/mypage/fri_profile/${friendId}/`);
+    return response;
+  } catch (error) {
+    console.error("친구 프로필 조회 실패", error);
+    throw error;
+  }
+};
+
 //친구의 달성률
+export const GetFriendStatus = async (friendId) => {
+  try {
+    const response = await http.get(`/mypage/friend/${friendId}/`);
+    return response;
+  } catch (error) {
+    console.error("친구의 달성률 조회 실패", error);
+    throw error;
+  }
+};
 
 //친구의 달력
