@@ -136,7 +136,7 @@ const Title = styled.div`
   font-weight: 600;
   line-height: normal;
   img {
-    margin-left: 235px;
+    margin-left: 230px;
     width: 22.421px;
     height: 22.421px;
   }
