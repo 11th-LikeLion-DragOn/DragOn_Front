@@ -96,7 +96,6 @@ const MainPage = () => {
     console.log("Selected Date:", date);
     setSelectedDate(date);
     setFormattedDate(format(selectedDate, "yyyy-MM-dd"));
-    setRender(render + 0.1);
   };
 
   const doneChallenge = async (goalId) => {

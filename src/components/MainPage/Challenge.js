@@ -90,8 +90,7 @@ const Goal1 = styled.div`
     height: 15px;
     flex-shrink: 0;
     border-radius: 50%;
-    background-color: ${(props) =>
-      props.goal1 === true ? "var(--red)" : "var(--white)"};
+    background-color: ${({ goal1 }) => (goal1 ? "var(--red)" : "var(--white)")};
     border: ${(props) =>
       props.goal1 === true ? "none" : "1px solid var(--gray2)"};
     cursor: pointer;
