@@ -118,7 +118,7 @@ export const ChangePW = async (
   confirm_new_password
 ) => {
   try {
-    const response = await http.post("/accounts/password_reset", {
+    const response = await http.post("/accounts/password_reset/", {
       current_password: current_password,
       new_password: new_password,
       confirm_new_password: confirm_new_password,
