@@ -14,18 +14,18 @@ const CustomSelect = ({ setPeriod }) => {
     <SelectBox onClick={() => setShowOptions((prev) => !prev)}>
       <Label>{currentValue}</Label>
       <SelectOptions show={isShowOptions}>
-        <Option onClick={handleOnChangeSelectValue}>1</Option>
-        <Option onClick={handleOnChangeSelectValue}>2</Option>
-        <Option onClick={handleOnChangeSelectValue}>3</Option>
-        <Option onClick={handleOnChangeSelectValue}>4</Option>
-        <Option onClick={handleOnChangeSelectValue}>5</Option>
-        <Option onClick={handleOnChangeSelectValue}>6</Option>
         <Option onClick={handleOnChangeSelectValue}>7</Option>
-        <Option onClick={handleOnChangeSelectValue}>8</Option>
-        <Option onClick={handleOnChangeSelectValue}>9</Option>
-        <Option onClick={handleOnChangeSelectValue}>10</Option>
-        <Option onClick={handleOnChangeSelectValue}>11</Option>
-        <Option onClick={handleOnChangeSelectValue}>12</Option>
+        <Option onClick={handleOnChangeSelectValue}>14</Option>
+        <Option onClick={handleOnChangeSelectValue}>21</Option>
+        <Option onClick={handleOnChangeSelectValue}>28</Option>
+        <Option onClick={handleOnChangeSelectValue}>35</Option>
+        <Option onClick={handleOnChangeSelectValue}>42</Option>
+        <Option onClick={handleOnChangeSelectValue}>49</Option>
+        <Option onClick={handleOnChangeSelectValue}>56</Option>
+        <Option onClick={handleOnChangeSelectValue}>63</Option>
+        <Option onClick={handleOnChangeSelectValue}>70</Option>
+        <Option onClick={handleOnChangeSelectValue}>77</Option>
+        <Option onClick={handleOnChangeSelectValue}>84</Option>
       </SelectOptions>
     </SelectBox>
   );

@@ -3,6 +3,12 @@ import { styled } from "styled-components";
 import { DeleteGoal } from "../../api/challenge";
 
 const DeleteGoalModal = ({ setOpenModal, selectedGoal }) => {
+  if (!selectedGoal || !selectedGoal.id) {
+    console.error("유효하지 않은 목표입니다.");
+    setOpenModal(false);
+    return null;
+  }
+
   const deleteGoal = async () => {
     try {
       await DeleteGoal(selectedGoal.id);
