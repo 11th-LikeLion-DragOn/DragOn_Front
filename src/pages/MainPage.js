@@ -41,7 +41,7 @@ const MainPage = () => {
   const [comments, setComments] = useState([]); //댓글
   const [content, setContent] = useState(""); //댓글 작성 내용
   const [challengeId, setChallengeId] = useState(); //챌린지 id
-  const [calendar, setCalendar] = useState([]);
+  const [calendar, setCalendar] = useState([]); //전체 달력
   const [render, setRender] = useState(0);
 
   const openModal = () => {
@@ -111,7 +111,7 @@ const MainPage = () => {
         setCalendar(response.data.data);
       })
       .catch((error) => {
-        console.error("달력 전체 조회", error);
+        console.error("달력 전체 조회 실패", error);
       });
   }, [render]);
 
