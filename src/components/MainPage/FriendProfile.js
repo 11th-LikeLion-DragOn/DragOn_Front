@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { GetFriendProfile, GetFriendStatus } from "../../api/friend";
 
 import none from "../../assets/icons/profile0.png";
 import red from "../../assets/icons/profile1.png";
@@ -9,7 +10,7 @@ import green from "../../assets/icons/profile3.png";
 import pink from "../../assets/icons/profile4.png";
 import yellow from "../../assets/icons/profile5.png";
 
-const FriendProfile = ({ friend }) => {
+const FriendProfile = ({ key, friend }) => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState();
 

@@ -32,11 +32,8 @@ const MainPage = () => {
 
   const nickname = useAppSelector((state) => state.nickname);
   const balls = useAppSelector((state) => state.balls);
-  const user_profile = useAppSelector((state) => state.profile);
+  const userId = useAppSelector((state) => state.goalId);
 
-  console.log(user_profile);
-
-  const [userInfo, setUserInfo] = useState([]);
   const [currentStatus, setCurrentStatus] = useState([]); //달성률 현황
   const [dayStatus, setDayStatus] = useState([]); //날짜별 챌린지 달성 여부
   const [reaction, setReaction] = useState([]); //아이콘 반응 개수

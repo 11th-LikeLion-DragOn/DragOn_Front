@@ -59,7 +59,7 @@ const MainTop = () => {
       <FriendList>
         {friendList &&
           friendList.map((friend) => {
-            return <FriendProfile key={friendList.id} friend={friend} />;
+            return <FriendProfile key={friend.id} friend={friend} />;
           })}
         <img id="addFriend" src={addFriend} onClick={searchFriend} />
       </FriendList>
