@@ -3,13 +3,18 @@ import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../redux/store";
 //api
-import { GetProfile, Logout } from "../api/user";
+import { Logout } from "../api/user";
 //components
 import TopBar from "../components/common/TopBar";
 import LockModal from "../components/testchallenge/LockModal";
 import QuitModal from "../components/SettingPage/QuitModal";
 //image
-import profile1 from "../assets/icons/profile1.png";
+import none from "../assets/icons/profile0.png";
+import red from "../assets/icons/profile1.png";
+import gray from "../assets/icons/profile2.png";
+import green from "../assets/icons/profile3.png";
+import pink from "../assets/icons/profile4.png";
+import yellow from "../assets/icons/profile5.png";
 import marblePurple from "../assets/icons/marble-purple.png";
 import clickRight from "../assets/icons/click-right.png";
 
@@ -17,11 +22,28 @@ const SettingPage = () => {
   const navigate = useNavigate();
   const storedToken = localStorage.getItem("token");
   const [showQuitModal, setShowQuitModal] = useState(false);
+  const [profile, setProfile] = useState();
 
   const user_id = useAppSelector((state) => state.id);
   const nickname = useAppSelector((state) => state.nickname);
   const username = useAppSelector((state) => state.username);
   const balls = useAppSelector((state) => state.balls);
+  const user_profile = useAppSelector((state) => state.profile);
+
+  console.log(user_profile);
+
+  const mapProfileToIcon = (profileValue) => {
+    const profileMap = {
+      none: none,
+      red: red,
+      gray: gray,
+      green: green,
+      pink: pink,
+      yellow: yellow,
+    };
+
+    return profileMap[profileValue];
+  };
 
   // 탈퇴 클릭 시 모달
   const showQuitModalHandler = () => {
@@ -45,12 +67,16 @@ const SettingPage = () => {
     navigate("/");
   };
 
+  useEffect(() => {
+    setProfile(mapProfileToIcon(user_profile));
+  }, []);
+
   return (
     <>
       <Wrapper>
         <TopBar titleText="설정" />
         <Info>
-          <img src={profile1} />
+          <img src={profile} />
           <div className="info-text">
             <div className="name">{username}</div>
             <div className="nickname">{nickname}</div>
@@ -113,7 +139,7 @@ const Wrapper = styled.div`
 `;
 const Info = styled.div`
   margin-top: 32px;
-  margin-right: 170px;
+  margin-right: 230px;
   display: flex;
 
   img {

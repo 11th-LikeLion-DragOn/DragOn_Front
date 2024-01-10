@@ -8,6 +8,7 @@ const initialState = {
   username: "",
   nickname: "",
   balls: "",
+  profile: "",
 };
 
 export const userSlice = createSlice({
@@ -18,12 +19,14 @@ export const userSlice = createSlice({
       state.id = initialState.id;
       state.username = initialState.username;
       state.nickname = initialState.nickname;
+      state.profile = initialState.profile;
       state.balls = initialState.balls;
     },
     setUser: (state, action) => {
       state.id = action.payload.id;
       state.username = action.payload.username;
       state.nickname = action.payload.nickname;
+      state.profile = action.payload.profile;
       state.balls = action.payload.balls;
     },
   },
