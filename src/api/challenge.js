@@ -57,7 +57,7 @@ export const GetTestResult = async () => {
 //챌린지 달성 여부 변경
 export const checkChallenge = async (goalId, date) => {
   try {
-    const response = await http.patch(`/main/goal/${goalId}/?date=${date}`);
+    const response = await http.patch(`/main/goal/${goalId}/?date=${date}/`);
     return response;
   } catch (error) {
     console.error("챌린지 달성 여부 변경 실패", error);
@@ -209,5 +209,17 @@ export const ClickReaction = async (challengeId, type) => {
     console.error("챌린지 반응 클릭 실패", error);
 
     throw error;
+  }
+};
+
+//챌린지 달력 전체 조회
+export const GetAllCalendar = async (userId, date) => {
+  try {
+    const response = await http.get(
+      `/main/allcalendar/${userId}/?date=${date}/`
+    );
+    return response;
+  } catch (error) {
+    console.error("챌린지 달력 전체 조회 실패", error);
   }
 };

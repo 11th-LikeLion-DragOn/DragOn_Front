@@ -1,13 +1,16 @@
 import React from "react";
 import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import clickLeft from "../../assets/icons/click-left.png";
 
 const TopBar = ({ titleText }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isSetting = location.pathname === "/setting";
 
   const goBack = () => {
-    navigate(-1);
+    isSetting ? navigate("/main") : navigate(-1);
   };
 
   return (
