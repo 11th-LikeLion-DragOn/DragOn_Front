@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const FillModal = ({ closeModal, balls, goal1, goal2, goal3 }) => {
+const FillModal = ({ closeModal, balls }) => {
   const navigate = useNavigate();
   const [changeBtn, setChangeBtn] = useState(false);
   const [content, setContent] = useState(
@@ -11,9 +11,7 @@ const FillModal = ({ closeModal, balls, goal1, goal2, goal3 }) => {
 
   const buyTicket = () =>
     balls
-      ? navigate("/fillchallenge", {
-          state: { goal1: goal1, goal2: goal2, goal3: goal3 },
-        }) & closeModal
+      ? navigate("/fillchallenge") & closeModal
       : setContent("이런, 여의주가 부족해요~! \n 여의주를 충전해주세요") &
         setChangeBtn(true);
 
