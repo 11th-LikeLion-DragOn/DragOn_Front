@@ -32,7 +32,7 @@ const QuitChallenge = ({
 
       setOpenQuitModal(false);
     } catch (error) {
-      console.log("챌린지 삭제 실패", error);
+      console.log("새로고침해주세요", error);
       setOpenQuitModal(false);
     }
   };
