@@ -56,11 +56,8 @@
 ⎪   └─  index.html
 📂 src
 ⎪  📂 api
-⎪   └─ challenge.js
-⎪   └─ https.js
-⎪   └─ user.js
 ├─ 📂 components
-⎪  ⎪   └─ 📂 _common                    ▶︎ 공통 컴포넌트 
+⎪  ⎪   └─ 📂 _common                    
 ⎪  ⎪   ⎪   └─ TopBar.js 
 ⎪  ⎪   ⎪   └─ InputBox.js 
 ⎪  ⎪   └─ 📂 MainPage
@@ -74,25 +71,24 @@
 ⎪  ⎪   └─  MainPage.js
 ⎪  ⎪   └─  LoginPage.js              
 ⎪  ⎪   └─  SignupPage.js 
-⎪  ⎪   └─  AlarmPage.js
+⎪  ⎪   └─  WriteChallengeNamePage.js
 ⎪  ⎪   └─  ChallengeListPage.js
+⎪  ⎪   └─  NoChallengeListPage.js
 ⎪  ⎪   └─  ChangeNickPage.js
 ⎪  ⎪   └─  ChangePasswordPage.js
 ⎪  ⎪   └─  ExchargePage.js
 ⎪  ⎪   └─  FillChallengePage.js
-⎪  ⎪   └─  FriendMainPage.js
 ⎪  ⎪   └─  MakeChallengePage.js
 ⎪  ⎪   └─  SearchFriendPage.js
-⎪  ⎪   └─  NoChallengeListPage.js
 ⎪  ⎪   └─  SetPeriodPage.js
 ⎪  ⎪   └─  SettingPage.js
 ⎪  ⎪   └─  StartTestPage.js
 ⎪  ⎪   └─  TestingPage.js
 ⎪  ⎪   └─  TestResultPage.js
+⎪  ⎪   └─  TestResultPage.js
 ⎪  📂 assets  
-⎪  ⎪   └─ 📂 images                     ▶︎ 페이지별 아이콘/이미지
-⎪  ⎪   ⎪   └─ 📂 Main
-⎪  ⎪   └─ 📂 icons                      ▶︎ 공통 사용 아이콘
+⎪  ⎪   └─ 📂 images                    
+⎪  ⎪   └─ 📂 icons                    
 ├─   App.js                    
 └─   index.js
 ├─ .gitignore
