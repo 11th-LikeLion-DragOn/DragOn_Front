@@ -61,12 +61,7 @@ export default QuitChallenge;
 const Box = styled.div`
   z-index: 50;
   position: absolute;
-  margin: auto auto;
   top: 0;
-  left: 0;
-  width: 393px;
-  height: 852px;
-  background: rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   align-items: center;

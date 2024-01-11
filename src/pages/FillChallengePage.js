@@ -27,10 +27,6 @@ const FillChallengePage = () => {
     setModal(false);
   };
 
-  const fillChallenge = () => {
-    openModal();
-  };
-
   const handleDaySelect = (date) => {
     console.log("Selected Date:", date);
     setSelectedDate(date);
