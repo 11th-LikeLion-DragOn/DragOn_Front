@@ -5,6 +5,7 @@ import { DeleteGoal } from "../../api/challenge";
 const DeleteGoalModal = ({ setOpenModal, selectedGoal }) => {
   const deleteGoal = async () => {
     try {
+      
       await DeleteGoal(selectedGoal.id);
       console.log(`Delete goal: ${selectedGoal.content}`);
     } catch (error) {
