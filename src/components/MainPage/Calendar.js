@@ -68,7 +68,10 @@ const Calendar = ({ openModal, onDaySelect, calendar }) => {
       </TopBar>
       <CalendarBox>
         {totalDate.map((date) => (
-          <DayBox onClick={() => onDaySelect(date)}>
+          <DayBox
+            status={!dateFns.isSameMonth(date, currentDate)}
+            onClick={() => onDaySelect(date)}
+          >
             <DayStatus>
               <Goal1 goal1={!dateFns.isSameMonth(date, currentDate)}></Goal1>
               <Goal2 goal2={!dateFns.isSameMonth(date, currentDate)}></Goal2>
@@ -171,6 +174,7 @@ const DayBox = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  visibility: ${(props) => (props.status ? "hidden" : "none")};
 
   text-align: center;
   font-feature-settings: "clig" off, "liga" off;

@@ -129,12 +129,12 @@ const SettingPage = () => {
 
 export default SettingPage;
 const Wrapper = styled.div`
-  padding: 26px 25px 0px 28px;
+  width: 393px;
+  height: 852px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
-  height: 100vh;
+  margin: auto auto;
 `;
 const Info = styled.div`
   margin-top: 32px;
