@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const http = axios.create({
-  baseURL: "http://drag-on.shop",
+  baseURL: "https://drag-on.shop",
 });
 
 export const KAKAO_AUTH_URL = "http://drag-on.shop/accounts/kakao/login/";
