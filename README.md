@@ -56,6 +56,10 @@
 ⎪   └─  index.html
 📂 src
 ⎪  📂 api
+⎪  ⎪  └─ challenge.js
+⎪  ⎪  └─ friend.js
+⎪  ⎪  └─ user.js 
+⎪  ⎪  └─ http.js 
 ├─ 📂 components
 ⎪  ⎪   └─ 📂 _common                    
 ⎪  ⎪   ⎪   └─ TopBar.js 
