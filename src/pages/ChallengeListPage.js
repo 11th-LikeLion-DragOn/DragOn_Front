@@ -118,8 +118,7 @@ const ChallengeListPage = () => {
 };
 export default ChallengeListPage;
 const Wrapper = styled.div`
-  width: 393px;
-  position: relative;
+  padding: 30px 20px 0 20px;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -132,12 +131,13 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin: auto;
-  min-height: 852px;
+  height: 100vh;
 `;
 const Current = styled.div`
-  margin-top: 20px;
+  margin-left: 35px;
 `;
 const History = styled.div`
+  margin-left: 35px;
   .history {
     margin-left: 10px;
     margin-top: 50px;

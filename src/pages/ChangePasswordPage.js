@@ -19,7 +19,10 @@ const ChangePasswordPage = () => {
       try {
         const response = await ChangePW(myPw, password, rePw);
         console.log("비밀번호 변경 성공:", response);
-        navigate("/setting");
+
+        alert("비밀번호가 성공적으로 변경되었습니다!");
+
+        navigate("/");
       } catch (error) {
         console.error("비밀번호 변경 실패", error);
       }
@@ -38,8 +41,6 @@ const ChangePasswordPage = () => {
     setShowError(false);
   };
 
-  const handleButtonClick = () => {};
-
   return (
     <>
       <Wrapper>
@@ -52,9 +53,6 @@ const ChangePasswordPage = () => {
             placeholder="기존 비밀번호"
             onChange={(e) => setMyPw(e.target.value)}
           ></Input>
-          <div className="xicon">
-            <img src={quit} />
-          </div>
         </PwWrapper>
 
         {showError && <Text>비밀번호를 다시 확인해주세요</Text>}
