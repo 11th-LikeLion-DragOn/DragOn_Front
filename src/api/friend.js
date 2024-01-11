@@ -15,7 +15,7 @@ export const GetFriendList = async () => {
 //친구 검색
 export const SearchFriend = async (text) => {
   try {
-    const response = await http.get(`/mypage/search/${text}`);
+    const response = await http.get(`/mypage/search/${text}/`);
     return response;
   } catch (error) {
     console.error("친구 검색 실패", error);
@@ -60,7 +60,7 @@ export const GetFriendStatus = async (friendId) => {
 export const ClickFriendChallenge = async (id, date) => {
   try {
     const response = await http.get(
-      `/mypage/fricalendar/?user_id=${id}&date=${date}`
+      `/mypage/fricalendar/?user_id=${id}&date=${date}/`
     );
     return response;
   } catch (error) {
