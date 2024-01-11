@@ -172,11 +172,14 @@ const Wrapper = styled.div`
   background: var(--white, #fff);
 `;
 const Title = styled.div`
+  position: relative;
   font-size: 20px;
   font-weight: 600;
   line-height: normal;
   img {
-    margin-left: 230px;
+    z-index: 10;
+    position: absolute;
+    right: 0px;
     width: 22.421px;
     height: 22.421px;
   }

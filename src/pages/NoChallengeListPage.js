@@ -26,7 +26,7 @@ const NoChallengeListPage = () => {
 };
 export default NoChallengeListPage;
 const Wrapper = styled.div`
-  padding: 30px 20px 0 20px;
+  width: 393px;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -36,12 +36,12 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
-  height: 100vh;
+  margin: auto auto;
 `;
 const Current = styled.div``;
 const History = styled.div`
   .history {
+    margin-left: 10px;
     margin-top: 50px;
     margin-bottom: 13px;
   }

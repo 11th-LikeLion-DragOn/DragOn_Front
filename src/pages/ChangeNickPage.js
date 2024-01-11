@@ -72,12 +72,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
-  height: 100vh;
+  margin: auto auto;
   .nickname {
     margin-top: 23px;
     margin-right: 300px;
