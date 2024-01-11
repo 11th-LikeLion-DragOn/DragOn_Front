@@ -131,14 +131,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
-  height: 100vh;
+  margin: auto auto;
 `;
-const Current = styled.div`
-  margin-left: 35px;
-`;
+const Current = styled.div``;
 const History = styled.div`
-  margin-left: 35px;
   .history {
     margin-left: 10px;
     margin-top: 50px;
