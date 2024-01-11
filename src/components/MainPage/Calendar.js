@@ -25,6 +25,10 @@ const Calendar = ({ openModal, onDaySelect, calendar }) => {
     end: endDate,
   });
 
+  const formattedDates = totalDate.map((date) =>
+    dateFns.format(date, "yyyy-MM-dd")
+  );
+
   const isToday = (day) => dateFns.isSameDay(day, today);
 
   const formatOfYear = "yyyy";
