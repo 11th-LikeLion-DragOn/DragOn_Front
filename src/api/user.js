@@ -70,20 +70,20 @@ export const PostLogin = async (username, password) => {
   }
 };
 
-//카카오 로그인
-export const KakaoLogin = async (code) => {
-  try {
-    const response = await http.get(`/accounts/kakao/callback/?code=${code}`);
-    localStorage.setItem("userId", response.data.data.id);
-    localStorage.setItem("nickname", response.data.data.nickname);
-    localStorage.setItem("token", response.data.data.access_token);
+// //카카오 로그인
+// export const KakaoLogin = async (code) => {
+//   try {
+//     const response = await http.get(`/accounts/kakao/callback/?code=${code}`);
+//     localStorage.setItem("userId", response.data.data.id);
+//     localStorage.setItem("nickname", response.data.data.nickname);
+//     localStorage.setItem("token", response.data.data.access_token);
 
-    console.log(response.data.data);
-    return Promise.resolve(response.data.data);
-  } catch (error) {
-    throw error;
-  }
-};
+//     console.log(response.data.data);
+//     return Promise.resolve(response.data.data);
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 //로그아웃
 export const Logout = async () => {

@@ -68,10 +68,10 @@ const LoginPage = () => {
         </Box>
       </LoginBox>
       <Login onClick={handleLogin}>로그인</Login>
-      <Kakao>
+      {/* <Kakao>
         <img src={kakao} />
         카카오 로그인
-      </Kakao>
+      </Kakao> */}
       <div id="line"></div>
       <SignUp onClick={goSignup}>회원가입하기</SignUp>
     </Wrapper>
