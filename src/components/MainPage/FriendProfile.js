@@ -70,10 +70,6 @@ const FriendProfile = ({ friend }) => {
     });
   };
 
-  console.log(friendProfile);
-  console.log(friendStatus);
-  console.log(calendar);
-
   return (
     <Wrapper onClick={goFriendHome}>
       <img src={profile} />

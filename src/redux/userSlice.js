@@ -7,7 +7,7 @@ const initialState = {
   id: "",
   username: "",
   nickname: "",
-  balls: "",
+  real_balls: "",
   profile: "",
 };
 
@@ -20,14 +20,14 @@ export const userSlice = createSlice({
       state.username = initialState.username;
       state.nickname = initialState.nickname;
       state.profile = initialState.profile;
-      state.balls = initialState.balls;
+      state.real_balls = initialState.real_balls;
     },
     setUser: (state, action) => {
       state.id = action.payload.id;
       state.username = action.payload.username;
       state.nickname = action.payload.nickname;
       state.profile = action.payload.profile;
-      state.balls = action.payload.balls;
+      state.real_balls = action.payload.real_balls;
     },
   },
   extraReducers: (builder) => {

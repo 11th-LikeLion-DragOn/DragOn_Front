@@ -6,9 +6,12 @@ import { FillChallenge } from "../../api/challenge";
 
 const ChallengeModal = ({ selectedDate, closeModal, id, content }) => {
   const navigate = useNavigate();
+  const [formattedDate, setFormattedDate] = useState(
+    dateFns.format(selectedDate, "yyyy-MM-dd")
+  );
 
-  const fillChallenge = (id, content) => {
-    FillChallenge(id, content)
+  const fillChallenge = (id, date) => {
+    FillChallenge(id, date)
       .then((response) => {
         console.log(response);
       })
@@ -27,7 +30,9 @@ const ChallengeModal = ({ selectedDate, closeModal, id, content }) => {
           <span>챌린지를 메꾸시겠습니까?</span>
         </Content>
         <div id="buttonBox">
-          <Button1 onClick={fillChallenge(id, content)}>챌린지 메꾸기</Button1>
+          <Button1 onClick={fillChallenge(id, formattedDate)}>
+            챌린지 메꾸기
+          </Button1>
           <Exit onClick={closeModal}>취소하기</Exit>
         </div>
       </Modal>

@@ -13,10 +13,8 @@ const StatusBox = ({ balls, currentStatus }) => {
   return (
     <Wrapper>
       <Status>
-        <MarbleCnt>
-          <span id="marble">
-            {isFriendHome ? "친구가 모은 여의주" : "내가 모은 여의주"}
-          </span>
+        <MarbleCnt isFriendHome={isFriendHome}>
+          <span id="marble">내가 모은 여의주</span>
           <span id="cnt">{balls}개</span>
           <img src={info} onClick={() => setModal(!modal)} />
         </MarbleCnt>
@@ -100,6 +98,7 @@ const MarbleCnt = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
+  visibility: ${(props) => props.isFriendHome && "hidden"};
 
   span {
     color: var(--black);

@@ -32,7 +32,7 @@ const MainPage = () => {
   const [yearMonth, setYearMonth] = useState(format(selectedDate, "yyyy-MM"));
 
   const nickname = useAppSelector((state) => state.nickname);
-  const balls = useAppSelector((state) => state.balls);
+  const balls = useAppSelector((state) => state.real_balls);
   const userId = useAppSelector((state) => state.id);
 
   const [currentStatus, setCurrentStatus] = useState([]); //달성률 현황
@@ -89,10 +89,8 @@ const MainPage = () => {
     GetChallengeStatus()
       .then((response) => {
         setCurrentStatus(response.data.data.AchievementRate);
-        console.log(currentStatus);
         setChallengeId(response.data.data.AchievementRate[0].challenge.id);
         getChallengeInfo(response.data.data.AchievementRate[0].challenge.id);
-        console.log(challengeId);
       })
       .catch((error) => {
         console.error("달성률 현황 조회 실패", error);
@@ -118,7 +116,6 @@ const MainPage = () => {
   const doneChallenge = async (goalId) => {
     try {
       const response = await checkChallenge(goalId, formattedDate);
-      console.log(response);
       setRender(render + 0.1);
     } catch (error) {
       console.log("챌린지 달성 여부 변경 실패", error);
@@ -128,7 +125,6 @@ const MainPage = () => {
   const clickReaction = async (type) => {
     ClickReaction(challengeId, type)
       .then((response) => {
-        console.log(response);
         setRender(render + 0.1);
       })
       .catch((error) => {
@@ -139,7 +135,6 @@ const MainPage = () => {
   const writeComment = async () => {
     WriteCommemt(challengeId, content)
       .then((response) => {
-        console.log(response);
         deleteText();
       })
       .catch((error) => {
@@ -174,11 +169,7 @@ const MainPage = () => {
         </Title>
         <StatusBox balls={balls} currentStatus={currentStatus} />
       </MyChallenge>
-      <Calendar
-        openModal={openModal}
-        onDaySelect={handleDaySelect}
-        calendar={calendar}
-      />
+      <Calendar openModal={openModal} onDaySelect={handleDaySelect} />
       <ChallengeBox>
         <Challenge
           selectedDate={selectedDate}

@@ -30,6 +30,7 @@ const FillChallengePage = () => {
   const handleDaySelect = (date) => {
     console.log("Selected Date:", date);
     setSelectedDate(date);
+    setFormattedDate(format(selectedDate, "yyyy-MM-dd"));
     console.log(formattedDate);
     setRender(render + 0.1);
   };
@@ -48,7 +49,7 @@ const FillChallengePage = () => {
 
   const doneChallenge = (status) => {
     setId(status.goal_id);
-    setContent(status.goat_content);
+    setContent(status.goal_content);
     openModal();
   };
 
@@ -57,36 +58,33 @@ const FillChallengePage = () => {
       <TopBar titleText={"챌린지 메꾸기"} />
       <Calendar onDaySelect={handleDaySelect} />
       <Challenge>
-        <Date>
+        <ClickedDate>
           {format(selectedDate, "M")}월 {format(selectedDate, "d")}일
-        </Date>
+        </ClickedDate>
         {dayStatus.length != 0 ? (
           <ChallengeList>
             {dayStatus[0] && (
-              <Goal1>
+              <Goal1 goal1={dayStatus[0].is_done}>
                 <div
                   id="circle"
-                  goal1={dayStatus[0].is_done}
                   onClick={() => doneChallenge(dayStatus[0])}
                 ></div>
                 <span>{dayStatus[0].goal_content}</span>
               </Goal1>
             )}
             {dayStatus[1] && (
-              <Goal2>
+              <Goal2 goal2={dayStatus[1].is_done}>
                 <div
                   id="circle"
-                  goal2={dayStatus[1].is_done}
                   onClick={() => doneChallenge(dayStatus[1])}
                 ></div>
                 <span>{dayStatus[1].goal_content}</span>
               </Goal2>
             )}
             {dayStatus[2] && (
-              <Goal3>
+              <Goal3 goal3={dayStatus[2].is_done}>
                 <div
                   id="circle"
-                  goal3={dayStatus[2].is_done}
                   onClick={() => doneChallenge(dayStatus[2])}
                 ></div>
                 <span>{dayStatus[2].goal_content}</span>
@@ -136,7 +134,7 @@ const Challenge = styled.div`
   }
 `;
 
-const Date = styled.div`
+const ClickedDate = styled.div`
   margin-bottom: 17px;
   color: var(--black);
   font-feature-settings: "clig" off, "liga" off;
