@@ -27,7 +27,7 @@ const SettingPage = () => {
   const user_id = useAppSelector((state) => state.id);
   const nickname = useAppSelector((state) => state.nickname);
   const username = useAppSelector((state) => state.username);
-  const balls = useAppSelector((state) => state.balls);
+  const balls = useAppSelector((state) => state.real_balls);
   const user_profile = useAppSelector((state) => state.profile);
 
   const mapProfileToIcon = (profileValue) => {

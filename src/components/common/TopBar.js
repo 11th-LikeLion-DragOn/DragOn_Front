@@ -13,6 +13,10 @@ const TopBar = ({ titleText }) => {
     isSetting ? navigate("/main") : navigate(-1);
   };
 
+  const goMain = () => {
+    navigate("/main");
+  };
+
   return (
     <>
       <Wrapper>

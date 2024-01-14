@@ -33,7 +33,7 @@ const LoginPage = () => {
           id: response.data.id,
           nickname: response.data.nickname,
           username: response.data.username,
-          balls: response.data.balls,
+          real_balls: response.data.real_balls,
           profile: response.data.profile,
         })
       );

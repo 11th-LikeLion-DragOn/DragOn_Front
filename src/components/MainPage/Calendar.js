@@ -6,11 +6,9 @@ import { useLocation } from "react-router-dom";
 import before from "../../assets/icons/click-left.png";
 import after from "../../assets/icons/click-right.png";
 
-const Calendar = ({ openModal, onDaySelect, calendar }) => {
+const Calendar = ({ openModal, onDaySelect }) => {
   const location = useLocation();
   const isMain = location.pathname === "/main";
-
-  console.log(calendar);
 
   //달력
   const [currentDate, setCurrentDate] = useState(new Date());

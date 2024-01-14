@@ -6,7 +6,7 @@ const FillModal = ({ closeModal, balls }) => {
   const navigate = useNavigate();
   const [changeBtn, setChangeBtn] = useState(false);
   const [content, setContent] = useState(
-    "기다리면 무료 챌린지 메꾸기까지 \n 남은 시간 7일"
+    "기다리면 무료 챌린지 메꾸기까지 \n 시간이 더 필요해요."
   );
 
   const buyTicket = () =>
