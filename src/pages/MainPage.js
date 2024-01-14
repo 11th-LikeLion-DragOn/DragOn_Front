@@ -104,13 +104,13 @@ const MainPage = () => {
         console.error("날짜별 챌린지 달성 여부 조회 실패", error);
       });
     //달력 전체 조회
-    GetAllCalendar(userId, yearMonth)
-      .then((response) => {
-        setCalendar(response.data.data);
-      })
-      .catch((error) => {
-        console.error("달력 전체 조회 실패", error);
-      });
+    // GetAllCalendar(userId, yearMonth)
+    //   .then((response) => {
+    //     setCalendar(response.data.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("달력 전체 조회 실패", error);
+    //   });
   }, [render]);
 
   const doneChallenge = async (goalId) => {

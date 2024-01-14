@@ -61,7 +61,7 @@ const FillChallengePage = () => {
         <ClickedDate>
           {format(selectedDate, "M")}월 {format(selectedDate, "d")}일
         </ClickedDate>
-        {dayStatus.length != 0 ? (
+        {dayStatus.length !== 0 ? (
           <ChallengeList>
             {dayStatus[0] && (
               <Goal1 goal1={dayStatus[0].is_done}>

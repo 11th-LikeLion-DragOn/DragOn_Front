@@ -10,6 +10,8 @@ const StatusBox = ({ balls, currentStatus }) => {
 
   const isFriendHome = location.pathname === "/friendhome";
 
+  console.log(currentStatus);
+
   return (
     <Wrapper>
       <Status>
@@ -25,51 +27,56 @@ const StatusBox = ({ balls, currentStatus }) => {
           </StatusRate>
         )}
       </Status>
+      {currentStatus.length === 5 ? (
+        <RateBox>
+          {currentStatus[1] && (
+            <Goal1>
+              <Title1>
+                <div id="circle"></div>
+                <span>{currentStatus[1].goal.content}</span>
+              </Title1>
+              <Rate1>
+                <span>{currentStatus[1].goal_rate}%</span>
+                <RateBar1 num={currentStatus[1].goal_rate.toString()}>
+                  <div id="current"></div>
+                </RateBar1>
+              </Rate1>
+            </Goal1>
+          )}
+          {currentStatus[2] && (
+            <Goal2>
+              <Title2>
+                <div id="circle"></div>
+                <span>{currentStatus[2].goal.content}</span>
+              </Title2>
+              <Rate2>
+                <span>{currentStatus[2].goal_rate}%</span>
+                <RateBar2 num={currentStatus[2].goal_rate.toString()}>
+                  <div id="current"></div>
+                </RateBar2>
+              </Rate2>
+            </Goal2>
+          )}
+          {currentStatus[3] && (
+            <Goal3>
+              <Title3>
+                <div id="circle"></div>
+                <span>{currentStatus[3].goal.content}</span>
+              </Title3>
+              <Rate3>
+                <span>{currentStatus[3].goal_rate}%</span>
+                <RateBar3 num={currentStatus[3].goal_rate.toString()}>
+                  <div id="current"></div>
+                </RateBar3>
+              </Rate3>
+            </Goal3>
+          )}
+        </RateBox>
+      ) : (
+        <span id="info">진행 중인 챌린지가 없습니다.</span>
+      )}
+
       {modal && <MarbleModal />}
-      <RateBox>
-        {currentStatus[1] && (
-          <Goal1>
-            <Title1>
-              <div id="circle"></div>
-              <span>{currentStatus[1].goal.content}</span>
-            </Title1>
-            <Rate1>
-              <span>{currentStatus[1].goal_rate}%</span>
-              <RateBar1 num={currentStatus[1].goal_rate.toString()}>
-                <div id="current"></div>
-              </RateBar1>
-            </Rate1>
-          </Goal1>
-        )}
-        {currentStatus[2] && (
-          <Goal2>
-            <Title2>
-              <div id="circle"></div>
-              <span>{currentStatus[2].goal.content}</span>
-            </Title2>
-            <Rate2>
-              <span>{currentStatus[2].goal_rate}%</span>
-              <RateBar2 num={currentStatus[2].goal_rate.toString()}>
-                <div id="current"></div>
-              </RateBar2>
-            </Rate2>
-          </Goal2>
-        )}
-        {currentStatus[3] && (
-          <Goal3>
-            <Title3>
-              <div id="circle"></div>
-              <span>{currentStatus[3].goal.content}</span>
-            </Title3>
-            <Rate3>
-              <span>{currentStatus[3].goal_rate}%</span>
-              <RateBar3 num={currentStatus[3].goal_rate.toString()}>
-                <div id="current"></div>
-              </RateBar3>
-            </Rate3>
-          </Goal3>
-        )}
-      </RateBox>
     </Wrapper>
   );
 };
@@ -85,6 +92,18 @@ const Wrapper = styled.div`
   border-radius: 14px;
   border: 1px solid var(--background_01, rgba(199, 198, 198, 0.2));
   background: var(--white);
+
+  #info {
+    position: absolute;
+    margin-left: 90px;
+    color: var(--black);
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 `;
 
 const Status = styled.div`
