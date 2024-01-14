@@ -10,6 +10,10 @@ const ChallengeModal = ({ selectedDate, closeModal, id, content }) => {
     dateFns.format(selectedDate, "yyyy-MM-dd")
   );
 
+  const goMain = () => {
+    navigate("/main");
+  };
+
   const fillChallenge = (id, date) => {
     FillChallenge(id, date)
       .then((response) => {

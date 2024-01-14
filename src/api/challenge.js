@@ -212,17 +212,17 @@ export const ClickReaction = async (challengeId, type) => {
   }
 };
 
-//챌린지 달력 전체 조회
-export const GetAllCalendar = async (userId, date) => {
-  try {
-    const response = await http.get(
-      `/main/allcalendar/${userId}/?date=${date}/`
-    );
-    return response;
-  } catch (error) {
-    console.error("챌린지 달력 전체 조회 실패", error);
-  }
-};
+// //챌린지 달력 전체 조회
+// export const GetAllCalendar = async (userId, date) => {
+//   try {
+//     const response = await http.get(
+//       `/main/allcalendar/${userId}/?date=${date}/`
+//     );
+//     return response;
+//   } catch (error) {
+//     console.error("챌린지 달력 전체 조회 실패", error);
+//   }
+// };
 
 //챌린지 메꾸기
 export const FillChallenge = async (goalId, date) => {

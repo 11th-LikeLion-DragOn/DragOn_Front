@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 
 const Challenge = ({ selectedDate, dayStatus, doneChallenge }) => {
   console.log(dayStatus);
+  console.log(dayStatus.length);
 
   return (
     <Wrapper>
@@ -11,7 +12,7 @@ const Challenge = ({ selectedDate, dayStatus, doneChallenge }) => {
         {dateFns.format(selectedDate, "M")}월{" "}
         {dateFns.format(selectedDate, "d")}일
       </Date>
-      {dayStatus.length != 0 ? (
+      {dayStatus.length !== 0 ? (
         <ChallengeList>
           {dayStatus[0] && (
             <Goal1 goal1={dayStatus[0].is_done}>

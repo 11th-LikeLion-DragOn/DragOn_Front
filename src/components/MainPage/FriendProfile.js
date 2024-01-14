@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { GetFriendProfile, GetFriendStatus } from "../../api/friend";
-import { GetAllCalendar } from "../../api/challenge";
 import { format } from "date-fns";
 
 import none from "../../assets/icons/profile0.png";
@@ -54,14 +53,14 @@ const FriendProfile = ({ friend }) => {
       .catch((error) => {
         console.error("친구 달성률 조회 실패", error);
       });
-    //친구 전체 달력 조회
-    GetAllCalendar(friend.id, yearMonth)
-      .then((response) => {
-        setCalendar(response.data.data);
-      })
-      .catch((error) => {
-        console.error("친구 달력 전체 조회 실패", error);
-      });
+    // //친구 전체 달력 조회
+    // GetAllCalendar(friend.id, yearMonth)
+    //   .then((response) => {
+    //     setCalendar(response.data.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("친구 달력 전체 조회 실패", error);
+    //   });
   }, []);
 
   const goFriendHome = () => {
